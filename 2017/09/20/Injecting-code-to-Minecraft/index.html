@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Injecting code to Minecraft | Gink&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.利用Instrumentation &amp;amp; javassist 监听Minecraft方法开发Minecraft mod也有一段时间了，因为妄想开发一个通过p2p网络实现联机的mod，所以遇到了很多其他moder不太会遇到的问题。打算写一个系列的文章，记录一下这段时间遇到的各种问题和各种解决方案。 #引言因为要实现自己的联机方式，所以就要对Minecraft中的各种变化做一个监听，其中最重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Injecting code to Minecraft">
+<meta property="og:url" content="http://www.ginket.xyz/2017/09/20/Injecting-code-to-Minecraft/index.html">
+<meta property="og:site_name" content="Gink&#39;s Blog">
+<meta property="og:description" content="1.利用Instrumentation &amp;amp; javassist 监听Minecraft方法开发Minecraft mod也有一段时间了，因为妄想开发一个通过p2p网络实现联机的mod，所以遇到了很多其他moder不太会遇到的问题。打算写一个系列的文章，记录一下这段时间遇到的各种问题和各种解决方案。 #引言因为要实现自己的联机方式，所以就要对Minecraft中的各种变化做一个监听，其中最重">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-20T17:00:06.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Injecting code to Minecraft">
+<meta name="twitter:description" content="1.利用Instrumentation &amp;amp; javassist 监听Minecraft方法开发Minecraft mod也有一段时间了，因为妄想开发一个通过p2p网络实现联机的mod，所以遇到了很多其他moder不太会遇到的问题。打算写一个系列的文章，记录一下这段时间遇到的各种问题和各种解决方案。 #引言因为要实现自己的联机方式，所以就要对Minecraft中的各种变化做一个监听，其中最重">
+  
+    <link rel="alternative" href="/atom.xml" title="Gink&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Gink&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="www.ginket.xyz">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Injecting-code-to-Minecraft" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/20/Injecting-code-to-Minecraft/" class="article-date">
+  <time datetime="2017-09-20T14:49:54.000Z" itemprop="datePublished">2017-09-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Injecting code to Minecraft
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-利用Instrumentation-amp-javassist-监听Minecraft方法"><a href="#1-利用Instrumentation-amp-javassist-监听Minecraft方法" class="headerlink" title="1.利用Instrumentation &amp; javassist 监听Minecraft方法"></a>1.利用Instrumentation &amp; javassist 监听Minecraft方法</h1><pre><code>开发Minecraft mod也有一段时间了，因为妄想开发一个通过p2p网络实现联机的mod，所以遇到了很多其他moder不太会遇到的问题。打算写一个系列的文章，记录一下这段时间遇到的各种问题和各种解决方案。
+</code></pre><p>#引言<br>因为要实现自己的联机方式，所以就要对Minecraft中的各种变化做一个监听，其中最重要的也就是监听Block的变化。Minecraft forge提供了几个BlockEvent来满足一般modder对Block监听的需求，但是通过调试会发现这些BlockEvent的触发者其实不是Block，而是Player，也就是说Forge所提供的BlockEvent并不能监听爆炸，命令方块，红石等游戏元素造成的Block变化。这种时候就只能依赖更加低级的监听了，我选择去监听net.minecraft.world.World.setBlockState(…)方法。</p>
+<p>#Javassist字节码操作库<br>javassist是个非常好用的字节码操作库。javassist相对于ASM的优势在于程序员不必了解java的字节码是怎么样的，虽然很多java程序员对字节码都有不错的了解。下面写一段摘自javassist  tutorial的代码来展示一下javassist的便利<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        ClassPool cp = ClassPool.getDefault();</div><div class="line">        CtClass cc = cp.get(<span class="string">"Hello"</span>);</div><div class="line">        CtMethod m = cc.getDeclaredMethod(<span class="string">"say"</span>);</div><div class="line">        m.insertBefore(<span class="string">"&#123; System.out.println(\"Hello.say():\"); &#125;"</span>);</div><div class="line">        Class c = cc.toClass();</div><div class="line">        Hello h = (Hello)c.newInstance();</div><div class="line">        h.say();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>javassist可以通过这种非常类似于反射的操作来完成对指定类，指定方法的字节码操作。并且可以看到<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">m.insertBefore(<span class="string">"&#123; System.out.println(\"Hello.say():\"); &#125;"</span>);</div></pre></td></tr></table></figure></p>
+<p>插入的代码与真正的java代码没有任何的区别。这个很像php中的eval函数，并且也是在运行时编译的。</p>
+<p>其实如果注入代码的目标不是Minecraft client的话，仅仅依靠javassist就能完成对方法的注入。</p>
+<p>javassist的CtClass类提供了一个writeFile的方法，这个方法的原理是通过ClassLoader寻找所需修改的类的class文件，并直接修改该文件。但是Minecraft client的启动方式比较复杂，通过writeFile无法找到类对应的Class文件也就没法完成修改。这个时候就需要instrument的帮助了</p>
+<p>#Instrumentation 代理<br>java中代理是个很常见的词，但是Instrumentation就没有那么常见了。Instrumentation是可以独立于应用程序之外的代理，它可以检测所有类的加载，并操作这些类。<br>这样的一个代理(Agent)由两个部分组成：<br>1.premain<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">KAgent</span></span>&#123;</div><div class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</div><div class="line">        <span class="meta">@JvmStatic</span></div><div class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">premain</span><span class="params">(args:<span class="type">String</span>?,inst:<span class="type">Instrumentation</span>)</span></span>&#123;</div><div class="line">            println(<span class="string">"KAgent is Working"</span>)</div><div class="line">            inst.addTransformer(JInjection())</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里我用了kotlin。本人是kotlin的信徒，尽管就在编写这个agent的时候，kotlin给我造成了很大的麻烦。<br>2.transform<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JInjection</span> <span class="keyword">implements</span> <span class="title">ClassFileTransformer</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] transform(ClassLoader loader, String className, Class&lt;?&gt; classBeingRedefined, ProtectionDomain protectionDomain, <span class="keyword">byte</span>[] classfileBuffer) <span class="keyword">throws</span> IllegalClassFormatException &#123;</div><div class="line">        <span class="keyword">if</span>(className.equals(<span class="string">"net/minecraft/world/World"</span>)) &#123;</div><div class="line">            System.out.println(className);</div><div class="line">            <span class="keyword">return</span> Injection.transform(classfileBuffer);</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>关于Premain-class的详细规范我就不多说了。这里主要看premain和transform具体做了什么。premain中的代码很简单，一行打印和一行添加transformer。在为Instrumentation添加了Transformer之后，每次加载新的Class时，就会先运行所add的transformer，也就是JInjection。再来看JInjection，这个类实现了ClassFileTransformer这个接口，如果你想要修改新加载的类，你就只需要在transform方法中返回修改后的字节码，如果不修改则返回null。</p>
+<p>现在情况就很明了了。现在要做的就是在net.minecraft.world.World加载的时候，在setBlockState方法中插入我们的监听代码，并返回插入代码后的字节码。</p>
+<p>#Instrumentation &amp; Javassist</p>
+<p>先上一段代码<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">object</span> Injection &#123;</div><div class="line">    <span class="meta">@JvmStatic</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">transform</span><span class="params">(classfileBuffer: <span class="type">ByteArray</span>)</span></span>: ByteArray &#123;</div><div class="line">        <span class="keyword">val</span> pool: ClassPool = ClassPool.getDefault()</div><div class="line">        <span class="keyword">var</span> cl: CtClass? = <span class="literal">null</span></div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            pool.makeClass(<span class="string">"net.minecraft.util.math.BlockPos"</span>)</div><div class="line">            pool.makeClass(<span class="string">"net.minecraft.block.state.IBlockState"</span>)</div><div class="line">            pool.makeClass(<span class="string">"net.minecraft.world.World"</span>)</div><div class="line">            <span class="keyword">val</span> proxy=pool.makeClass(<span class="string">"com.game.minecraftol.common.WorldProxy"</span>)</div><div class="line">            proxy.addMethod(</div><div class="line">                    CtNewMethod.make(<span class="string">"public static void setBlockStateProxy(net.minecraft.world.World a,net.minecraft.util.math.BlockPos b,net.minecraft.block.state.IBlockState c,int d)&#123;&#125;"</span></div><div class="line">                            ,proxy))</div><div class="line">            cl = pool.makeClass(ByteArrayInputStream(classfileBuffer))</div><div class="line">            <span class="keyword">if</span> (cl != <span class="literal">null</span>) &#123;</div><div class="line">                <span class="keyword">val</span> methods = cl.declaredBehaviors</div><div class="line">                methods.filter &#123;</div><div class="line">                    !it.isEmpty &amp;&amp; it.name.startsWith(<span class="string">"func_180501_a"</span>)</div><div class="line">                &#125;.map &#123;</div><div class="line">                    System.<span class="keyword">out</span>.println(<span class="string">"GOT:"</span> + it.longName)</div><div class="line">                    it.insertBefore(<span class="string">"&#123;com.game.minecraftol.common.WorldProxy.setBlockStateProxy($0,$1,$2,$3);&#125;"</span>)</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> cl.toBytecode()</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125; <span class="keyword">catch</span> (e: Exception) &#123;</div><div class="line">            System.<span class="keyword">out</span>.println(<span class="string">"Error:"</span> + e)</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">if</span> (cl != <span class="literal">null</span>) &#123;</div><div class="line">                cl.detach()</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> classfileBuffer</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这段代码的作用就是找到net.minecraft.world.World中的setBlockState方法并用insertBefore方法插入我们的监听代码。监听代码我写在了一个mod里，因为mod的开发比代理的开发要方便的多，我想在看到<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pool.makeClass(<span class="string">"net.minecraft.util.math.BlockPos"</span>)</div><div class="line">pool.makeClass(<span class="string">"net.minecraft.block.state.IBlockState"</span>)</div><div class="line">pool.makeClass(<span class="string">"net.minecraft.world.World"</span>)</div><div class="line">CtNewMethod.make(<span class="string">"public static void setBlockStateProxy(net.minecraft.world.World a,net.minecraft.util.math.BlockPos b,net.minecraft.block.state.IBlockState c,int d)&#123;&#125;"</span></div><div class="line">                            ,proxy))</div></pre></td></tr></table></figure></p>
+<p>这4行之后，大家应该就明白了使用Instrumentation &amp; Javassist修改method是一件多么繁琐的事情。这4行代码没有任何的意义，只是为了在之后insertBefore的时候javassist能够成功的compile。有点像C/C++中头文件的感觉。</p>
+<p>最后。将代理打包并通过添加JVM启动参数 -javaagent:agent.jar 来加载代理类并最终实现代码注入。</p>
+<p>由于Minecraft client复杂的加载过程和可恶的混淆，我在实现监听的过程中走了许多弯路，最终能成功完成监听实属不易。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://www.ginket.xyz/2017/09/20/Injecting-code-to-Minecraft/" data-id="cj8oo42lr0001rt0gkwyr6hhg" class="article-share-link" data-share="baidu" data-title="Injecting code to Minecraft">Share</a>
+      
+
+      
+        <a href="http://www.ginket.xyz/2017/09/20/Injecting-code-to-Minecraft/#ds-thread" class="article-comment-link">Comments</a>
+      
+
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/23/Building-a-simple-p2p-network/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Building A Simple Peer-to-Peer Network
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/09/20/Injecting-code-to-Minecraft/" data-title="Injecting code to Minecraft" data-url="http://www.ginket.xyz/2017/09/20/Injecting-code-to-Minecraft/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/12/NodeKt-Express-for-Kotlin/">Nodejs+Express+Kotlin=?</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/23/Building-a-simple-p2p-network/">Building A Simple Peer-to-Peer Network</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/20/Injecting-code-to-Minecraft/">Injecting code to Minecraft</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://www.perfectpan.org" target="_blank">PerfectPan</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Ginker<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="totop"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
