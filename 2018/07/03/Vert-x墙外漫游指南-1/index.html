@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    <meta name="keywords" content="Gink, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Ginket's Blog" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Vert.x墙外漫游指南 (1) | Ginket's Blog</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Ginket's Blog</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      <div class="logo">
+        <img src="/images/ARIA_logo.png" alt="logo">
+      </div>
+    </div>
+    
+<nav id="nav" class="nav">
+  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
+  <ul id="menu">
+    
+    <li><a href="/">首页</a></li>
+    
+    <li><a href="/archives/">归档</a></li>
+    
+  </ul>
+</nav>
+
+
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="post">
+  
+  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/03/Vert-x墙外漫游指南-1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wooyme">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Ginket's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">Vert.x墙外漫游指南 (1)</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-03T00:45:53+08:00">2018-07-03 00:45:53</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h2 id="1-外面有个大仓库"><a href="#1-外面有个大仓库" class="headerlink" title="1.外面有个大仓库"></a><strong>1.外面有个大仓库</strong></h2><p>墙外的世界很精彩。全球最大的搜索引擎Google，全球最大的视频网站youtube,全球最大的同性交友网站Github，还有深受绅士们喜爱的pixiv，以及深受禽兽们喜爱的某p姓hub。而这篇文章就要教各位禽兽，如何把p**hub搬到自己的手机上。</p>
+<h2 id="2-仓库前面有座桥"><a href="#2-仓库前面有座桥" class="headerlink" title="2.仓库前面有座桥"></a><strong>2.仓库前面有座桥</strong></h2><p>外面的世界再美，我们也只能在墙里面听着去过外面的人说一个又一个精彩的故事，除非，我们也去外面转一转。出墙的方式有很多，至少是比出柜的方式要多的。这里呢，非常推荐搬瓦工( <a href="https://bwh1.net/" target="_blank" rel="noopener">https://bwh1.net/</a> )的vps，廉价稳定，延迟低带宽高,最主要的是有CN直连。当然选择其他的像日本的樱花，亚马逊的aws或是也在美国的Vultr也都可以，选择因人而异，但就使用情况来看，搬瓦工无疑是最好的选择。</p>
+<h2 id="3-桥上火车还没通"><a href="#3-桥上火车还没通" class="headerlink" title="3.桥上火车还没通"></a><strong>3.桥上火车还没通</strong></h2><p>有了境外的VPS还不能解决实际问题，毕竟最后是要面朝岛国，眺望欧美的，一个VPS只能算是在墙上开了个口，怎么清晰的看到外面的世界，还得花点功夫。那么现在就要拿出我们的全能型漫游神器Vert.x了。  </p>
+<blockquote>
+<p>桥上怎么才能通火车呢？我们得把铁轨铺好</p>
+</blockquote>
+<p>用Vert.x就可以构建这样一个铁轨，在之前的《Vert.x后端漫游指南 (1)》里，我们已经知道了Vert.x不仅仅是可以用来开发服务端，在客户端方面Vert.x也有非常全面的支持。那么到底是什么样的东西，才会出现同时需要服务端和客户端的情况呢？毫无疑问，代理嘛。</p>
+<h4 id="1）通火车的理论基础"><a href="#1）通火车的理论基础" class="headerlink" title="1）通火车的理论基础"></a>1）通火车的理论基础</h4><p>首先，让我们看看代理的工作方式。我们都知道，代理服务器是会打开一个端口让我们的浏览器连接上去的，浏览器连接到代理打开的端口之后就会把本来应该发送给google，youtube的请求发送给代理服务器，代理服务器在接收到这些请求之后再打开它的客户端将请求发送到google，youtube这样的目标上，等到目标服务器返回了消息再把这些消息传给浏览器。这个过程对于用户来说是看不到的。这就像个卖东西的中间商，只不过代理不赚差价而已。</p>
+<h4 id="2-通火车的实际操作"><a href="#2-通火车的实际操作" class="headerlink" title="2) 通火车的实际操作"></a>2) 通火车的实际操作</h4><p>我们这里就不开发一个完整的代理了，如何开发一个完整的代理可能会在之后的墙外漫游指南2-3里讲，因为这还是挺难的。这篇文章就介绍一下如何“呜呜呜”并且”嘿嘿嘿”，代码会非常的简短，但是记住一点<code>短小才能精捍</code><br>首先我们需要一个服务端，方便起见我们就创建一个Http的服务端好了。如何创建一个Http服务端在《Vert.x后端漫游指南》系列里有详细的说明，这里就不再赘述。直接上代码<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">import</span> io.vertx.core.Vertx<br><span class="hljs-keyword">import</span> io.vertx.ext.web.Router<br><br><span class="hljs-keyword">val</span> vertx = Vertx.vertx()<br><span class="hljs-keyword">val</span> router = Router.router(vertx)<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args:<span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span>&#123;<br>    <span class="hljs-keyword">val</span> currentIP=args[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">val</span> server= vertx.createHttpServer()<br>    router.route().handler(BodyHandler.create())<br>    router.route(<span class="hljs-string">"/getVideoUrls/*"</span>).handler &#123; context -&gt;<br>        <span class="hljs-comment">//TODO;</span><br>    &#125;<br>    router.route(<span class="hljs-string">"/view_video"</span>).handler&#123; context -&gt;<br>        <span class="hljs-comment">//TODO;</span><br>    &#125;<br>    server.requestHandler&#123;<br>        router.accept(it)<br>    &#125;.listen(<span class="hljs-number">8080</span>) &#123;<br>        <span class="hljs-keyword">if</span> (it.failed())<br>            println(it.cause())<br>        <span class="hljs-keyword">else</span><br>            println(<span class="hljs-string">"Success listening at 8080"</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>OK，那么两个路由就已经完成了。一个是用来获取视频列表和预览，而另一个是用来观看指定视频。相信大家看到这的，懂的都懂，不懂的可以关掉这篇文章了。<br>接下来就是铺铁路的重头戏了。服务端在获取到用户的请求后，要将请求进行一定的处理然后转发到p**hub上。我们先来看看<code>getVideoUrls</code>里是一个什么样的过程吧。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin">router.route(<span class="hljs-string">"/getVideoUrls/*"</span>).handler &#123; context -&gt;<br>  <span class="hljs-keyword">var</span> append=<span class="hljs-string">""</span><br>  <span class="hljs-keyword">if</span>(context.request().path().contains(<span class="hljs-string">"search"</span>))&#123;<br>      append=<span class="hljs-string">"/search"</span><br>  &#125;<br>  webClient.<span class="hljs-keyword">get</span>(<span class="hljs-number">443</span>,<span class="hljs-string">"www.p**hub.com"</span>,<span class="hljs-string">"/video"</span>+append+<span class="hljs-string">"?"</span>+context.request().params().joinToString(<span class="hljs-string">"&amp;"</span>) &#123; <span class="hljs-string">"<span class="hljs-subst">$&#123;it.key&#125;</span>=<span class="hljs-subst">$&#123;it.value&#125;</span>"</span> &#125;).ssl(<span class="hljs-literal">true</span>).send &#123;<br>            <span class="hljs-keyword">if</span>(it.failed())&#123;<br>                println(it.cause())<br>                context.response().end()<br>                <span class="hljs-keyword">return</span><span class="hljs-symbol">@send</span><br>            &#125;<br>            <span class="hljs-keyword">val</span> fileUrls=<span class="hljs-string">"&lt;a href=\"(\S+?)\" title=\"([^&gt;]+?)\" class=\"img\"[^&gt;]+?&gt;\s+&lt;img[^&gt;]+?data-mediumthumb=\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br>            context.response().putHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>,<span class="hljs-string">"*"</span>)<br>                    .end(JsonArray(*fileUrls.asIterable().map &#123; matchResult -&gt;<br>                        JsonObject(<span class="hljs-string">"preload"</span> to matchResult.groupValues[<span class="hljs-number">3</span>]<br>                                ,<span class="hljs-string">"url"</span> to matchResult.groupValues[<span class="hljs-number">1</span>].replace(<span class="hljs-string">"\\"</span>,<span class="hljs-string">""</span>)<br>                                ,<span class="hljs-string">"title"</span> to matchResult.groupValues[<span class="hljs-number">2</span>])<br>                    &#125;.toTypedArray()).toBuffer())<br><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这段代码里出现了一个新的变量，webClient。我们要在main函数里声明他<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> webClient = WebClient.create(vertx)<br></code></pre></td></tr></table></figure></p>
+<p>让我们看看这段代码都做了什么。在我们的路由接收到用户请求之后，马上调用了webClient的get方法，向一个神秘的域名发送了请求。这里呢对用户的请求的地址以及参数做了一些处理，基本上来说就是重新拼接这些地址与参数让我们能把用户的请求完整的转发给目标服务器。这里呢，由于目标站点采用了https，所以我们要加上ssl的部分来保证请求成功。<br>一旦请求成功了，结果显而易见，p**hub会返回给我们一个充斥着荷尔蒙的网页。将这样一个完整的网页转发给用户无疑是浪费时间的。所以我在这里使用了一个正则表达式，提取出我们关心的部分。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//实际上这里完全可以使用"""Regex"""这样的形式，但是这个三引号在highlight.js里渲染不出来，我就只好全部改成双引号</span><br><span class="hljs-keyword">val</span> fileUrls=<span class="hljs-string">"&lt;a href=\"(\S+?)\" title=\"([^&gt;]+?)\" class=\"img\"[^&gt;]+?&gt;\s+&lt;img[^&gt;]+?data-mediumthumb=\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br></code></pre></td></tr></table></figure></p>
+<p>在提取了我们想要的东西之后，我们通过<code>RoutingContext.response()</code>将数据返回给用户。这里加了一个header允许所有跨域完全是为了开发的方便。这部分的代码乍看可能有些混乱，但是这就是Kotlin的高阶函数，习惯了这种写法之后就会发现这样写可以非常的简洁高效。这部分代码中其实已经包含了很多的线程间切换，可以说<strong>每个lambda的执行都是一次线程的切换</strong>。但是由于Vert.x的设计，我们不用那么关注常规的多线程问题，我们完全可以<strong>认为自己就处在一个单线程开发的环境下</strong>。这一点，Vert.x做的非常的棒！<br>现在我们的用户已经有了一个视频列表，当用户想看到完整的视频的时候，他可以向我们的另一个路由发送请求，只要在请求中包含视频id就可以了<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin">router.route(<span class="hljs-string">"/view_video"</span>).handler&#123; context -&gt;<br>  webClient.<span class="hljs-keyword">get</span>(<span class="hljs-number">443</span><br>          , <span class="hljs-string">"www.p**hub.com"</span><br>          ,<span class="hljs-string">"/view_video.php?viewkey="</span>+context.request().getParam(<span class="hljs-string">"viewkey"</span>)).ssl(<span class="hljs-literal">true</span>).send &#123;<br>            <span class="hljs-keyword">if</span> (it.failed()) &#123;<br>              println(it.cause())<br>              context.response().end(it.cause().message)<br>              <span class="hljs-keyword">return</span><span class="hljs-symbol">@send</span><br>            &#125;<br>            <span class="hljs-keyword">val</span> videoUrls = <span class="hljs-string">"\"quality\":\"(720|480|240)\",\"videoUrl\":\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br>            videoUrls.forEach &#123;<br>              println(<span class="hljs-string">"Quality:<span class="hljs-subst">$&#123;it.groupValues[<span class="hljs-number">1</span>]&#125;</span> URL:<span class="hljs-subst">$&#123;it.groupValues[<span class="hljs-number">2</span>]&#125;</span>"</span>)<br>            &#125;<br>            context.response().putHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>)<br>              .end(JsonArray(*videoUrls.asIterable().map &#123;<br>                  JsonObject(<span class="hljs-string">"quality"</span> to it.groupValues[<span class="hljs-number">1</span>]<br>                          , <span class="hljs-string">"url"</span> to it.groupValues[<span class="hljs-number">2</span>]<br>                          .replace(<span class="hljs-string">"\\"</span>, <span class="hljs-string">""</span>)<br>                          )<br>                  &#125;.toTypedArray()).toBuffer())<br>          &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>那么在另一个路由里也是差不多的操作，只不过我们知道p**hub提供三种清晰度，这里就通过它的返回，将这三种清晰度和其对应的链接返还给用户而已。</p>
+<h2 id="4-通了火车得买票"><a href="#4-通了火车得买票" class="headerlink" title="4.通了火车得买票"></a><strong>4.通了火车得买票</strong></h2><p>为了前往这个巨大的仓库，我们的基础设施都已经建设完毕了。是时候让我们的用户体验一下坐火车的乐趣了。那么下一篇会讲一下如何卖我们的火车票</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/Vert-x-Ionic/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Vert.x Ionic</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+<div class="reward" id="reward">
+  <p>坚持原创技术分享，您的支持是我前进的动力！</p>
+  <button id="reward-button" class="button" disable="enable">打赏</button>
+  <div id="qr" class="qr" style="display: none;">
+    
+    
+    
+  </div>
+</div>
+
+
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      
+      <a href="/2018/07/02/Vert-x后端漫游指南-2/" rel="next" title="Vert.x后端漫游指南(2)"><i class="fas fa-angle-left"></i><span class="nav-title">Vert.x后端漫游指南(2)</span></a>
+      
+    </div>
+    <div class="post-nav-prev post-nav-item">
+      
+    </div>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="Wooyme">
+  
+  <h1 class="author-name">Wooyme</h1>
+  <h2 class="author-description"> </h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">3</a></div>
+    </div>
+    
+    
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+
+
+
+
+<hr>
+<div class="post-toc sidebar-item" id="toc-div">
+  <div><i class="fas fa-list-ol"></i>文章目录</div>
+  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-外面有个大仓库"><span class="toc-text">1.外面有个大仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-仓库前面有座桥"><span class="toc-text">2.仓库前面有座桥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-桥上火车还没通"><span class="toc-text">3.桥上火车还没通</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1）通火车的理论基础"><span class="toc-text">1）通火车的理论基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-通火车的实际操作"><span class="toc-text">2) 通火车的实际操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-通了火车得买票"><span class="toc-text">4.通了火车得买票</span></a></li></ol></div>
+</div>
+
+
+
+    
+    
+    
+<hr>
+<div class="social-link sidebar-item">
+  <div><i class="far fa-address-card"></i>社交链接</p></div>
+  <ul>
+    
+    <li><i class="fas fa-envelope"></i><a href="mailto:867653608@qq.com" target="_blank">E-Mail</a></li>
+    
+    <li><i class="fab fa-github"></i><a href="https://github.com/wy16880175" target="_blank">GitHub</a></li>
+    
+  </ul>
+</div>
+
+
+    
+    
+    
+<hr>
+<div class="blogroll sidebar-item">
+  <div><i class="fas fa-link"></i>友情链接</div>
+  <ul>
+    
+    <li><a href="http://www.perfectpan.org/" target="_blank">PerfectPan.org</a></li>
+    
+  </ul>
+</div>
+
+
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wooyme</span><span class="year"><i class="far fa-copyright"></i>2018</span>
+        </div>
+        
+        
+<div class="busuanzi">
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
+</div>
+
+
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
