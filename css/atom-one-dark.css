@@ -1,7 +1,7 @@
 /*
 
 Atom One Dark by Daniel Gamage
-Original One Dark Syntax theme from https://githubspan.com/atom/one-dark-syntax
+Original One Dark Syntax theme from https://github.hljs-com/atom/one-dark-syntax
 
 base:    #282c34
 mono-1:  #abb2bf
@@ -21,76 +21,76 @@ hue-6-2: #e6c07b
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0span.5em;
+  padding: 0.hljs-5em;
   color: #abb2bf;
   background: #282c34;
 }
 
-span.comment,
-span.quote {
+.hljs-comment,
+.hljs-quote {
   color: #5c6370;
   font-style: italic;
 }
 
-span.doctag,
-span.keyword,
-span.formula {
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
   color: #c678dd;
 }
 
-span.section,
-span.name,
-span.selector-tag,
-span.deletion,
-span.subst {
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
   color: #e06c75;
 }
 
-span.literal {
+.hljs-literal {
   color: #56b6c2;
 }
 
-span.string,
-span.regexp,
-span.addition,
-span.attribute,
-span.meta-string {
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
   color: #98c379;
 }
 
-span.built_in,
-span.class span.title {
+.hljs-built_in,
+.hljs-class .hljs-title {
   color: #e6c07b;
 }
 
-span.attr,
-span.variable,
-span.template-variable,
-span.type,
-span.selector-class,
-span.selector-attr,
-span.selector-pseudo,
-span.number {
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
   color: #d19a66;
 }
 
-span.symbol,
-span.bullet,
-span.link,
-span.meta,
-span.selector-id,
-span.title {
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
   color: #61aeee;
 }
 
-span.emphasis {
+.hljs-emphasis {
   font-style: italic;
 }
 
-span.strong {
+.hljs-strong {
   font-weight: bold;
 }
 
-span.link {
+.hljs-link {
   text-decoration: underline;
 }
