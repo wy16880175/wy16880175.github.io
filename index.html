@@ -1,90 +1,153 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>Ginket&#39;s Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ginket&#39;s Blog">
-<meta property="og:url" content="http://ginket.xyz/index.html">
-<meta property="og:site_name" content="Ginket&#39;s Blog">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ginket&#39;s Blog">
-  
-    <link rel="alternate" href="/atom.xml" title="Ginket&#39;s Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Ginket&#39;s Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://ginket.xyz"></form>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    <meta name="keywords" content="Life, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Ginket's Blog" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>Ginket's Blog</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Ginket's Blog</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      <div class="logo">
+        <img src="/images/ARIA_logo.png" alt="logo">
       </div>
     </div>
+    
+<nav id="nav" class="nav">
+  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
+  <ul id="menu">
+    
+    <li><a href="/" class="current">首页</a></li>
+    
+    <li><a href="/archives/">归档</a></li>
+    
+  </ul>
+</nav>
+
+
   </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Vert-x搭建服务端应用入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/01/Vert-x搭建服务端应用入门/" class="article-date">
-  <time datetime="2018-07-01T14:40:34.000Z" itemprop="datePublished">2018-07-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/01/Vert-x搭建服务端应用入门/">Vert.x搭建服务端应用入门（1）</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+
+<div id="index" class="index">
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/01/Vert-x搭建服务端应用入门/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wooyme">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Ginket's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/01/Vert-x搭建服务端应用入门/" itemprop="url">Vert.x搭建服务端应用入门（1）</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-01T22:40:34+08:00">2018-07-01 22:40:34</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
       
-        <h2 id="1-为什么是Vert-x"><a href="#1-为什么是Vert-x" class="headerlink" title="1.为什么是Vert.x"></a><strong>1.为什么是Vert.x</strong></h2><p>如果你从来没有听说过Vert.x，不要觉得是自己孤陋寡闻或是被时代抛弃了。Vert.x是一个非常小众的服务端框架，我也举不出某个大厂商将Vert.x作为它们后端技术栈的例子，但是这并不能说明Vert.x不够优秀，Vert.x不火很大程度上是因为它没有那些惊世骇俗的噱头，同时它实在是太年轻了。<br>学习这样一个小众的框架往往是要付出许多代价的，无论是大段的报错信息还是连报错信息都没有的错误，小众的东西总是让我们费劲心思。好在Vert.x并不属于这一类的小众，Vert.x的文档非常详细(包括中文文档)，并且它的源码注释也非常符合规范，配合文档以及注释，想要学习这个框架还是非常容易的。<br>那么问题来了，在现在这个框架爆炸的时代，我们为什么还要学习Vert.x呢？是啊，现在的框架是真的多，好像不管是什么样的语言都可以来写后端服务了，js有express，python有django，go、java、ruby就更不用说了。那Vert.x到底有什么优势呢？  </p>
+      <h2 id="1-为什么是Vert-x"><a href="#1-为什么是Vert-x" class="headerlink" title="1.为什么是Vert.x"></a><strong>1.为什么是Vert.x</strong></h2><p>如果你从来没有听说过Vert.x，不要觉得是自己孤陋寡闻或是被时代抛弃了。Vert.x是一个非常小众的服务端框架，我也举不出某个大厂商将Vert.x作为它们后端技术栈的例子，但是这并不能说明Vert.x不够优秀，Vert.x不火很大程度上是因为它没有那些惊世骇俗的噱头，同时它实在是太年轻了。<br>学习这样一个小众的框架往往是要付出许多代价的，无论是大段的报错信息还是连报错信息都没有的错误，小众的东西总是让我们费劲心思。好在Vert.x并不属于这一类的小众，Vert.x的文档非常详细(包括中文文档)，并且它的源码注释也非常符合规范，配合文档以及注释，想要学习这个框架还是非常容易的。<br>那么问题来了，在现在这个框架爆炸的时代，我们为什么还要学习Vert.x呢？是啊，现在的框架是真的多，好像不管是什么样的语言都可以来写后端服务了，js有express，python有django，go、java、ruby就更不用说了。那Vert.x到底有什么优势呢？  </p>
 <h4 id="优势"><a href="#优势" class="headerlink" title="优势:"></a>优势:</h4><ul>
 <li><em>运行在JVM上</em><br>也许你不认为运行在JVM上会是一个框架的优势，毕竟JVM上已经有许多非常成熟的解决方案了，大名鼎鼎的Spring，J2EE，这样一个不出名的框架要怎么与这些老牌强者抗衡，但是Vert.x就是可以，因为它与众不同。运行在JVM上让它可以很轻松的利用Java庞大的生态，各种工具，各种成熟的技术还有现在让许多框架头疼的多线程问题。</li>
 <li><em>事件循环以及异步</em><br>如果你了解Netty的话，你对事件循环和异步一定不会陌生，并且我可以告诉你Vert.x的底层实现就是Netty。如果你从来没有听说过Netty那也没关系，我想你多半听说过nodejs，通俗的来说Vert.x就是运行在JVM上的Nodejs。他们都有一个Eventloop，他们的所有API都是异步的，他们都遵守”Don’t call us,we’ll call you”的原则。只不过Vert.x更加自由，更加安全。异步很大的一个好处是将逻辑与I/O分离，逻辑的部分干逻辑的事，I/O的部分干I/O的事，因为I/O往往是耗时严重的，所以等到I/O完成了自己的工作后再来召唤逻辑，而在I/O工作的时候逻辑就去做其他的事情，这样两方都不会有干等着的时候。</li>
@@ -110,98 +173,134 @@
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><em>小结</em></h2><p>第一篇就大概介绍一下Vert.x的理念，实际上Vert.x的许多特性比介绍的要复杂的多，有兴趣的人可以去看中问文档，里面有讲关于Verticle的，关于分布式的，以及一些类似于热部署的。这里写的一个例子也非常的简单，但是如果你从来没有接触过异步，这对你来说可能是个挑战。你得明白，为什么这段代码不是按照顺序执行的，以及什么是lambda(这个不是非常重要，lambda只是一种表现形式而已，我们实例化一个接口也完全可以实现同样的功能)。<br>下一篇应该是会讲请求的处理，get的和post的，以及Router这个扩展。</p>
 
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://ginket.xyz/2018/07/01/Vert-x搭建服务端应用入门/" data-id="cjj2yafur0000d8ju49a5w7z1" class="article-share-link">Share</a>
-      
+    </main>
+    <footer class="post-footer">
       
     </footer>
-  </div>
+  </article>
   
-</article>
-
-
   
-
-
-</section>
-        
-          <aside id="sidebar">
   
-    
+</div>
 
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
   
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
     </div>
   </div>
-
-
+  <div class="search-result-box" id="search-result"></div>
   
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="Wooyme">
+  
+  <h1 class="author-name">Wooyme</h1>
+  <h2 class="author-description"> </h2>
+  <div class="site-count">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/07/01/Vert-x搭建服务端应用入门/">Vert.x搭建服务端应用入门（1）</a>
-          </li>
-        
-      </ul>
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">1</a></div>
     </div>
+    
+    
+    
   </div>
-
   
-      <div class="widget-wrap">
-    <h3 class="widget-title">Links</h3>
-    <div class="widget">
-        <li><a href="http://www.perfectpan.org" title="PerfectPan's Blog">Perfect Pan's Blog</a></li>
-    </div>
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
   </div>
-
   
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+    
+<hr>
+<div class="social-link sidebar-item">
+  <div><i class="far fa-address-card"></i>社交链接</p></div>
+  <ul>
+    
+    <li><i class="fas fa-envelope"></i><a href="mailto:youremail@youremailhost" target="_blank">E-Mail</a></li>
+    
+    <li><i class="fab fa-github"></i><a href="https://github.com/" target="_blank">GitHub</a></li>
+    
+    <li><i class="fab fa-weibo"></i><a href="https://weibo.com/" target="_blank">Weibo</a></li>
+    
+  </ul>
+</div>
+
+
+    
+    
+    
+<hr>
+<div class="blogroll sidebar-item">
+  <div><i class="fas fa-link"></i>友情链接</div>
+  <ul>
+    
+    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+    
+    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
+    
+    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+    
+  </ul>
+</div>
+
+
+    
+  </div>
 </aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wooyme</span><span class="year"><i class="far fa-copyright"></i>2018</span>
+        </div>
+        
+        
+<div class="busuanzi">
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
+</div>
+
+
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 Wooyme<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
+  </body>
 </html>
