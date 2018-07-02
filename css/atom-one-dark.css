@@ -26,14 +26,14 @@ hue-6-2: #e6c07b
   background: #282c34;
 }
 
-.comment,
-.quote {
+.hljs>.comment,
+.hljs>.quote {
   color: #5c6370;
   font-style: italic;
 }
 
 .doctag,
-.keyword,
+.hljs>.keyword,
 .formula {
   color: #c678dd;
 }
