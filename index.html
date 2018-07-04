@@ -121,6 +121,62 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/05/TCP中的坑/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wooyme">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Ginket's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/07/05/TCP中的坑/" itemprop="url">TCP中的坑</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T00:28:45+08:00">2018-07-05 00:28:45</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h2 id="1-我发的那个包呢"><a href="#1-我发的那个包呢" class="headerlink" title="1.我发的那个包呢"></a><strong>1.我发的那个包呢</strong></h2><p>对于不熟悉TCP协议的人来说，各种tcp库提供的send函数都是那么的具有欺骗性。或者说，我们每个人都被这些封装好的send函数欺骗过。这里就拿Vert.x为例（虽然Vert.x里不叫send）<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> client=vertx.createNetClient(NetClientOptions().setReceiveBufferSize(<span class="hljs-number">5120</span>).setUsePooledBuffers(<span class="hljs-literal">true</span>))<br>client.connect(PORT, IP) &#123;<br>  <span class="hljs-keyword">this</span>.write(<span class="hljs-string">"This is an example of TCP Client"</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>现在让我们来想一想这段代码会实现一个什么样的效果,我们首先连接到了一个服务端，然后我们向服务端发送了一句话，而我们的服务端也会理所当然的收到这句话没。这非常简单，但是当这句话变得稍微长一点的时候情况就可能不再是这样了。由于种种原因，当<code>write</code>的buffer变长的时候，我们的服务端会收到多个数据包，只有将这些数据包拼起来我们才能得到完整的buffer。<br>一段完整的数据被分成多段数据只是一种情况，在TCP连接中，还有另一种同样致命的情况————<strong>粘包</strong>。当我们的发送频率比较高的时候，我们甚至可以看到多个包被放在一个缓冲区里，如果我们的服务端假设每次收到的数据都是一个独立的包的话，粘包将会导致无数的问题。</p>
+<h2 id="2-把包还给我"><a href="#2-把包还给我" class="headerlink" title="2.把包还给我"></a><strong>2.把包还给我</strong></h2><p>为了解决<strong>分包</strong>和<strong>粘包</strong>的问题，我们不得不做一些妥协。可能你已经规定了一个非常棒的数据结构、编码规则来传输数据，但是现在你必须改变，TCP就是这么的让人讨厌,当然UDP也没有好到哪里去。<br>不过好在，我们有很多的东西可以参考，毕竟现在有那么多的协议是建立在TCP之上的，早就有人为我们踏平了道路。这里就让我们来看一个非常经典的协议<code>HTTP</code>。  </p>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP的特点实在是太鲜明了。</p>
+<ul>
+<li>短连接<br>我知道HTTP有长连接的情况，但是你不能否认HTTP也是使用短连接的对吧。短连接是解决分包和粘包的一个非常彻底的方案。在<strong>把一段完整的响应发送完之后就关闭连接</strong>，用这样的方式，客户端就可以很轻松的判断出什么时候自己接收到了所有的数据，并且可以开始处理数据。</li>
+<li>Content-Length<br>客户端(也就是浏览器)可以通过连接关闭事件来触发数据处理，但是服务端就没有这么幸运了，如果客户端在发送完之后就关闭了连接，服务端就只能表示一脸懵逼。于是，为了让服务端也能正确的接收到数据，客户端在发送HTTP请求的时候必须要加上Content-Length。服务端在接收到Content-Length之后，就数着后续收到的数据长度，只有达到了要求才开始处理数据。</li>
+<li>分割符<br>HTTP的分割符比较特殊，它只在请求头的部分有效，因为一旦到了请求内容里，这个<code>\r\n</code>很有可能引发混乱，特别是当我们在传输文件的时候，如果我们的文件里碰巧也有<code>\r\n</code>，那么谁能分的清哪个才是真正的分割符号呢。虽然说HTTP的分割符不那么典型，但是这也是一种我们能够使用的思路</li>
+</ul>
+<h4 id="我们的选择"><a href="#我们的选择" class="headerlink" title="我们的选择"></a>我们的选择</h4><p>很明显，一般来说我们不需要像HTTP一样把这些方式全部用上。在这三种里面我们可以按自己的需要选择其中一种。</p>
+<ul>
+<li>我的数据只有ASCII(或是其他特定的编码)<br>当我们非常确定我们的数据编码的时候，分割符无疑是最简单的选择，在包的开头加上<code>0xffffff</code>，在包尾加上<code>0xefefef</code>，剩下的就是些常规操作了</li>
+<li>我传的就是二进制  <ul>
+<li>发送频率不高，并且对返回不感兴趣<br>这种时候使用短连接也不失为一种不错的选择，一方面是短连接天生就能起到分包的作用，另一方面也可以把连接数释放给其他的客户端。</li>
+<li>高频率，要返回<br>这种时候，在包里加上包长度就变成必须的操作了。在高频率的传输情况下，使用短连接无疑是会浪费大量的网络资源，毕竟三握手的成本还是非常高的。</li>
+</ul>
+</li>
+<li>我有个大胆的想法<br>为什么不试试UDT呢</li>
+</ul>
+<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a><strong>3.小结</strong></h2><p>能解决TCP中粘包和分包问题的方法还是很多的，多看看其他的协议是怎么解决问题的往往能给我们不少的启发。毕竟相比UDP来说，TCP已经可靠多了，我们要做的只是解决一下缓冲区里的一点小小问题而已。</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/03/Vert-x后端漫游指南-3/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wooyme">
@@ -373,7 +429,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">4</a></div>
+      <div><a href="/archives/">5</a></div>
     </div>
     
     
