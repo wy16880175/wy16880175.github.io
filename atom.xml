@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ginket.xyz/"/>
-  <updated>2018-07-04T17:49:16.769Z</updated>
+  <updated>2018-07-04T17:56:36.866Z</updated>
   <id>http://ginket.xyz/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么Kotlin排在第49位</title>
+    <link href="http://ginket.xyz/2018/07/05/%E4%B8%BA%E4%BB%80%E4%B9%88Kotlin%E6%8E%92%E5%9C%A8%E7%AC%AC49%E4%BD%8D/"/>
+    <id>http://ginket.xyz/2018/07/05/为什么Kotlin排在第49位/</id>
+    <published>2018-07-04T17:56:12.000Z</published>
+    <updated>2018-07-04T17:56:36.866Z</updated>
+    
+    <content type="html"><![CDATA[<p>FUck</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;FUck&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>TCP中的坑</title>
