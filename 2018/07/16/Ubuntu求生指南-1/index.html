@@ -82,7 +82,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>TCP中的坑 | Ginket's Blog</title>
+    <title>Ubuntu求生指南(1) | Ginket's Blog</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
@@ -125,7 +125,7 @@
   
   <article class="post-container card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/05/TCP中的坑/">
+      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/16/Ubuntu求生指南-1/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="Wooyme">
        <meta itemprop="description" content="">
@@ -136,11 +136,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">TCP中的坑</h1>
+      <h1 class="post-title" itemprop="name headline">Ubuntu求生指南(1)</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T00:28:45+08:00">2018-07-05 00:28:45</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-16T00:42:21+08:00">2018-07-16 00:42:21</time></span>
         </span>
         
         
@@ -148,26 +148,34 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <h2 id="1-我发的那个包呢"><a href="#1-我发的那个包呢" class="headerlink" title="1.我发的那个包呢"></a><strong>1.我发的那个包呢</strong></h2><p>对于不熟悉TCP协议的人来说，各种tcp库提供的send函数都是那么的具有欺骗性。或者说，我们每个人都被这些封装好的send函数欺骗过。这里就拿Vert.x为例（虽然Vert.x里不叫send）<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> client=vertx.createNetClient(NetClientOptions().setReceiveBufferSize(<span class="hljs-number">5120</span>).setUsePooledBuffers(<span class="hljs-literal">true</span>))<br>client.connect(PORT, IP) &#123;<br>  <span class="hljs-keyword">this</span>.write(<span class="hljs-string">"This is an example of TCP Client"</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>现在让我们来想一想这段代码会实现一个什么样的效果,我们首先连接到了一个服务端，然后我们向服务端发送了一句话，而我们的服务端也会理所当然的收到这句话没。这非常简单，但是当这句话变得稍微长一点的时候情况就可能不再是这样了。由于种种原因，当<code>write</code>的buffer变长的时候，我们的服务端会收到多个数据包，只有将这些数据包拼起来我们才能得到完整的buffer。<br>一段完整的数据被分成多段数据只是一种情况，在TCP连接中，还有另一种同样致命的情况————<strong>粘包</strong>。当我们的发送频率比较高的时候，我们甚至可以看到多个包被放在一个缓冲区里，如果我们的服务端假设每次收到的数据都是一个独立的包的话，粘包将会导致无数的问题。</p>
-<h2 id="2-把包还给我"><a href="#2-把包还给我" class="headerlink" title="2.把包还给我"></a><strong>2.把包还给我</strong></h2><p>为了解决<strong>分包</strong>和<strong>粘包</strong>的问题，我们不得不做一些妥协。可能你已经规定了一个非常棒的数据结构、编码规则来传输数据，但是现在你必须改变，TCP就是这么的让人讨厌,当然UDP也没有好到哪里去。<br>不过好在，我们有很多的东西可以参考，毕竟现在有那么多的协议是建立在TCP之上的，早就有人为我们踏平了道路。这里就让我们来看一个非常经典的协议<code>HTTP</code>。  </p>
-<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP的特点实在是太鲜明了。</p>
-<ul>
-<li>短连接<br>我知道HTTP有长连接的情况，但是你不能否认HTTP也是使用短连接的对吧。短连接是解决分包和粘包的一个非常彻底的方案。在<strong>把一段完整的响应发送完之后就关闭连接</strong>，用这样的方式，客户端就可以很轻松的判断出什么时候自己接收到了所有的数据，并且可以开始处理数据。</li>
-<li>Content-Length<br>客户端(也就是浏览器)可以通过连接关闭事件来触发数据处理，但是服务端就没有这么幸运了，如果客户端在发送完之后就关闭了连接，服务端就只能表示一脸懵逼。于是，为了让服务端也能正确的接收到数据，客户端在发送HTTP请求的时候必须要加上Content-Length。服务端在接收到Content-Length之后，就数着后续收到的数据长度，只有达到了要求才开始处理数据。</li>
-<li>分割符<br>HTTP的分割符比较特殊，它只在请求头的部分有效，因为一旦到了请求内容里，这个<code>\r\n</code>很有可能引发混乱，特别是当我们在传输文件的时候，如果我们的文件里碰巧也有<code>\r\n</code>，那么谁能分的清哪个才是真正的分割符号呢。虽然说HTTP的分割符不那么典型，但是这也是一种我们能够使用的思路</li>
-</ul>
-<h4 id="我们的选择"><a href="#我们的选择" class="headerlink" title="我们的选择"></a>我们的选择</h4><p>很明显，一般来说我们不需要像HTTP一样把这些方式全部用上。在这三种里面我们可以按自己的需要选择其中一种。</p>
-<ul>
-<li>我的数据只有ASCII(或是其他特定的编码)<br>当我们非常确定我们的数据编码的时候，分割符无疑是最简单的选择，在包的开头加上<code>0xffffff</code>，在包尾加上<code>0xefefef</code>，剩下的就是些常规操作了</li>
-<li>我传的就是二进制  <ul>
-<li>发送频率不高，并且对返回不感兴趣<br>这种时候使用短连接也不失为一种不错的选择，一方面是短连接天生就能起到分包的作用，另一方面也可以把连接数释放给其他的客户端。</li>
-<li>高频率，要返回<br>这种时候，在包里加上包长度就变成必须的操作了。在高频率的传输情况下，使用短连接无疑是会浪费大量的网络资源，毕竟三握手的成本还是非常高的。</li>
-</ul>
-</li>
-<li>我有个大胆的想法<br>为什么不试试UDT呢</li>
-</ul>
-<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a><strong>3.小结</strong></h2><p>能解决TCP中粘包和分包问题的方法还是很多的，多看看其他的协议是怎么解决问题的往往能给我们不少的启发。毕竟相比UDP来说，TCP已经可靠多了，我们要做的只是解决一下缓冲区里的一点小小问题而已。</p>
+      <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a><strong>1.前言</strong></h2><p>先抱怨两句，Linux对于各种A卡的支持实在是太烂了。Radeon的驱动下，A卡的跑分还不到Intel的一半。换用AMD自家的amdgpu-pro直接就进不了桌面系统了。搞了好几天还是搞不定，最后还是决定算了，毕竟核显跑Minecraft还是有40-60帧。不用独显说不定还能省点电。<br>如果你不幸也是A卡用户，这篇文章了应该能给你点帮助。如果你N卡用户，这篇文章也还是有点用的，说不定哪天就能救人一命。<br>如果你想看看自己的显卡/各种设备的情况的话，用<code>lspci</code>这个命令,参数<code>-k</code>的使用率比较高。</p>
+<h2 id="2-AMDGPU-PRO"><a href="#2-AMDGPU-PRO" class="headerlink" title="2.AMDGPU-PRO"></a><strong>2.AMDGPU-PRO</strong></h2><blockquote>
+<p>Ubuntu 18.04对应下载地址<br><a href="https://support.amd.com/en-us/kb-articles/Pages/Radeon-Software-for-Linux-18.20-Early-Preview-Release-Notes.aspx" target="_blank" rel="noopener">https://support.amd.com/en-us/kb-articles/Pages/Radeon-Software-for-Linux-18.20-Early-Preview-Release-Notes.aspx</a></p>
+</blockquote>
+<blockquote>
+<p>Ubuntu 16.04对应下载地址<br><a href="https://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Driver-for-Linux-Release-Notes.aspx" target="_blank" rel="noopener">https://support.amd.com/en-us/kb-articles/Pages/AMDGPU-PRO-Driver-for-Linux-Release-Notes.aspx</a></p>
+</blockquote>
+<p>相信看看链接大家也就懂了。18.04还是EPR，能不能用就看造化了。16.04应该能用，但是我不确定，因为我是ubuntu gnome16.04。<code>稍微科普一下，ubuntu17.10前的桌面系统是Unity，然后因为大家喜好有差，就出现了Ubuntu Gnome和KUbuntu(Ubuntu Kde)这两个发行版</code>然后amdgpu-pro在我的电脑上似乎不太行，如果你是官方的Ubuntu发行版，说不定可以试试。<br>安装完之后不要忘了修改grub</p>
+<blockquote>
+<pre><code><pre><code class="hljs undefined">Edit /etc/default/grub as root and modify GRUB_CMDLINE_LINUX_DEFAULT in order to add &quot;amdgpu.vm_fragment_size=9&quot; (without the quotes). The line may look something like this after the change:
+ GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash amdgpu.vm_fragment_size=9&quot;
+ Update grub and reboot as root:
+ update-grub;reboot</code></pre>
+</code></pre></blockquote>
+<p>官方丧心病狂的把这段话写在网页的后半部分，可能很多人都没有注意。</p>
+<p>接下来就是非常关键的部分了。如果你安装完之后成功的进入了桌面系统，你可能会在gnome的 <em>设置-&gt;详细信息-&gt;图形</em> 里看到LLVM的字样(顺便说一句，看到LLVM的时候我就总觉得这玩意不太靠谱)，当然根据显卡型号不同，你可能会看到不一样的结果。只要你没看到Intel之类的东西，你多半是成功了。  </p>
+<p>对于成功者来说，这部分就到此结束了。但是如果你安装了amdgpu-pro之后，出现开机只能进bash或者登录界面循环的情况，你可能就不得不浪费一些时间了。<strong>Ubuntu Ask</strong> 论坛上有许多关于这种问题的帖子，里面说不定有些解决方案。而这里，我只给一种最简单的方案。<br>在amdgpu-pro安装之后，系统会多一个<code>amdgpu-pro-uninstall</code>的命令。我们要在boot的时候选择<code>recovery mode</code>。进入recovery mode之后，可以先选择一下clean，这样他会自动挂载分区。clean结束之后，就进入root然后运行<code>amdgpu-pro-uninstall</code>就可以了，同时不要忘了把grub改回来。</p>
+<h2 id="2-某不靠谱PPA"><a href="#2-某不靠谱PPA" class="headerlink" title="2.某不靠谱PPA"></a><strong>2.某不靠谱PPA</strong></h2><p>可能在尝试amdgpu-pro之前，你还试过很多操作。毕竟那些年代久远的文章总是会介绍一些奇奇怪怪的方法。。。然后，我就遭众了。<br>这里的方法不只是对安装驱动的时候遇到的问题有效，所有因为安装了某ppa的应用而导致问题的情况都可以用这个方法解决。<br><em>PPA回滚</em></p>
+<blockquote>
+<p>sudo apt-get install ppa-purge<br>sudo ppa-purge ppa:你要删除的ppa</p>
+</blockquote>
+<p>跟上面一样，进了<code>recovery mode</code>之后就可以运行这两行命令，把刚刚安装的程序删掉就可以了。</p>
+<h2 id="3-我并不知道我刚刚装了什么东西"><a href="#3-我并不知道我刚刚装了什么东西" class="headerlink" title="3.我并不知道我刚刚装了什么东西"></a><strong>3.我并不知道我刚刚装了什么东西</strong></h2><p>这是最难受的。但是只要我们安装的东西全都是通过apt安装的，那么这个问题就还可以解决。首先apt的安装都是有日志的，我的位置在<code>/var/log/apt/history.log</code>,我们只要找到最近一段时间里安装的包并且把他们删掉就行了。<br>我们可以在<code>recovery mode</code>里用vim打开这个log，找到文件尾处的安装信息。有时候会出现一次安装的包太多的情况，这个时候就需要用一些命令处理一下。</p>
+<blockquote>
+<p>这里给一个范例<br><code>grep -A 3 &#39;Start-Date: 2018-07-16  22:56:10&#39; /var/log/apt/history.log |sudo tail -1 &gt; tmp.log</code><br>再用Vim删除一些不用的信息<br><code>tr &#39; &#39; &#39;\n&#39; &lt;tmp.log | sed &#39;/,$/d&#39; &gt; tmp0.log</code><br>再删除最后一行</p>
+</blockquote>
+<p>最终就可以得到一个完整的安装列表。<br>写一个脚本<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta">#</span> Run as root<br><span class="hljs-meta"><br>#</span> Store packages name in $p<br>p="$(&lt;/tmp/final.packages.txt)"<br><span class="hljs-meta"><br>#</span> Nuke it<br>apt-get --purge remove $p<br><span class="hljs-meta"><br><br>#</span>clears out the local repository of retrieved package files<br>apt-get clean<br><span class="hljs-meta"><br><br>#</span> Just in case ...<br>apt-get autoremove<br></code></pre></td></tr></table></figure></p>
+<p>运行一下，大功告成。</p>
 
     </main>
     <footer class="post-footer">
@@ -178,7 +186,9 @@
         
         
         
-        <a class="post-tag button" href="/tags/网络协议/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>网络协议</a>
+        <a class="post-tag button" href="/tags/Ubuntu/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Ubuntu</a>
+        
+        <a class="post-tag button" href="/tags/杂谈/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>杂谈</a>
         
       </div>
       
@@ -202,12 +212,10 @@
   <div class="post-nav">
     <div class="post-nav-next post-nav-item">
       
-      <a href="/2018/07/03/Vert-x后端漫游指南-3/" rel="next" title="Vert.x后端漫游指南(3)"><i class="fas fa-angle-left"></i><span class="nav-title">Vert.x后端漫游指南(3)</span></a>
+      <a href="/2018/07/07/如何快速学习一门语言/" rel="next" title="如何快速学习一门语言"><i class="fas fa-angle-left"></i><span class="nav-title">如何快速学习一门语言</span></a>
       
     </div>
     <div class="post-nav-prev post-nav-item">
-      
-      <a href="/2018/07/05/为什么Kotlin排在第49位/" rel="prev" title="为什么Kotlin排在第49位"><span class="nav-title">为什么Kotlin排在第49位</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </div>
@@ -271,7 +279,7 @@
 <hr>
 <div class="post-toc sidebar-item" id="toc-div">
   <div><i class="fas fa-list-ol"></i>文章目录</div>
-  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-我发的那个包呢"><span class="toc-text">1.我发的那个包呢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-把包还给我"><span class="toc-text">2.把包还给我</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#我们的选择"><span class="toc-text">我们的选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-小结"><span class="toc-text">3.小结</span></a></li></ol></div>
+  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-text">1.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-AMDGPU-PRO"><span class="toc-text">2.AMDGPU-PRO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-某不靠谱PPA"><span class="toc-text">2.某不靠谱PPA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-我并不知道我刚刚装了什么东西"><span class="toc-text">3.我并不知道我刚刚装了什么东西</span></a></li></ol></div>
 </div>
 
 
