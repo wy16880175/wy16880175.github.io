@@ -82,7 +82,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>为什么Kotlin排在第49位 | Ginket's Blog</title>
+    <title>Kotlin源码热部署加载 | Ginket's Blog</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
     
@@ -125,7 +125,7 @@
   
   <article class="post-container card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/07/05/为什么Kotlin排在第49位/">
+      <link itemprop="mainEntityOfPage" href="http://ginket.xyz/2018/08/17/Kotlin-Java-动态类加载/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="Wooyme">
        <meta itemprop="description" content="">
@@ -136,11 +136,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">为什么Kotlin排在第49位</h1>
+      <h1 class="post-title" itemprop="name headline">Kotlin源码热部署加载</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T01:56:12+08:00">2018-07-05 01:56:12</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-17T17:00:19+08:00">2018-08-17 17:00:19</time></span>
         </span>
         
         
@@ -148,7 +148,15 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <h2 id="FUCK"><a href="#FUCK" class="headerlink" title="FUCK"></a>FUCK</h2>
+      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>本着拿着锤子看什么都是钉子的精神，一直以来我热衷于把Kotlin推到各种场景中去，最近Web方面做的比较多，所以就来看看Kotlin能在Web上做到什么程度。一直以来，Web应用中比较常用的技术有php，java，.net(已死)，很明显，java能上的地方Kotlin都是能上的。但是如果不开发企业级应用，追求更快的更新，更便捷的开发的话，java的SSM明显不是最好的选择。这也是为什么php，python，nodejs这样的脚本越来越火的原因，免编译、热部署这样的特性真是很让人羡慕呢。<br>那么是否有办法让Kotlin实现类似的功能呢？</p>
+<h2 id="Kotlin-Script"><a href="#Kotlin-Script" class="headerlink" title="Kotlin Script"></a><strong>Kotlin Script</strong></h2><blockquote>
+<p>Kotlin摊子铺的很大。</p>
+</blockquote>
+<p>Kotlin最初的目标就是实现一门针对工程的全栈语言。于是就有了Kotlin-jvm、Kotlin-js、Kotlin-native以及Kotlin Script。可能在看到Script之后，很多人会想到Kotlin是不是通过Javascript的分支实现脚本运行的呢。其实不是，Kotlin-js做的挺烂的。编译速度极慢，跟同为Js超集的Typescript完全不能比，与Js的交互也做的不如Ts那么平滑。</p>
+<p>Kotlin的<code>kts本质还是运行在JVM上</code>的，一定要说有什么核心技术的话，也只是利用了JVM的动态类加载机制。每当运行kotlinc运行kts的时候，其实就是一个将kts文件编译成class然后启动JVM动态加载class的过程。  </p>
+<p>那么其实kts已经完全可以在Web后台实现类似php的功能了，我们只需要给每个路由规定一个kts,再由Nginx这样的服务端程序运行这些脚本就能实现热更新了。但是，这里有一个问题，每一个kts的运行都是需要开启一个新的JVM的，而启动一个JVM的代价是非常沉重的，尤其是对于我们的路由来说。往往一个路由消耗的资源还远远不到启动一个JVM占用的资源。所以直接使用kts是行不通的，我们需要自己实现一个kotlin源文件的加载器。</p>
+<h2 id="更好的加载"><a href="#更好的加载" class="headerlink" title="更好的加载"></a><strong>更好的加载</strong></h2><p>既然已经知道kts的原理就是编译kts文件然后嵌入到JVM中去运行，那么我们完全可以自己实现这部分的功能。</p>
+
     </main>
     <footer class="post-footer">
       
@@ -160,7 +168,7 @@
         
         <a class="post-tag button" href="/tags/Kotlin/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Kotlin</a>
         
-        <a class="post-tag button" href="/tags/杂谈/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>杂谈</a>
+        <a class="post-tag button" href="/tags/JVM/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>JVM</a>
         
       </div>
       
@@ -184,12 +192,12 @@
   <div class="post-nav">
     <div class="post-nav-next post-nav-item">
       
-      <a href="/2018/07/05/TCP中的坑/" rel="next" title="TCP中的坑"><i class="fas fa-angle-left"></i><span class="nav-title">TCP中的坑</span></a>
+      <a href="/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/" rel="next" title="See what's comming in Kotlin 1.3-M1 译文"><i class="fas fa-angle-left"></i><span class="nav-title">See what's comming in Kotlin 1.3-M1 译文</span></a>
       
     </div>
     <div class="post-nav-prev post-nav-item">
       
-      <a href="/2018/07/07/如何快速学习一门语言/" rel="prev" title="如何快速学习一门语言"><span class="nav-title">如何快速学习一门语言</span><i class="fas fa-angle-right"></i></a>
+      <a href="/2018/09/08/Nginx配置fastcgi-perl/" rel="prev" title="Nginx配置fastcgi-perl"><span class="nav-title">Nginx配置fastcgi-perl</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </div>
@@ -253,7 +261,7 @@
 <hr>
 <div class="post-toc sidebar-item" id="toc-div">
   <div><i class="fas fa-list-ol"></i>文章目录</div>
-  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FUCK"><span class="toc-text">FUCK</span></a></li></ol></div>
+  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kotlin-Script"><span class="toc-text">Kotlin Script</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更好的加载"><span class="toc-text">更好的加载</span></a></li></ol></div>
 </div>
 
 

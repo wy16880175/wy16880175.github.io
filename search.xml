@@ -3,6 +3,42 @@
   
     
     <entry>
+      <title>Nginx配置fastcgi-perl</title>
+      <link href="/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
+      <url>/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>廉价VPS的小内存实在是供不起JVM，所以只好找别的出路了。php呢不是很喜欢，python又不是很想用，于是选了个硬核一点的Perl作为后端语言。反正前后分离，没了渲染压力后端想怎么玩怎么玩。</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a><strong>正文</strong></h2><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">apt-get install nginx libfcgi-perl wget<br></code></pre></td></tr></table></figure><p>改nginx配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs undefined">server &#123;<br>  listen   80;<br>  root   /var/www/example.com;<br><br>  location / &#123;<br>      index  index.html index.htm index.pl;<br>  &#125;  <br><br>  location ~ \.pl|cgi$ &#123;<br>      try_files $uri =404;<br>      gzip off;<br>      fastcgi_pass  127.0.0.1:8999;<br>      fastcgi_index index.pl;<br>      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;<br>      include fastcgi_params;<br>      &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p><p>创建目录,给权限<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell">mkdir /var/www/example.com<br>chown -R www-data:www-data /var/www/example.com<br></code></pre></td></tr></table></figure></p><p>下载配置FastCGI<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Shell">wget http://nginxlibrary.com/downloads/perl-fcgi/fastcgi-wrapper -O /usr/bin/fastcgi-wrapper.pl<br>wget http://nginxlibrary.com/downloads/perl-fcgi/perl-fcgi -O /etc/init.d/perl-fcgi<br>chmod +x /usr/bin/fastcgi-wrapper.pl<br>chmod +x /etc/init.d/perl-fcgi<br>update-rc.d perl-fcgi defaults<br>/usr/lib/insserv/insserv perl-fcgi<br></code></pre></td></tr></table></figure></p><p>启动!<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell">service nginx start<br>service perl-fcgi start<br></code></pre></td></tr></table></figure></p><h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a><strong>坑</strong></h2><p>顺利的话，就启动了。不顺利的话，启动perl-fastcgi的时候会失败，报错说<code>this account is currently not available</code>。Google了一圈好像没人在配置cgi的时候遇到这样的问题，比较多的是有些脑洞大开的人想从ssh登录到www-data这个用户上。<br>顺便说一下www-data这个用户，如果看Nginx的进程的话<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">ps -ef | grep nginx<br></code></pre></td></tr></table></figure></p><p>会看到nginx的几个worker-process所属的用户都是www-data，这个就是专门给web应用提供的用户。<br>看了一下这些登录不了的解决方案，发现cgi的问题应该也可以用同样的方法解决。</p><p>在<code>/etc/passwd</code>里，我们可以找到www-data的那行，然后就会发现它的结尾是<code>/usr/sbin/nologin</code>，我们要改成<code>/bin/bash</code>。这样这个用户就有运行perl脚本的能力了。重新启动一下服务，就OK了。</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Nginx </tag>
+            
+            <tag> perl </tag>
+            
+            <tag> 运维 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Kotlin源码热部署加载</title>
+      <link href="/2018/08/17/Kotlin-Java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/"/>
+      <url>/2018/08/17/Kotlin-Java-%E5%8A%A8%E6%80%81%E7%B1%BB%E5%8A%A0%E8%BD%BD/</url>
+      <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>本着拿着锤子看什么都是钉子的精神，一直以来我热衷于把Kotlin推到各种场景中去，最近Web方面做的比较多，所以就来看看Kotlin能在Web上做到什么程度。一直以来，Web应用中比较常用的技术有php，java，.net(已死)，很明显，java能上的地方Kotlin都是能上的。但是如果不开发企业级应用，追求更快的更新，更便捷的开发的话，java的SSM明显不是最好的选择。这也是为什么php，python，nodejs这样的脚本越来越火的原因，免编译、热部署这样的特性真是很让人羡慕呢。<br>那么是否有办法让Kotlin实现类似的功能呢？</p><h2 id="Kotlin-Script"><a href="#Kotlin-Script" class="headerlink" title="Kotlin Script"></a><strong>Kotlin Script</strong></h2><blockquote><p>Kotlin摊子铺的很大。</p></blockquote><p>Kotlin最初的目标就是实现一门针对工程的全栈语言。于是就有了Kotlin-jvm、Kotlin-js、Kotlin-native以及Kotlin Script。可能在看到Script之后，很多人会想到Kotlin是不是通过Javascript的分支实现脚本运行的呢。其实不是，Kotlin-js做的挺烂的。编译速度极慢，跟同为Js超集的Typescript完全不能比，与Js的交互也做的不如Ts那么平滑。</p><p>Kotlin的<code>kts本质还是运行在JVM上</code>的，一定要说有什么核心技术的话，也只是利用了JVM的动态类加载机制。每当运行kotlinc运行kts的时候，其实就是一个将kts文件编译成class然后启动JVM动态加载class的过程。  </p><p>那么其实kts已经完全可以在Web后台实现类似php的功能了，我们只需要给每个路由规定一个kts,再由Nginx这样的服务端程序运行这些脚本就能实现热更新了。但是，这里有一个问题，每一个kts的运行都是需要开启一个新的JVM的，而启动一个JVM的代价是非常沉重的，尤其是对于我们的路由来说。往往一个路由消耗的资源还远远不到启动一个JVM占用的资源。所以直接使用kts是行不通的，我们需要自己实现一个kotlin源文件的加载器。</p><h2 id="更好的加载"><a href="#更好的加载" class="headerlink" title="更好的加载"></a><strong>更好的加载</strong></h2><p>既然已经知道kts的原理就是编译kts文件然后嵌入到JVM中去运行，那么我们完全可以自己实现这部分的功能。</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Kotlin </tag>
+            
+            <tag> JVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>See what&#39;s comming in Kotlin 1.3-M1 译文</title>
       <link href="/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/"/>
       <url>/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/</url>
@@ -23,6 +59,12 @@
       <url>/2018/07/30/SQL%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98-1/</url>
       <content type="html"><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a><strong>1.前言</strong></h2><p>先说一下背景，这几天在公司里接触了几个比较大的表，数据量在10万条到400万条之间，公司用的数据库是Oracle。所以如果这篇博客中描述的情况与你所遇到的情况不符的话，很有可能是数据量和数据库的问题。</p><h2 id="2-联表与子查"><a href="#2-联表与子查" class="headerlink" title="2.联表与子查"></a><strong>2.联表与子查</strong></h2><p>首先说一下业务的需求:<em>输入一个时间段，找到这个时间段里流失的客户。客户流失的逻辑:如果这个客户从最后一次下单到下单后的45天内没有下单则认为这个客户流失了</em>  数据库里有一张表(sap_vbak)维护着所有的订单，其中有订单号（vbeln),对应客户(kunnr),创建日期(erdat)。<br>一开始拿到这个需求的时候想的很简单，大致分为两步:1.取出时间段内所有的订单 2.得到所有订单时间后计算出45天的时间段再取出这个时间段内所有的订单，如果不存在则认为客户流失，于是SQL语句就变成这样<br><figure class="highlight SQL"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> vbeln,kunnr,erdat <span class="hljs-keyword">FROM</span> (<br>  <span class="hljs-keyword">SELECT</span> k.vbeln,k.kunnr,k.erdat,(<span class="hljs-keyword">SELECT</span> temp.vbeln <span class="hljs-keyword">FROM</span> sap_vbak temp <span class="hljs-keyword">WHERE</span> temp.erdat &lt; k.erdat <span class="hljs-keyword">and</span> temp.erdat &gt;= k.erdat - <span class="hljs-number">45</span> <span class="hljs-keyword">and</span> temp.kunnr = k.kunnr <span class="hljs-keyword">and</span> <span class="hljs-keyword">rownum</span> = <span class="hljs-number">1</span>) tmp <span class="hljs-keyword">FROM</span> sap_vbak k<br>  <span class="hljs-keyword">WHERE</span> k.erdat &gt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-01'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">and</span> k.erdat &lt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-05'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> k.vbeln,k.kunnr,k.erdat<br>) <span class="hljs-keyword">WHERE</span> tmp <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;<br></code></pre></td></tr></table></figure></p><p>三层的查询，逻辑非常清楚。但是这里问题就来了，由于数据量太大了，这个SQL要想跑出结果得花15分钟。其中对于速度影响最大的就是这里的 <em>标量子查询</em> 了。<br>于是在公司前辈的指点下，把子查询改成了联表<br><figure class="highlight SQL"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> k.vbeln,k.kunnr,k.erdat <span class="hljs-keyword">FROM</span> sap_vbak k<br><span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> sap_vbak temp <span class="hljs-keyword">ON</span> temp.erdat &lt; k.erdat <span class="hljs-keyword">and</span> temp.erdat &gt;= k.erdat - <span class="hljs-number">45</span> <span class="hljs-keyword">and</span> temp.kunnr = k.kunnr<br><span class="hljs-keyword">WHERE</span> k.erdat &gt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-01'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">and</span> k.erdat &lt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-15'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">and</span> temp.vbeln <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;<br></code></pre></td></tr></table></figure></p><p>这段SQL的效果非常好，跑出结果大概只要40秒。思路其实也很简单，把原先子查询的部分换成LEFT JOIN，得到一张临时表这张表记录着每个订单与它45天内同一个客户的所有订单，然后只要在这张表中选出tmp字段(即同一客户的订单)是null的结果即可。</p><p>后来发现另一种不通过联表的方法也可以提高查询效率<br><figure class="highlight SQL"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">SELECT</span> k.vbeln,k.kunnr,k.erdat <span class="hljs-keyword">FROM</span> sap_vbak k<br><span class="hljs-keyword">WHERE</span> k.erdat &gt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-01'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>) <span class="hljs-keyword">and</span> k.erdat &lt;= <span class="hljs-keyword">to_date</span>(<span class="hljs-string">'2018-01-05'</span>,<span class="hljs-string">'yyyy-MM-dd'</span>)<br><span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">exists</span> (<span class="hljs-keyword">SELECT</span> temp.vbeln <span class="hljs-keyword">FROM</span> sap_vbak temp <span class="hljs-keyword">WHERE</span> temp.erdat &lt; k.erdat <span class="hljs-keyword">and</span> temp.erdat &gt;= k.erdat - <span class="hljs-number">45</span> <span class="hljs-keyword">and</span> temp.kunnr = k.kunnr);<br></code></pre></td></tr></table></figure></p><p>把原先的标量子查询改成了WHERE后面的 <em>not exists</em> ，查询时间也从原本的15分钟，变到了5分钟以内。</p>]]></content>
       
+      
+        <tags>
+            
+            <tag> SQL </tag>
+            
+        </tags>
       
     </entry>
     
@@ -67,9 +109,9 @@
       
         <tags>
             
-            <tag> 杂谈 </tag>
-            
             <tag> Kotlin </tag>
+            
+            <tag> 杂谈 </tag>
             
         </tags>
       
