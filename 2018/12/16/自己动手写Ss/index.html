@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#33363b">
+    <meta name="msapplication-TileColor" content="#33363b">
+    
+    
+    
+    <meta name="keywords" content="Wooyme, ARIA, Hexo">
+    
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/android-chrome-192x192.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    
+    
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    
+    
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#33363b">
+    
+    
+    <link rel="manifest" href="/favicons/site.webmanifest">
+    
+    
+    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+    
+    
+    <link rel="alternate" href="/atom.xml" title="Wooyme's Blog" type="application/atom+xml" />
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicons/favicon.ico">
+    
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    
+    
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/atom-one-dark.css">
+    <link rel="stylesheet" type="text/css" href="/css/lightgallery.min.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script defer type="text/javascript" src="/js/util.js"></script>
+    <script defer type="text/javascript" src="/js/scrollspy.js"></script>
+    <script defer type="text/javascript" src="/js/fontawesome-all.min.js"></script>
+    <script defer type="text/javascript" src="/js/lightgallery.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-fullscreen.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-hash.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-pager.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-thumbnail.min.js"></script>
+    <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
+    
+    <script defer src="/js/busuanzi.pure.mini.js"></script>
+    
+    
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
+    
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>自己动手写Ss | Wooyme's Blog</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="zh_CN"  data-spy="scroll" data-target=".list-group">
+    
+<header id="header" class="header" style="background: #33363b;">
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">Wooyme's Blog</a></h1>
+        <h2 class="subtitle"></h2>
+      </div>
+      <div class="logo">
+        <img src="/images/ARIA_logo.png" alt="logo">
+      </div>
+    </div>
+    
+<nav id="nav" class="nav">
+  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
+  <ul id="menu">
+    
+    <li><a href="/">首页</a></li>
+    
+    <li><a href="/archives/">归档</a></li>
+    
+    <li><a href="/tags/">标签</a></li>
+    
+  </ul>
+</nav>
+
+
+  </div>
+</header>
+
+
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            
+<div id="post" class="post">
+  
+  <article class="post-container card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/12/16/自己动手写Ss/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="Wooyme">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="Wooyme's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">自己动手写Ss</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-16T00:28:59+08:00">2018-12-16 00:28:59</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      <h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><blockquote>
+<p><a href="https://github.com/Wooyme/Wsocks" target="_blank" rel="noopener">https://github.com/Wooyme/Wsocks</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近VPN不太太平，无论是商业的还是自己租服务器私建的，都或多或少有些遭众。据说是GFW进行了一波升级，但是我个人还是觉得，它只是又更新了一轮黑名单。总之不管怎么样，最近的科学上网是不太稳当了。<br>一周前，我用了一年的服务器遭到了封禁。一时间大有一种大难临头的感觉，再加上各种流言蜚语，于是决定自己来做一个代理工具。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>用过SS的应该都知道SS由两个部分组成——<strong>客户端</strong>与<strong>服务端</strong>。<strong>客户端</strong>往往运行着一个Socks5代理，能够从浏览器之类的程序获取请求，然后<em>加密</em>发送到<strong>服务端</strong>，<strong>服务端</strong>收到请求后，<em>解密</em>再发送给真正的<strong>目标服务器</strong>并监听<strong>目标服务器</strong>的返回，得到返回后再<em>加密</em>发送给<strong>客户端</strong>，<strong>客户端</strong>再<em>解密</em>后发送给浏览器。  </p>
+<blockquote>
+<p>浏览器 –(明文)–&gt; 客户端 –(密文)–&gt; 服务端 –(明文)–&gt; 目标服务器<br>目标服务器 –(明文)–&gt; 服务端 –(密文)–&gt; 客户端 –(明文)–&gt; 浏览器</p>
+</blockquote>
+<p>整体流程其实非常简单，只是因为有加解密的过程，显得有些繁琐。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>要实现这样一个代理，核心是解决客户端与服务端之间的交互。实现这个交互的方式有很多种，无论是直接基于UDP，UTP，TCP这样的底层协议开发，还是使用HTTP，WebSocket这样应用层的协议都是可行的。<strong>这里我们使用WebSoket协议作为客户端与服务端之间的交互协议</strong></p>
+<h2 id="1-Why-websocket"><a href="#1-Why-websocket" class="headerlink" title="1.Why websocket ?"></a>1.Why websocket ?</h2><ul>
+<li>第一，基于WebSocket的开发实在是太简单了。Websocket作为一个被各大浏览器，以及服务端框架支持的协议，其封装实在是太完善了。使用这些封装好的库，我们就不用考虑TCP协议中会遇到的粘包，UDP中的丢包问题。</li>
+<li>第二，Websocket可以把我们的代理程序伪装成一个站点，因为这是网页与后端间常用的协议，已经被许多社交网站，视频网站，页游使用，所以显得更加正常。</li>
+<li>第三，相较于HTTP这样的应用层协议，websocket占用的资源还是要更小一些的，毕竟我们自己用来跑代理的服务器往往配置不会那么高，资源能省则省。</li>
+</ul>
+<h2 id="2-How-to-do"><a href="#2-How-to-do" class="headerlink" title="2.How to do ?"></a>2.How to do ?</h2><p>基于Websocket的开发是非常简单的，当然前提是得有个够给劲的框架。按照我的博客的惯例，这篇文章，不出意外的会使用Vert.x和Kotlin作为技术栈(笑。顺便说一下，在GC，Cache等参数设置得当的情况下，是可以很大程度上降低JVM的内存占用量的。JVM的许多默认设置都是拿内存换CPU，所以会显得java程序很占内存。<br>那么先贴一段Demo<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServerWebSocket</span>:<span class="hljs-type">AbstractVerticle</span></span>() &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> logger = LoggerFactory.getLogger(ServerWebSocket::<span class="hljs-class"><span class="hljs-keyword">class</span>.<span class="hljs-title">java</span>)</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> netClient: NetClient<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> httpServer:HttpServer<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">start</span><span class="hljs-params">(startFuture: <span class="hljs-type">Future</span>&lt;<span class="hljs-type">Void</span>&gt;)</span></span>&#123;<br>        <span class="hljs-comment">//初始化一个TCP客户端，后面要用</span><br>        netClient = vertx.createNetClient()<br>        <span class="hljs-comment">//初始化HTTP服务端</span><br>        httpServer = vertx.createHttpServer()<br>        <span class="hljs-comment">//设置websocket处理器,用于处理所有与websocket相关的功能</span><br>        httpServer.websocketHandler(<span class="hljs-keyword">this</span>::socketHandler)<br>        httpServer.listen(port,it.completer())&#123;<br>            logger.info(<span class="hljs-string">"Proxy server listen at <span class="hljs-variable">$port</span>"</span>)<br>            startFuture.complete()<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">socketHandler</span><span class="hljs-params">(sock: <span class="hljs-type">ServerWebSocket</span>)</span></span>&#123;<br>        sock.binaryMessageHandler &#123; buffer -&gt;<br>            GlobalScope.launch(vertx.dispatcher()) &#123;<br>                <span class="hljs-keyword">when</span> (buffer.getIntLE(<span class="hljs-number">0</span>)) &#123;<br>                    <span class="hljs-comment">//处理连接请求</span><br>                    Flag.CONNECT.ordinal -&gt; clientConnectHandler(sock, ClientConnect(buffer))<br>                    <span class="hljs-comment">//处理数据请求</span><br>                    Flag.RAW.ordinal -&gt; clientRawHandler(sock, RawData(buffer))<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//接受连接，可以在这之前做一些鉴权的工作</span><br>        sock.accept()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>服务端的整体结构就如Demo所示，在服务端接受了客户端的websocket握手之后，就会处理客户端发送的两种请求。下面是两种请求处理的实现<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//处理连接请求</span><br><span class="hljs-keyword">private</span> suspend <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">clientConnectHandler</span><span class="hljs-params">(sock: <span class="hljs-type">ServerWebSocket</span>, <span class="hljs-keyword">data</span>:<span class="hljs-type">ClientConnect</span>)</span></span>&#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//TCP Client尝试连接到目标服务器</span><br>        <span class="hljs-keyword">val</span> net = netClient.connectAwait(<span class="hljs-keyword">data</span>.port, <span class="hljs-keyword">data</span>.host)<br>        <span class="hljs-comment">//连接成功则设置handler</span><br>        net.handler &#123; buffer-&gt;<br>        <span class="hljs-comment">//把目标服务器返回的数据加密发送给客户端</span><br>            sock.writeBinaryMessage(RawData.create(<span class="hljs-keyword">data</span>.uuid,buffer).toBuffer())<br>        &#125;.closeHandler &#123;<br>            localMap.remove(<span class="hljs-keyword">data</span>.uuid)<br>        &#125;<br>        localMap[<span class="hljs-keyword">data</span>.uuid] = net<br>    &#125;<span class="hljs-keyword">catch</span> (e:Throwable)&#123;<br>      logger.warn(e.message)<br>      <span class="hljs-comment">//连接失败则告诉客户端连接失败</span><br>      sock.writeBinaryMessage(Exception.create(<span class="hljs-keyword">data</span>.uuid,e.localizedMessage).toBuffer())<br>      <span class="hljs-keyword">return</span><br>    &#125;<br>    <span class="hljs-comment">//告诉客户端连接成功</span><br>    sock.writeBinaryMessage(ConnectSuccess.create(<span class="hljs-keyword">data</span>.uuid).toBuffer())<br>&#125;<br><span class="hljs-comment">//处理数据请求</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">clientRawHandler</span><span class="hljs-params">(sock: <span class="hljs-type">ServerWebSocket</span>, <span class="hljs-keyword">data</span>: <span class="hljs-type">RawData</span>)</span></span>&#123;<br>    <span class="hljs-keyword">val</span> net = localMap[<span class="hljs-keyword">data</span>.uuid]<br>    <span class="hljs-comment">//把客户端的数据解密发送目标服务器</span><br>    net?.write(<span class="hljs-keyword">data</span>.<span class="hljs-keyword">data</span>)?:let&#123;<br>        sock.writeBinaryMessage(Exception.create(<span class="hljs-keyword">data</span>.uuid,<span class="hljs-string">"Remote socket has closed"</span>).toBuffer())<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>其中uuid是为了保证数据在传输过程中能够找到请求发起者，不然客户端收到了返回的数据，会出现不知道是谁发起的问题。当然这个问题也可以用其他方式实现，理论上说，封装的再完善一点的话，是能够只靠闭包解决。<br>以下是RawData类，展示数据加密过程,加密方式是<code>AES/CBC/PKCS5Padding</code>，javax库中提供的加密方式<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RawData</span></span>(<span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> buffer:Buffer) &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> decryptedBuffer = Buffer.buffer(Aes.decrypt(buffer.getBytes(<span class="hljs-built_in">Int</span>.SIZE_BYTES,buffer.length())))<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">val</span> uuidLength = decryptedBuffer.getIntLE(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">val</span> uuid = decryptedBuffer.getString(<span class="hljs-built_in">Int</span>.SIZE_BYTES,<span class="hljs-built_in">Int</span>.SIZE_BYTES+uuidLength)<br>    <span class="hljs-keyword">val</span> <span class="hljs-keyword">data</span> = decryptedBuffer.getBuffer(<span class="hljs-built_in">Int</span>.SIZE_BYTES+uuidLength,decryptedBuffer.length())<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">toBuffer</span><span class="hljs-params">()</span></span> = buffer<br>    <span class="hljs-keyword">companion</span> <span class="hljs-keyword">object</span> &#123;<br>        <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">create</span><span class="hljs-params">(uuid:<span class="hljs-type">String</span>,<span class="hljs-keyword">data</span>:<span class="hljs-type">Buffer</span>)</span></span>:RawData &#123;<br>        <span class="hljs-keyword">val</span> encryptedBuffer = Aes.encrypt(Buffer.buffer()<br>            .appendIntLE(uuid.length)<br>            .appendString(uuid)<br>            .appendBuffer(<span class="hljs-keyword">data</span>).bytes)<br><br>        <span class="hljs-keyword">return</span> RawData(Buffer.buffer()<br>            .appendIntLE(Flag.RAW.ordinal)<br>            .appendBytes(encryptedBuffer))<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>到此，服务端的功能就实现了。接下来就是如何实现客户端</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>客户端与浏览器交互的部分，我们选择Socks5协议，这个Vert.x库不带支持，所以需要自己实现以下。实现代码可以看Wsocks的ClientSocks5类，这里只展示客户端与服务端的交互。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//核心部分</span><br>httpClient.websocket(remotePort,remoteIp,<span class="hljs-string">"/proxy"</span>)&#123; webSocket -&gt;<br>      webSocket.binaryMessageHandler &#123;buffer-&gt;<br>        <span class="hljs-keyword">if</span> (buffer.length() &lt; <span class="hljs-number">4</span>) &#123;<br>          <span class="hljs-keyword">return</span><span class="hljs-symbol">@binaryMessageHandler</span><br>        &#125;<br>        <span class="hljs-keyword">when</span> (buffer.getIntLE(<span class="hljs-number">0</span>)) &#123;<br>          <span class="hljs-comment">//连接成功</span><br>          Flag.CONNECT_SUCCESS.ordinal -&gt; wsConnectedHandler(ConnectSuccess(buffer).uuid)<br>          <span class="hljs-comment">//出现异常</span><br>          Flag.EXCEPTION.ordinal -&gt; wsExceptionHandler(Exception(buffer))<br>          <span class="hljs-comment">//目标服务器返回数据</span><br>          Flag.RAW.ordinal -&gt; wsReceivedRawHandler(RawData(buffer))<br>          <span class="hljs-keyword">else</span> -&gt; logger.warn(buffer.getIntLE(<span class="hljs-number">0</span>))<br>        &#125;<br>      &#125;<br>    &#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//处理器部分</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">wsConnectedHandler</span><span class="hljs-params">(uuid:<span class="hljs-type">String</span>)</span></span>&#123;<br>    <span class="hljs-keyword">val</span> netSocket = connectMap[uuid]?:<span class="hljs-keyword">return</span><br>    netSocket.handler &#123;<br>      <span class="hljs-comment">//将浏览器的数据，加密发送到服务端</span><br>      ws.writeBinaryMessage(offset,RawData.create(uuid,it).toBuffer())<br>    &#125;<br>    <span class="hljs-comment">//告诉浏览器连接成功</span><br>    <span class="hljs-keyword">val</span> buffer = Buffer.buffer()<br>      .appendByte(<span class="hljs-number">0x05</span>.toByte())<br>      .appendByte(<span class="hljs-number">0x00</span>.toByte())<br>      .appendByte(<span class="hljs-number">0x00</span>.toByte())<br>      .appendByte(<span class="hljs-number">0x01</span>.toByte())<br>      .appendBytes(ByteArray(<span class="hljs-number">6</span>)&#123;<span class="hljs-number">0x0</span>&#125;)<br>    netSocket.write(buffer)<br>&#125;<br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">wsReceivedRawHandler</span><span class="hljs-params">(<span class="hljs-keyword">data</span>: <span class="hljs-type">RawData</span>)</span></span>&#123;<br>    <span class="hljs-keyword">val</span> netSocket = connectMap[<span class="hljs-keyword">data</span>.uuid]?:<span class="hljs-keyword">return</span><br>    bufferSizeHistory+=<span class="hljs-keyword">data</span>.<span class="hljs-keyword">data</span>.length()<br>    <span class="hljs-comment">//把解密后的数据发送给浏览器</span><br>    netSocket.write(<span class="hljs-keyword">data</span>.<span class="hljs-keyword">data</span>)<br>&#125;<br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">wsExceptionHandler</span><span class="hljs-params">(e:<span class="hljs-type">Exception</span>)</span></span>&#123;<br>    <span class="hljs-comment">//出现异常，断开浏览器本次连接</span><br>    connectMap.remove(e.uuid)?.close()<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>至此，浏览器和客户端，客户端和服务端，服务端和目标服务器之间的数据交互就完成了。</p>
+<h2 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h2><p>由于我只是个普通写后台的，并不是专业的密码学研究者，所以对于加密这块内容，也不敢做过多的分析。但是结合GFW所处的实际情况，我觉得自己还是可以稍微评论一下的。实际上Github上也还有一些类Shadowsocks的产品，比如说<code>Lightsocks</code>，star数也挺高。它们有些产品采用了自己开发的加密算法，而不是<code>Aes</code>，<code>Rc4</code>，之类的主流加密。按照作者的意思是，采用自己开发的加密能够更加有效的方式GFW解密。<br>这么说当然也是有一定道理的，但是实际上这些自研的算法往往比较脆弱，更容易遭到像词频分析之类的方法解密。但是其实我们还要考虑一个问题，GFW只是一个部署在主干网络上的计算机集群，它不是神，它的模型、运算量都是有限的， 每秒都有大量的流量经过它，要通过分析流量<em>解密</em>数据很明显是不可能的事情，就算我们总说Aes128过时了，Aes128有漏洞，但是针对Aes128的攻击依然条件苛刻。<br>在这里还可以举个例子，SSL我们都认为它是安全的，但是针对SSL或者说HTTPS的<em>中间人</em>攻击是存在的，只是这种攻击实现的原理绝对不是分析加密后的数据，而是通过分析<strong>握手环节</strong>的数据拿到秘钥来解密后续的数据。同样的，GFW也是这么做的，而对于这种情况，只要秘钥不出现在流量中，GFW就很难有操作的空间了。<br>还可以再举另一个例子，杀毒软件判断一个程序是否是病毒、木马，靠的是<strong>特征码</strong>和<strong>行为分析</strong>，<strong>特征码</strong>就是病毒为了执行某一系列操作而必定存在的代码，而<strong>行为分析</strong>则是把病毒放在沙箱环境内，观察病毒做了哪些操作。GFW也是如此，在流量中查找特征码比解密流量要容易的多，像Shadowsocks这样的程序产生的流量特征是很明显的，除此之外，GFW还拥有主动探测的能力，在发现特征后，它会尝试构造特殊的报文发送给目标，并根据目标的行为判断是否为Shadowsocks服务端。这种嗅探的成本也是非常低的。 </p>
+<h2 id="完善"><a href="#完善" class="headerlink" title="完善"></a>完善</h2><p>就如我在前面写的，使用Websocket这样的协议能够把我们的流量伪装成正常的网站流量。当然这并不完善，因为这样的程序一旦多起来，GFW也一定会开发出针对Websocket的特征分析。这个时候就需要一种更加灵活的方式，比如在数据头部填充，在报文的某几个位置插入字节。这些都可以破坏报文的特征，就像我们给病毒修改入口点、加壳、加花，来起到免杀的效果一样。<br>针对GFW的主动嗅探，则可以考虑动态白名单之类的机制，想要发送请求，就要到另一台服务器上登录，登录过程可以经过国内一台服务器做跳板，这样对于GFW来说，整个过程就是两组不相干的流量。如果要将这样的流量放在一起建立模型的话，也许要到2050年吧。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>国内普遍言论还是把GFW神化了，这东西确实很强，也不知道是哪些研究所在负责维护，但是毕竟算法再强，模型再完美也要受硬件所限。这方面，Google没有解决的问题，中国政府也尚且没有这样的实力。很多时候，解决问题还是不要硬刚，换个角度想一下，可能效果更好。</p>
+
+    </main>
+    <footer class="post-footer">
+      
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/Kotlin-VPN-Vert-x/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>-Kotlin -VPN -Vert.x</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  
+<div class="reward" id="reward">
+  <p>坚持原创技术分享，您的支持是我前进的动力！</p>
+  <button id="reward-button" class="button" disable="enable">打赏</button>
+  <div id="qr" class="qr" style="display: none;">
+    
+    
+    
+  </div>
+</div>
+
+
+  
+  
+  <div class="post-nav">
+    <div class="post-nav-next post-nav-item">
+      
+      <a href="/2018/09/08/Nginx配置fastcgi-perl/" rel="next" title="Nginx配置fastcgi-perl"><i class="fas fa-angle-left"></i><span class="nav-title">Nginx配置fastcgi-perl</span></a>
+      
+    </div>
+    <div class="post-nav-prev post-nav-item">
+      
+    </div>
+  </div>
+  
+  
+</div>
+
+          </div>
+          
+          
+          
+<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+  
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
+  
+<div class="info sidebar-item" id="info">
+  
+  <img class="author-avatar" src="/images/avatar.png" alt="Wooyme">
+  
+  <h1 class="author-name">Wooyme</h1>
+  <h2 class="author-description"> </h2>
+  <div class="site-count">
+    
+    <div class="archives-count">
+      <div class="site-count-title">归档</div>
+      <div><a href="/archives/">12</a></div>
+    </div>
+    
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">标签</div>
+      <div><a href="/tags/">10</a></div>
+    </div>
+    
+  </div>
+  
+  <div class="rss">
+    <a class="rss-link button sidebar-item" href="/atom.xml"><i class="fas fa-rss"></i>RSS</a>
+  </div>
+  
+</div>
+
+
+  <div class="sidebar-sticky">
+    
+    
+
+
+
+
+<hr>
+<div class="post-toc sidebar-item" id="toc-div">
+  <div><i class="fas fa-list-ol"></i>文章目录</div>
+  <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#项目地址"><span class="toc-text">项目地址</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#原理"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Why-websocket"><span class="toc-text">1.Why websocket ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-How-to-do"><span class="toc-text">2.How to do ?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#客户端"><span class="toc-text">客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#加密"><span class="toc-text">加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完善"><span class="toc-text">完善</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在最后"><span class="toc-text">写在最后</span></a></li></ol></li></ol></div>
+</div>
+
+
+
+    
+    
+    
+<hr>
+<div class="social-link sidebar-item">
+  <div><i class="far fa-address-card"></i>社交链接</p></div>
+  <ul>
+    
+    <li><i class="fas fa-envelope"></i><a href="mailto:867653608@qq.com" target="_blank">E-Mail</a></li>
+    
+    <li><i class="fab fa-github"></i><a href="https://github.com/wy16880175" target="_blank">GitHub</a></li>
+    
+  </ul>
+</div>
+
+
+    
+    
+    
+<hr>
+<div class="blogroll sidebar-item">
+  <div><i class="fas fa-link"></i>友情链接</div>
+  <ul>
+    
+    <li><a href="http://www.perfectpan.org/" target="_blank">PerfectPan.org</a></li>
+    
+    <li><a href="https://vertxchina.github.io/vertx-translation-chinese/" target="_blank">Vert.x中文文档</a></li>
+    
+    <li><a href="https://www.kotlincn.net/" target="_blank">Kotlin中文站</a></li>
+    
+  </ul>
+</div>
+
+
+    
+  </div>
+</aside>
+
+
+          
+        </div>
+      </div>
+    </main>
+    
+<footer id="footer" class="footer" style="background: #33363b;">
+  <div class="container">
+    <div class="back-to-top">
+      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="copyright">
+          <span class="author">Wooyme</span><span class="year"><i class="far fa-copyright"></i>2018</span>
+        </div>
+        
+        
+<div class="busuanzi">
+  <span id="busuanzi_container_site_pv"><i class="fas fa-eye"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="far fa-file-alt"></i><span id="busuanzi_value_page_pv"></span></span>
+</div>
+
+
+        
+      </div>
+      <div class="footer-right">
+        <div class="custom-info">
+          
+          托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+          
+        </div>
+        <div class="powered-by">
+          由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/AlynxZhou/hexo-theme-aria/" target="_blank">ARIA</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  </body>
+</html>
