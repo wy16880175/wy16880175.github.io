@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ginket.xyz/"/>
-  <updated>2018-12-06T04:16:26.328Z</updated>
+  <updated>2018-09-08T07:17:06.592Z</updated>
   <id>http://ginket.xyz/</id>
   
   <author>
@@ -15,33 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Vert.x微服务入门</title>
-    <link href="http://ginket.xyz/2018/12/05/Vert-x%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%A5%E9%97%A8/"/>
-    <id>http://ginket.xyz/2018/12/05/Vert-x微服务入门/</id>
-    <published>2018-12-05T11:55:51.000Z</published>
-    <updated>2018-12-06T04:16:26.328Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a><strong>1.简介</strong></h2><p>Vert.x的微服务还是挺完整的，不过文档是真的少，更不用说中文文档了。主要是因为Vert.x现在还保持着频繁的更新，很多API都有更替的情况。所以，能够找到相对可靠的文档只有官方给的英文文档。</p><h2 id="2-Service-Proxy"><a href="#2-Service-Proxy" class="headerlink" title="2.Service Proxy"></a><strong>2.Service Proxy</strong></h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1.简介&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.简介&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Vert.x的微服务还是挺完整的，不过文档是真的少，更不用说中文文档了。主要是因为Vert
-      
-    
-    </summary>
-    
-    
-      <category term="Kotlin" scheme="http://ginket.xyz/tags/Kotlin/"/>
-    
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
-    
-      <category term="微服务" scheme="http://ginket.xyz/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-  </entry>
   
   <entry>
     <title>Nginx配置fastcgi-perl</title>

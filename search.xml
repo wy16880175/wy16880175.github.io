@@ -3,25 +3,6 @@
   
     
     <entry>
-      <title>Vert.x微服务入门</title>
-      <link href="/2018/12/05/Vert-x%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%A5%E9%97%A8/"/>
-      <url>/2018/12/05/Vert-x%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%85%A5%E9%97%A8/</url>
-      <content type="html"><![CDATA[<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a><strong>1.简介</strong></h2><p>Vert.x的微服务还是挺完整的，不过文档是真的少，更不用说中文文档了。主要是因为Vert.x现在还保持着频繁的更新，很多API都有更替的情况。所以，能够找到相对可靠的文档只有官方给的英文文档。</p><h2 id="2-Service-Proxy"><a href="#2-Service-Proxy" class="headerlink" title="2.Service Proxy"></a><strong>2.Service Proxy</strong></h2>]]></content>
-      
-      
-        <tags>
-            
-            <tag> Kotlin </tag>
-            
-            <tag> Vert.x </tag>
-            
-            <tag> 微服务 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    <entry>
       <title>Nginx配置fastcgi-perl</title>
       <link href="/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
       <url>/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/</url>
