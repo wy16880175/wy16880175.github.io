@@ -35,9 +35,9 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
-    
       <category term="Kotlin" scheme="http://ginket.xyz/tags/Kotlin/"/>
+    
+      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
     
       <category term="微服务" scheme="http://ginket.xyz/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
@@ -184,9 +184,9 @@
     </summary>
     
     
-      <category term="杂谈" scheme="http://ginket.xyz/tags/%E6%9D%82%E8%B0%88/"/>
-    
       <category term="Kotlin" scheme="http://ginket.xyz/tags/Kotlin/"/>
+    
+      <category term="杂谈" scheme="http://ginket.xyz/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
