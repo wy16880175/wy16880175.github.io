@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Ginket&#39;s Blog</title>
+  <title>Wooyme&#39;s Blog</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://ginket.xyz/"/>
+  <link href="http://Wooyme.github.io/"/>
   <updated>2018-09-08T07:17:06.592Z</updated>
-  <id>http://ginket.xyz/</id>
+  <id>http://Wooyme.github.io/</id>
   
   <author>
     <name>Wooyme</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Nginx配置fastcgi-perl</title>
-    <link href="http://ginket.xyz/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
-    <id>http://ginket.xyz/2018/09/08/Nginx配置fastcgi-perl/</id>
+    <link href="http://Wooyme.github.io/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
+    <id>http://Wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/</id>
     <published>2018-09-08T06:56:59.000Z</published>
     <updated>2018-09-08T07:17:06.592Z</updated>
     
@@ -35,18 +35,18 @@
     </summary>
     
     
-      <category term="Nginx" scheme="http://ginket.xyz/tags/Nginx/"/>
+      <category term="Nginx" scheme="http://Wooyme.github.io/tags/Nginx/"/>
     
-      <category term="perl" scheme="http://ginket.xyz/tags/perl/"/>
+      <category term="perl" scheme="http://Wooyme.github.io/tags/perl/"/>
     
-      <category term="运维" scheme="http://ginket.xyz/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="http://Wooyme.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>See what&#39;s comming in Kotlin 1.3-M1 译文</title>
-    <link href="http://ginket.xyz/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/"/>
-    <id>http://ginket.xyz/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/</id>
+    <link href="http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/"/>
+    <id>http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/</id>
     <published>2018-08-11T11:41:08.000Z</published>
     <updated>2018-08-11T14:16:36.188Z</updated>
     
@@ -63,14 +63,14 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://ginket.xyz/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
     
   </entry>
   
   <entry>
     <title>SQL简单调优(1)</title>
-    <link href="http://ginket.xyz/2018/07/30/SQL%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98-1/"/>
-    <id>http://ginket.xyz/2018/07/30/SQL简单调优-1/</id>
+    <link href="http://Wooyme.github.io/2018/07/30/SQL%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98-1/"/>
+    <id>http://Wooyme.github.io/2018/07/30/SQL简单调优-1/</id>
     <published>2018-07-30T03:53:35.000Z</published>
     <updated>2018-09-08T06:57:38.527Z</updated>
     
@@ -86,14 +86,14 @@
     </summary>
     
     
-      <category term="SQL" scheme="http://ginket.xyz/tags/SQL/"/>
+      <category term="SQL" scheme="http://Wooyme.github.io/tags/SQL/"/>
     
   </entry>
   
   <entry>
     <title>Ubuntu求生指南(1)</title>
-    <link href="http://ginket.xyz/2018/07/16/Ubuntu%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
-    <id>http://ginket.xyz/2018/07/16/Ubuntu求生指南-1/</id>
+    <link href="http://Wooyme.github.io/2018/07/16/Ubuntu%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
+    <id>http://Wooyme.github.io/2018/07/16/Ubuntu求生指南-1/</id>
     <published>2018-07-15T16:42:21.000Z</published>
     <updated>2018-07-16T15:34:18.270Z</updated>
     
@@ -109,16 +109,16 @@
     </summary>
     
     
-      <category term="Ubuntu" scheme="http://ginket.xyz/tags/Ubuntu/"/>
+      <category term="Ubuntu" scheme="http://Wooyme.github.io/tags/Ubuntu/"/>
     
-      <category term="杂谈" scheme="http://ginket.xyz/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>如何快速学习一门语言</title>
-    <link href="http://ginket.xyz/2018/07/07/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E8%AF%AD%E8%A8%80/"/>
-    <id>http://ginket.xyz/2018/07/07/如何快速学习一门语言/</id>
+    <link href="http://Wooyme.github.io/2018/07/07/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E8%AF%AD%E8%A8%80/"/>
+    <id>http://Wooyme.github.io/2018/07/07/如何快速学习一门语言/</id>
     <published>2018-07-07T15:05:09.000Z</published>
     <updated>2018-07-07T15:56:11.725Z</updated>
     
@@ -134,14 +134,14 @@
     </summary>
     
     
-      <category term="杂谈" scheme="http://ginket.xyz/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>为什么Kotlin排在第49位</title>
-    <link href="http://ginket.xyz/2018/07/05/%E4%B8%BA%E4%BB%80%E4%B9%88Kotlin%E6%8E%92%E5%9C%A8%E7%AC%AC49%E4%BD%8D/"/>
-    <id>http://ginket.xyz/2018/07/05/为什么Kotlin排在第49位/</id>
+    <link href="http://Wooyme.github.io/2018/07/05/%E4%B8%BA%E4%BB%80%E4%B9%88Kotlin%E6%8E%92%E5%9C%A8%E7%AC%AC49%E4%BD%8D/"/>
+    <id>http://Wooyme.github.io/2018/07/05/为什么Kotlin排在第49位/</id>
     <published>2018-07-04T17:56:12.000Z</published>
     <updated>2018-07-07T15:04:05.476Z</updated>
     
@@ -157,16 +157,16 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://ginket.xyz/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="杂谈" scheme="http://ginket.xyz/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>TCP中的坑</title>
-    <link href="http://ginket.xyz/2018/07/05/TCP%E4%B8%AD%E7%9A%84%E5%9D%91/"/>
-    <id>http://ginket.xyz/2018/07/05/TCP中的坑/</id>
+    <link href="http://Wooyme.github.io/2018/07/05/TCP%E4%B8%AD%E7%9A%84%E5%9D%91/"/>
+    <id>http://Wooyme.github.io/2018/07/05/TCP中的坑/</id>
     <published>2018-07-04T16:28:45.000Z</published>
     <updated>2018-07-04T17:49:16.769Z</updated>
     
@@ -182,14 +182,14 @@
     </summary>
     
     
-      <category term="网络协议" scheme="http://ginket.xyz/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+      <category term="网络协议" scheme="http://Wooyme.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南(3)</title>
-    <link href="http://ginket.xyz/2018/07/03/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-3/"/>
-    <id>http://ginket.xyz/2018/07/03/Vert-x后端漫游指南-3/</id>
+    <link href="http://Wooyme.github.io/2018/07/03/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-3/"/>
+    <id>http://Wooyme.github.io/2018/07/03/Vert-x后端漫游指南-3/</id>
     <published>2018-07-02T18:20:09.000Z</published>
     <updated>2018-07-04T17:48:57.225Z</updated>
     
@@ -205,14 +205,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x墙外漫游指南 (1)</title>
-    <link href="http://ginket.xyz/2018/07/03/Vert-x%E5%A2%99%E5%A4%96%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-1/"/>
-    <id>http://ginket.xyz/2018/07/03/Vert-x墙外漫游指南-1/</id>
+    <link href="http://Wooyme.github.io/2018/07/03/Vert-x%E5%A2%99%E5%A4%96%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-1/"/>
+    <id>http://Wooyme.github.io/2018/07/03/Vert-x墙外漫游指南-1/</id>
     <published>2018-07-02T16:45:53.000Z</published>
     <updated>2018-07-04T17:48:20.401Z</updated>
     
@@ -228,14 +228,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南(2)</title>
-    <link href="http://ginket.xyz/2018/07/02/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-2/"/>
-    <id>http://ginket.xyz/2018/07/02/Vert-x后端漫游指南-2/</id>
+    <link href="http://Wooyme.github.io/2018/07/02/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-2/"/>
+    <id>http://Wooyme.github.io/2018/07/02/Vert-x后端漫游指南-2/</id>
     <published>2018-07-02T09:30:06.000Z</published>
     <updated>2018-07-04T17:48:50.005Z</updated>
     
@@ -251,14 +251,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南（1）</title>
-    <link href="http://ginket.xyz/2018/07/01/Vert-x%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8/"/>
-    <id>http://ginket.xyz/2018/07/01/Vert-x搭建服务端应用入门/</id>
+    <link href="http://Wooyme.github.io/2018/07/01/Vert-x%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8/"/>
+    <id>http://Wooyme.github.io/2018/07/01/Vert-x搭建服务端应用入门/</id>
     <published>2018-07-01T14:40:34.000Z</published>
     <updated>2018-07-04T17:48:44.329Z</updated>
     
@@ -274,7 +274,7 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://ginket.xyz/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
