@@ -123,6 +123,81 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wooyme">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wooyme's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/22/Kotlin-Native求生指南-1/" itemprop="url">Kotlin Native求生指南(1)</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-22T00:13:19+08:00">2018-12-22 00:13:19</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><blockquote>
+<p><a href="https://github.com/Wooyme/Wsocks-Naitve-Client" target="_blank" rel="noopener">https://github.com/Wooyme/Wsocks-Naitve-Client</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>C++是一门好语言，Go也是一门好语言，Kotlin Native不是。</p>
+</blockquote>
+<p>首先确定一个观点，写Kotlin-JVM不一定要很懂Java，比如我自己。但是写Kotlin-Native要是不懂C，那就等着吃屎吧。Kotlin Native不是一个让我们跳过C语言走上Native开发道路的神器，至少现在不是。如果你想要Native又不想学C有关的东西的话，选Go吧，我能在这里列举1000个Go的优点和0个缺点。如果一定要说Go有什么缺点的话，那就只能是程序崩溃的时候Go打印的栈信息不能像Java那样漂亮。<br>当然Kotlin Native也不是一无是处，至少它可以督促我再复习一遍C语言的知识。 </p>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><p>现在IDEA和CLION都可以支持Kotlin Native的开发。这个项目我用的是IDEA和Gradle，在开发这个项目之前我也用过CLION和Cmake的组合，要做个比较的话，还是Gradle更加适合我们这些从Kotlin-JVM转过来的玩家，毕竟对于不熟悉Cmake的人来说，看看别人写的CmakeList就已经够头疼的了，更何况要自己写。<br>顺便一提，我是在Ubuntu18.04上开发的。Windows和Linux上开发可能会有比较大的差异，还是推荐Windows上装一下Cygwin，能一定程度上减小这个差异。</p>
+<h1 id="第一个工-小-程-坑"><a href="#第一个工-小-程-坑" class="headerlink" title="第一个工(小)程(坑)"></a>第一个工(小)程(坑)</h1><p>从IDEA里创建一个工程是很容易的。不过我遇到了一个小坑，IDEA创完工程之后会出现kt文件打不开的情况，应对的办法是<code>File-&gt;Invalidate Cache/Restart...</code><br>从这第一个坑开始，我们就踏上了Kotlin Native的漫漫坑爹路。工程创建之后会有一个默认的文件，里面是个hello world，我们编译运行一下。编译这个过程只能从Gradle里执行，在<code>other</code>里<code>runProgram</code>，顺利的话Hello World就就会成功打印出来。这里应该不会遇到什么问题，Gradle会智能的下载KN的编译器，只是可能会有点慢。</p>
+<h2 id="我能干什么"><a href="#我能干什么" class="headerlink" title="我能干什么"></a>我能干什么</h2><p>爬过第一个坑之后，你可能迫不及待的想写点什么，比如来一个文件IO，你可能会习惯性的写一个<code>File</code>然后等待IDEA的语法提示，但是令人失望的是，IDEA除了把你的<code>File</code>标记为红色以外什么都不会做。然后你也许还会试一试其他你在JVM里经常用的类，但是它们多半没有，除了<code>StringBuilder</code>这个SB，它还是依然坚挺。<br>这个时候你可能才意识到，大清亡了，世界变了，原来的那些小伙伴都不在了。剩下的只有少的可怜的<em>Kotlin标准库</em>和陌生的<em>stdlib</em>、<em>posix</em>、<em>win32</em>或者<em>linux</em>、<em>darwin</em>以及我至今不能理解为什么要放在默认支持库里的<em>zlib</em>(我觉得唯一的可能就是JetBrains的人想试试cinterop好不好用)。</p>
+<h2 id="认清现实"><a href="#认清现实" class="headerlink" title="认清现实"></a>认清现实</h2><p>好了，既然之前的都用不了了，那就不得不重新开始。让我们来看一看Kotlin Native的文件操作应该是什么样的。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//读取一个完整的文件，保存到String中</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> fp = fopen(myHome+<span class="hljs-string">"save.json"</span>, <span class="hljs-string">"r"</span>) ?: <span class="hljs-keyword">return</span> println(<span class="hljs-string">"Cannot open"</span>)<br>    <span class="hljs-keyword">val</span> fileStat = nativeHeap.alloc&lt;stat&gt;()<br>    stat(myHome+<span class="hljs-string">"save.json"</span>,fileStat.ptr)<br>    <span class="hljs-keyword">val</span> size = fileStat.st_size.toInt()+<span class="hljs-number">1</span><br>    <span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br>    fread(bytes,size.toULong(),size.toULong(),fp)<br>    <span class="hljs-keyword">val</span> text = bytes.toKString()<br>    nativeHeap.free(fileStat.ptr)<br>    fclose(fp)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>OK,先说明一下，官方的例程里很少使用nativeHeap，它们比较喜欢用memScope{}，这两个的区别我会在之后说明。现在先让我们看完这段代码。相信如果你还记得C语言的东西的话，你肯定会说:”这tm不就是C吗”。没错，这tm就是Kotlin版C语言。Old fashion的<code>fopen</code>，<code>stat</code>，<code>fread</code>，当然这一切都无可厚非，毕竟Native的世界和Java的世界本来就大相径庭。我们也可以自己动手封装一个File类出来，我也相信Jetbrains会在某一个版本把这些基本的工具加入到Kotlin Native的标准库中去的。<br>除开C的部分，还是有些东西值得我们关注的，比如刚刚说的<code>nativeHeap</code>，以及一个有趣的方法——<code>toKString()</code>。这个方法真的可以说是Kotlin Native最后的仁慈了。我们知道Kotlin的String和C的const char<em> 是两个完全不同的体系。String类里有记录String长度的部分，好让我们知道String在什么位置结束，但是const char</em> 不同，它依赖结尾处的<code>0x00</code>来判断字符串是否结束。于是这里Kotlin Native很<strong>贴心</strong>的为我们加入了<code>toKString()</code>和<code>String.cstr</code>来保证两者间的转换。</p>
+<h1 id="nativeHeap和memScope？"><a href="#nativeHeap和memScope？" class="headerlink" title="nativeHeap和memScope？"></a>nativeHeap和memScope？</h1><blockquote>
+<p>参考资料 <a href="https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/5_Kotlin-Native%20concurrency%20and%20memory%20model%20(1).pdf" target="_blank" rel="noopener">https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/5_Kotlin-Native%20concurrency%20and%20memory%20model%20(1).pdf</a></p>
+</blockquote>
+<p>有一点是我们必须要知道的，那就是Kotlin Native是有GC的。在Kotlin自己的世界里，GC是隐藏在代码之下的，就像java一样，它们用引用计数法(<em>Simple local reference-counter based algorithm</em>)、”试图删除法”(<em>Cycle collector based on the trial deletion</em>)等算法保证GC的工作。但是由于Kotlin Native提供的东西实在是太少了，我们不得不依赖很多<em>C library</em>,于是手动分配内存就成了不可避免的事情。<br>手动内存管理是场噩梦，这个道理让最顽固的C++也被迫妥协，从析构到现在的智能指针，C++可以说是做了许多让步了。毫无疑问，Kotlin也是懂这个道理的。于是JetBrains推出了memScope这个东西。</p>
+<h2 id="memScope"><a href="#memScope" class="headerlink" title="memScope"></a>memScope</h2><p>memScope的作用是当memScope的作用域结束的时候，自动释放在里面分配的所有内存，以刚才的例子来说<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br></code></pre></td></tr></table></figure></p>
+<p>应该写成<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> text = memScope&#123;<br>    <span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br>    fread(bytes,size.toULong(),size.toULong(),fp)<br>    bytes.toKString()<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这样当memScope结束的时候，bytes就被自动释放了，而text则是通过<code>toKString()</code>方法实例化的一个String类，可以被KN自己的GC机制回收。所以这段代码不会导致任何内存泄露。除此之外还有很多方法是需要在memScope中才能执行的，比如说<code>CValues&lt;T&gt;.ptr</code>这是用来获取CValues的指针，关于这个稍微说一下我的看法,ptr的getter应该是<em>重新分配</em>了一块内存，然后把CValues中的值<em>复制</em>了进去，因此才需要在memScope中执行，以保证内存不会泄露，不过这又导致了一个新的坑，我在之后会提到。</p>
+<h2 id="nativeHeap"><a href="#nativeHeap" class="headerlink" title="nativeHeap"></a>nativeHeap</h2><p>那为什么我们还需要nativeHeap这样的方式来分配内存呢。还是举个例子吧。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> mgr = nativeHeap.alloc&lt;mg_mgr&gt;().ptr<br>    mg_mgr_init(mgr, <span class="hljs-literal">null</span>)<br>    <span class="hljs-keyword">while</span> (flag) &#123;<br>        mg_mgr_poll(_mgr, <span class="hljs-number">100</span>)<br>    &#125;<br>    mg_mgr_free(mgr)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>mg是一个C的网络库，我们启动了一个事件循环来处理各种网络请求。可以看到，这个库自带了一个释放函数<code>mg_mgr_free</code>,被<code>mg_mgr_init</code>初始化过的内存应该由这个库本身来释放。如果我们把代码写成下面这样<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;<br>    memScope&#123;<br>        <span class="hljs-keyword">val</span> mgr = alloc&lt;mg_mgr&gt;().ptr<br>        mg_mgr_init(mgr, <span class="hljs-literal">null</span>)<br>        <span class="hljs-keyword">while</span> (flag) &#123;<br>            mg_mgr_poll(_mgr, <span class="hljs-number">100</span>)<br>        &#125;<br>        mg_mgr_free(mgr)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>那么在循环终止，程序运行完<code>mg_mgr_free</code>之后很有可能就会因为<code>double free</code>而<em>崩溃</em>。其实我也不是很理解为什么一块内存不能释放两次，或者应该说free为什么不能对同一块内存执行两次，就算已经释放了，给我返回个false也好，何必搞个崩溃呢。总之这也算是刚开始写KN时很容易遇到的一个坑。</p>
+<h2 id="内存管理导致的坑"><a href="#内存管理导致的坑" class="headerlink" title="内存管理导致的坑"></a>内存管理导致的坑</h2><p>在我的工程里，遇到了这么个情况。我有一个系统托盘的功能，里面有一些菜单元素也就是Item，这些Item都是要显示一些字，图标之类的，当然还有回调，每次菜单变化的时候都需要调用一个<code>update</code>函数，这个函数的执行过程实际上就是重新初始化一个整个菜单。<br>最初我的代码是这样的<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> tray = nativeHeap.alloc&lt;tray&gt;()<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">//设成2是因为tray的C实现需要以空为结尾</span><br>    <span class="hljs-keyword">val</span> menus = nativeHeap.allocArray&lt;tray_menu&gt;(<span class="hljs-number">2</span>)<br>    memScope&#123;<br>        menus[<span class="hljs-number">0</span>].text = <span class="hljs-string">"设置"</span>.cstr.ptr<br>        <span class="hljs-comment">//staticCFunction看名字就能知道是为了提供C语言中的"函数指针"</span><br>        menus[<span class="hljs-number">0</span>].cb = staticCFunction &#123; _ -&gt;<br>            <span class="hljs-comment">//balabalabalabala</span><br>            tray_update(tray.ptr)<br>        &#125;<br>        tray.menu = menus<br>        tray_init(tray.ptr)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>代码看上去没什么问题，启动的时候也没什么问题，但是当运行<code>menus[0]</code>的<code>callback</code>执行的时候问题就来了。update之后”设置“这两个字变成了乱码，而罪魁祸首就是memScope。memScope在作用域结束的时候释放掉了<code>&quot;设置&quot;.cstr.ptr</code>这个指针(ptr)对应的内存，也就是说在<code>tray_init</code>之后<code>menus[0].text</code>已经是个野指针了。于是当我们执行<code>tray_update</code>的时候，这块内存会是什么样子已经不是我们能够控制的了。于是，我被迫写出了这样的代码<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> tray = nativeHeap.alloc&lt;tray&gt;()<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">//设成2是因为tray的C实现需要以空为结尾</span><br>    <span class="hljs-keyword">val</span> menus = nativeHeap.allocArray&lt;tray_menu&gt;(<span class="hljs-number">2</span>)<br>    <span class="hljs-keyword">val</span> text = <span class="hljs-string">"设置"</span>.cstr<br>    <span class="hljs-keyword">val</span> textPtr = nativeHeap.allocArray&lt;ByteVar&gt;(text.size)<br>    memScope&#123;<br>        <span class="hljs-comment">//把内存复制到不会被自动释放的地方</span><br>        memcpy(textPtr,text.ptr,text.size.toULong())<br>    &#125;<br>    menus[<span class="hljs-number">0</span>].text = textPtr<br>    menus[<span class="hljs-number">0</span>].cb = staticCFunction &#123; _ -&gt;<br>            <span class="hljs-comment">//balabalabalabala</span><br>            tray_update(tray.ptr)<br>        &#125;<br>        tray.menu = menus<br>        tray_init(tray.ptr)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这只能说是很傻逼了,可能KN提供了一些更加优雅的方式只是我不知道。但总之Kotlin Native的<code>memScope</code>在某些情况下是会与C产生冲突的，而且这种问题往往很隐蔽，这也就是为什么野指针会成为困扰C/C++这么久的问题。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>OK，去掉代码大概有3000个字了。<br>第一篇就先到此为止，大概写了一下我对Kotlin Native的看法和对它内存模型的认识以及使用中遇到的几个坑。下一篇会应该会写一下Cinterop，和Kotlin Native的多线程模型。KN的多线程对于初学者来说也是个神坑，就没见过这样的线程模型，而且文档也比较含糊，不过毕竟还在频繁更新，很多东西变的太快了，文档也确实比较难写。</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/Kotlin/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Kotlin</a>
+        
+        <a class="post-tag button" href="/tags/Native/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>Native</a>
+        
+        <a class="post-tag button" href="/tags/C/" style="background: #47aaff;" rel="tag"><i class="fas fa-tags"></i>C</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/12/16/自己动手写Ss/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wooyme">
@@ -712,66 +787,6 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/07/03/Vert-x墙外漫游指南-1/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wooyme">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wooyme's Blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/07/03/Vert-x墙外漫游指南-1/" itemprop="url">Vert.x墙外漫游指南 (1)</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-03T00:45:53+08:00">2018-07-03 00:45:53</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="1-外面有个大仓库"><a href="#1-外面有个大仓库" class="headerlink" title="1.外面有个大仓库"></a><strong>1.外面有个大仓库</strong></h2><p>墙外的世界很精彩。全球最大的搜索引擎Google，全球最大的视频网站youtube,全球最大的同性交友网站Github，还有深受绅士们喜爱的pixiv，以及深受禽兽们喜爱的某p姓hub。而这篇文章就要教各位禽兽，如何把p**hub搬到自己的手机上。</p>
-<h2 id="2-仓库前面有座桥"><a href="#2-仓库前面有座桥" class="headerlink" title="2.仓库前面有座桥"></a><strong>2.仓库前面有座桥</strong></h2><p>外面的世界再美，我们也只能在墙里面听着去过外面的人说一个又一个精彩的故事，除非，我们也去外面转一转。出墙的方式有很多，至少是比出柜的方式要多的。这里呢，非常推荐搬瓦工( <a href="https://bwh1.net/" target="_blank" rel="noopener">https://bwh1.net/</a> )的vps，廉价稳定，延迟低带宽高,最主要的是有CN直连。当然选择其他的像日本的樱花，亚马逊的aws或是也在美国的Vultr也都可以，选择因人而异，但就使用情况来看，搬瓦工无疑是最好的选择。</p>
-<h2 id="3-桥上火车还没通"><a href="#3-桥上火车还没通" class="headerlink" title="3.桥上火车还没通"></a><strong>3.桥上火车还没通</strong></h2><p>有了境外的VPS还不能解决实际问题，毕竟最后是要面朝岛国，眺望欧美的，一个VPS只能算是在墙上开了个口，怎么清晰的看到外面的世界，还得花点功夫。那么现在就要拿出我们的全能型漫游神器Vert.x了。  </p>
-<blockquote>
-<p>桥上怎么才能通火车呢？我们得把铁轨铺好</p>
-</blockquote>
-<p>用Vert.x就可以构建这样一个铁轨，在之前的《Vert.x后端漫游指南 (1)》里，我们已经知道了Vert.x不仅仅是可以用来开发服务端，在客户端方面Vert.x也有非常全面的支持。那么到底是什么样的东西，才会出现同时需要服务端和客户端的情况呢？毫无疑问，代理嘛。</p>
-<h4 id="1）通火车的理论基础"><a href="#1）通火车的理论基础" class="headerlink" title="1）通火车的理论基础"></a>1）通火车的理论基础</h4><p>首先，让我们看看代理的工作方式。我们都知道，代理服务器是会打开一个端口让我们的浏览器连接上去的，浏览器连接到代理打开的端口之后就会把本来应该发送给google，youtube的请求发送给代理服务器，代理服务器在接收到这些请求之后再打开它的客户端将请求发送到google，youtube这样的目标上，等到目标服务器返回了消息再把这些消息传给浏览器。这个过程对于用户来说是看不到的。这就像个卖东西的中间商，只不过代理不赚差价而已。</p>
-<h4 id="2-通火车的实际操作"><a href="#2-通火车的实际操作" class="headerlink" title="2) 通火车的实际操作"></a>2) 通火车的实际操作</h4><p>我们这里就不开发一个完整的代理了，如何开发一个完整的代理可能会在之后的墙外漫游指南2-3里讲，因为这还是挺难的。这篇文章就介绍一下如何“呜呜呜”并且”嘿嘿嘿”，代码会非常的简短，但是记住一点<code>短小才能精捍</code><br>首先我们需要一个服务端，方便起见我们就创建一个Http的服务端好了。如何创建一个Http服务端在《Vert.x后端漫游指南》系列里有详细的说明，这里就不再赘述。直接上代码<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">import</span> io.vertx.core.Vertx<br><span class="hljs-keyword">import</span> io.vertx.ext.web.Router<br><br><span class="hljs-keyword">val</span> vertx = Vertx.vertx()<br><span class="hljs-keyword">val</span> router = Router.router(vertx)<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args:<span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span>&#123;<br>    <span class="hljs-keyword">val</span> currentIP=args[<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">val</span> server= vertx.createHttpServer()<br>    router.route().handler(BodyHandler.create())<br>    router.route(<span class="hljs-string">"/getVideoUrls/*"</span>).handler &#123; context -&gt;<br>        <span class="hljs-comment">//TODO;</span><br>    &#125;<br>    router.route(<span class="hljs-string">"/view_video"</span>).handler&#123; context -&gt;<br>        <span class="hljs-comment">//TODO;</span><br>    &#125;<br>    server.requestHandler&#123;<br>        router.accept(it)<br>    &#125;.listen(<span class="hljs-number">8080</span>) &#123;<br>        <span class="hljs-keyword">if</span> (it.failed())<br>            println(it.cause())<br>        <span class="hljs-keyword">else</span><br>            println(<span class="hljs-string">"Success listening at 8080"</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>OK，那么两个路由就已经完成了。一个是用来获取视频列表和预览，而另一个是用来观看指定视频。相信大家看到这的，懂的都懂，不懂的可以关掉这篇文章了。<br>接下来就是铺铁路的重头戏了。服务端在获取到用户的请求后，要将请求进行一定的处理然后转发到p**hub上。我们先来看看<code>getVideoUrls</code>里是一个什么样的过程吧。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin">router.route(<span class="hljs-string">"/getVideoUrls/*"</span>).handler &#123; context -&gt;<br>  <span class="hljs-keyword">var</span> append=<span class="hljs-string">""</span><br>  <span class="hljs-keyword">if</span>(context.request().path().contains(<span class="hljs-string">"search"</span>))&#123;<br>      append=<span class="hljs-string">"/search"</span><br>  &#125;<br>  webClient.<span class="hljs-keyword">get</span>(<span class="hljs-number">443</span>,<span class="hljs-string">"www.p**hub.com"</span>,<span class="hljs-string">"/video"</span>+append+<span class="hljs-string">"?"</span>+context.request().params().joinToString(<span class="hljs-string">"&amp;"</span>) &#123; <span class="hljs-string">"<span class="hljs-subst">$&#123;it.key&#125;</span>=<span class="hljs-subst">$&#123;it.value&#125;</span>"</span> &#125;).ssl(<span class="hljs-literal">true</span>).send &#123;<br>            <span class="hljs-keyword">if</span>(it.failed())&#123;<br>                println(it.cause())<br>                context.response().end()<br>                <span class="hljs-keyword">return</span><span class="hljs-symbol">@send</span><br>            &#125;<br>            <span class="hljs-keyword">val</span> fileUrls=<span class="hljs-string">"&lt;a href=\"(\S+?)\" title=\"([^&gt;]+?)\" class=\"img\"[^&gt;]+?&gt;\s+&lt;img[^&gt;]+?data-mediumthumb=\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br>            context.response().putHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>,<span class="hljs-string">"*"</span>)<br>                    .end(JsonArray(*fileUrls.asIterable().map &#123; matchResult -&gt;<br>                        JsonObject(<span class="hljs-string">"preload"</span> to matchResult.groupValues[<span class="hljs-number">3</span>]<br>                                ,<span class="hljs-string">"url"</span> to matchResult.groupValues[<span class="hljs-number">1</span>].replace(<span class="hljs-string">"\\"</span>,<span class="hljs-string">""</span>)<br>                                ,<span class="hljs-string">"title"</span> to matchResult.groupValues[<span class="hljs-number">2</span>])<br>                    &#125;.toTypedArray()).toBuffer())<br><br>        &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>这段代码里出现了一个新的变量，webClient。我们要在main函数里声明他<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> webClient = WebClient.create(vertx)<br></code></pre></td></tr></table></figure></p>
-<p>让我们看看这段代码都做了什么。在我们的路由接收到用户请求之后，马上调用了webClient的get方法，向一个神秘的域名发送了请求。这里呢对用户的请求的地址以及参数做了一些处理，基本上来说就是重新拼接这些地址与参数让我们能把用户的请求完整的转发给目标服务器。这里呢，由于目标站点采用了https，所以我们要加上ssl的部分来保证请求成功。<br>一旦请求成功了，结果显而易见，p**hub会返回给我们一个充斥着荷尔蒙的网页。将这样一个完整的网页转发给用户无疑是浪费时间的。所以我在这里使用了一个正则表达式，提取出我们关心的部分。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//实际上这里完全可以使用"""Regex"""这样的形式，但是这个三引号在highlight.js里渲染不出来，我就只好全部改成双引号</span><br><span class="hljs-keyword">val</span> fileUrls=<span class="hljs-string">"&lt;a href=\"(\S+?)\" title=\"([^&gt;]+?)\" class=\"img\"[^&gt;]+?&gt;\s+&lt;img[^&gt;]+?data-mediumthumb=\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br></code></pre></td></tr></table></figure></p>
-<p>在提取了我们想要的东西之后，我们通过<code>RoutingContext.response()</code>将数据返回给用户。这里加了一个header允许所有跨域完全是为了开发的方便。这部分的代码乍看可能有些混乱，但是这就是Kotlin的高阶函数，习惯了这种写法之后就会发现这样写可以非常的简洁高效。这部分代码中其实已经包含了很多的线程间切换，可以说<strong>每个lambda的执行都是一次线程的切换</strong>。但是由于Vert.x的设计，我们不用那么关注常规的多线程问题，我们完全可以<strong>认为自己就处在一个单线程开发的环境下</strong>。这一点，Vert.x做的非常的棒！<br>现在我们的用户已经有了一个视频列表，当用户想看到完整的视频的时候，他可以向我们的另一个路由发送请求，只要在请求中包含视频id就可以了<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin">router.route(<span class="hljs-string">"/view_video"</span>).handler&#123; context -&gt;<br>  webClient.<span class="hljs-keyword">get</span>(<span class="hljs-number">443</span><br>          , <span class="hljs-string">"www.p**hub.com"</span><br>          ,<span class="hljs-string">"/view_video.php?viewkey="</span>+context.request().getParam(<span class="hljs-string">"viewkey"</span>)).ssl(<span class="hljs-literal">true</span>).send &#123;<br>            <span class="hljs-keyword">if</span> (it.failed()) &#123;<br>              println(it.cause())<br>              context.response().end(it.cause().message)<br>              <span class="hljs-keyword">return</span><span class="hljs-symbol">@send</span><br>            &#125;<br>            <span class="hljs-keyword">val</span> videoUrls = <span class="hljs-string">"\"quality\":\"(720|480|240)\",\"videoUrl\":\"(\S+?)\""</span>.toRegex().findAll(it.result().bodyAsString())<br>            videoUrls.forEach &#123;<br>              println(<span class="hljs-string">"Quality:<span class="hljs-subst">$&#123;it.groupValues[<span class="hljs-number">1</span>]&#125;</span> URL:<span class="hljs-subst">$&#123;it.groupValues[<span class="hljs-number">2</span>]&#125;</span>"</span>)<br>            &#125;<br>            context.response().putHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>)<br>              .end(JsonArray(*videoUrls.asIterable().map &#123;<br>                  JsonObject(<span class="hljs-string">"quality"</span> to it.groupValues[<span class="hljs-number">1</span>]<br>                          , <span class="hljs-string">"url"</span> to it.groupValues[<span class="hljs-number">2</span>]<br>                          .replace(<span class="hljs-string">"\\"</span>, <span class="hljs-string">""</span>)<br>                          )<br>                  &#125;.toTypedArray()).toBuffer())<br>          &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>那么在另一个路由里也是差不多的操作，只不过我们知道p**hub提供三种清晰度，这里就通过它的返回，将这三种清晰度和其对应的链接返还给用户而已。</p>
-<h2 id="4-通了火车得买票"><a href="#4-通了火车得买票" class="headerlink" title="4.通了火车得买票"></a><strong>4.通了火车得买票</strong></h2><p>为了前往这个巨大的仓库，我们的基础设施都已经建设完毕了。是时候让我们的用户体验一下坐火车的乐趣了。那么下一篇会讲一下如何卖我们的火车票</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        
-        
-        
-        <a class="post-tag button" href="/tags/Vert-x/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Vert.x</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a>
@@ -804,7 +819,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">12</a></div>
+      <div><a href="/archives/">13</a></div>
     </div>
     
     
@@ -814,7 +829,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">11</a></div>
+      <div><a href="/tags/">12</a></div>
     </div>
     
   </div>
