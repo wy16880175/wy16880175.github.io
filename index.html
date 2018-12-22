@@ -123,6 +123,95 @@
   
   <article class="index-post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-3/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="Wooyme">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.png">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="Wooyme's Blog">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/12/22/Kotlin-Native求生指南-3/" itemprop="url">Kotlin Native求生指南(3)</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-12-22T17:09:55+08:00">2018-12-22 17:09:55</time></span>
+        </span>
+        
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <h1 id="上一篇地址"><a href="#上一篇地址" class="headerlink" title="上一篇地址"></a>上一篇地址</h1><blockquote>
+<p><a href="https://wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-2/">https://wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-2/</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上一篇意外的花了整篇的篇幅写<em>cinterop</em>,INTEROP的文档比我想的要长太多。那么这一篇就来写一下Kotlin Native的多线程模型。由于Kotlin Native还在频繁更新中，所以多线程API和注解还是有可能出现较大变化的，本篇文章针对的是<strong>Kotlin Native v0.9</strong>,其他版本如有差异，请忽略这篇文章，以官方为准。</p>
+<blockquote>
+<p><a href="https://github.com/JetBrains/kotlin-native/blob/master/CONCURRENCY.md" target="_blank" rel="noopener">https://github.com/JetBrains/kotlin-native/blob/master/CONCURRENCY.md</a></p>
+</blockquote>
+<p>并且这篇文章只讲Kotlin Native的多线程模型，并不涉及协程，想要了解协程的朋友，还是看官方的文档吧。</p>
+<h1 id="Worker"><a href="#Worker" class="headerlink" title="Worker"></a>Worker</h1><p>可能说到多线程，我们马上就会想到<code>pthread</code>之类的东西。没错<code>pthread</code>作为<strong>POSIX</strong>提供的跨平台多线程API可以说是非常深入人心了。你问我Kotlin Native支不支持<code>pthread</code>,那肯定是支持的，我们完全可以像在C/C++中做的那样，通过<code>pthread</code>创建新的线程，只是要在线程启动的时候运行一下<code>kotlin.native.initRuntimeIfNeeded()</code>。<br>但是，实际上Kotlin Native给我们提供了一个更好的选择——<strong>Worker</strong>。让我们来看看官方对Worker的介绍</p>
+<blockquote>
+<p>不同于线程的是，Kotlin Native引入了Worker这个概念:能够同时处理请求队列的控制流(concurrently executed control flow streams with an associated request queue)。Workers与Actor模型中的Actor很像，一个Worker可以与其他Worker交换数据。<strong>在任何时候可变的对象只会被一个Worker拥有</strong>。</p>
+</blockquote>
+<p>好像不是很好理解，我们看官方给的例子<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">package</span> sample.workers<br><br><span class="hljs-keyword">import</span> kotlin.<span class="hljs-keyword">native</span>.concurrent.*<br><br><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WorkerArgument</span></span>(<span class="hljs-keyword">val</span> intParam: <span class="hljs-built_in">Int</span>, <span class="hljs-keyword">val</span> stringParam: String)<br><span class="hljs-keyword">data</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WorkerResult</span></span>(<span class="hljs-keyword">val</span> intResult: <span class="hljs-built_in">Int</span>, <span class="hljs-keyword">val</span> stringResult: String)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> COUNT = <span class="hljs-number">5</span><br>    <span class="hljs-comment">//创建5个Worker对象</span><br>    <span class="hljs-keyword">val</span> workers = Array(COUNT, &#123; _ -&gt; Worker.start() &#125;)<br><br>    <span class="hljs-keyword">for</span> (attempt <span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.3</span>) &#123;<br>        <span class="hljs-keyword">val</span> futures = Array(workers.size) &#123; workerIndex -&gt;<br>            workers[workerIndex].execute(TransferMode.SAFE, &#123;<br>                <span class="hljs-comment">//传入要给Worker处理的参数</span><br>                WorkerArgument(workerIndex, <span class="hljs-string">"attempt <span class="hljs-variable">$attempt</span>"</span>)<br>            &#125;) &#123; input -&gt;<br>                <span class="hljs-comment">//Worker处理参数</span><br>                <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span><br>                <span class="hljs-keyword">for</span> (i <span class="hljs-keyword">in</span> <span class="hljs-number">0.</span>.input.intParam * <span class="hljs-number">1000</span>) &#123;<br>                    sum += i<br>                &#125;<br>                WorkerResult(sum, input.stringParam + <span class="hljs-string">" result"</span>)<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">val</span> futureSet = futures.toSet()<br>        <span class="hljs-keyword">var</span> consumed = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> (consumed &lt; futureSet.size) &#123;<br>            <span class="hljs-comment">//等待运行结束的Workers</span><br>            <span class="hljs-keyword">val</span> ready = waitForMultipleFutures(futureSet, <span class="hljs-number">10000</span>)<br>            ready.forEach &#123;<br>                <span class="hljs-comment">//处理Worker的运行结果</span><br>                it.consume &#123; result -&gt;<br>                    <span class="hljs-keyword">if</span> (result.stringResult != <span class="hljs-string">"attempt <span class="hljs-variable">$attempt</span> result"</span>) <span class="hljs-keyword">throw</span> Error(<span class="hljs-string">"Unexpected <span class="hljs-variable">$result</span>"</span>)<br>                    consumed++<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    workers.forEach &#123;<br>        <span class="hljs-comment">//终止Worker</span><br>        it.requestTermination().result<br>    &#125;<br>    println(<span class="hljs-string">"Workers: OK"</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这就是一个通过创建多个Workers来并行处理数据的例子。可以看到跟Actor模型还挺像的。在<code>Worker.execute</code>的第一个参数里传入生成待处理数据的lambda，然后在第二个参数里传入处理数据的lambda。然后在需要的时候调用<code>future.consume</code>,传入处理结果的lambda。这一切看上去跟Java上的许多异步框架别无二致，但实际上。。。。后面会讲到其中的坑爹之处。  </p>
+<h1 id="全局变量和单例"><a href="#全局变量和单例" class="headerlink" title="全局变量和单例"></a>全局变量和单例</h1><blockquote>
+<p>虽然Worker和线程的实现方式并不相同，但是行为类似，所以后面就不严格区分Worker和线程了</p>
+</blockquote>
+<p>在线程间共享数据最简单的方法就是全局变量了，但同时全局变量也是导致多线程出现各种问题的罪魁祸首。于是Kotlin Native引入了一系列的限制措施来保证全局变量不会影响Worker模型的工作。</p>
+<ul>
+<li>除非添加了特殊的注解，不然全局变量只能在主线程中被访问，如果其他线程试图访问这个变量会报<code>IncorrectDereferenceException</code>异常</li>
+<li>一个添加了<code>@ThreadLocal</code>的全局变量会在每个线程里复制一份，所以每个线程都是独享这个变量的，<strong>某个线程对变量的改动对其他线程不可见</strong></li>
+<li>一个添加了@SharedImmutable的变量是能在线程间共享的，但是<strong>它会被冻结</strong>，后续如果程序尝试修改这个变量也是会抛出异常的。需要注意的是，这个冻结不受<code>var</code>或是<code>val</code>的影响，就算声明的时候是<code>var</code>的只要冻结了就不能再被修改了。同时需要注意的是，<strong>一个被冻结的变量是不能被解冻的</strong></li>
+<li>对于单例(objects)，<strong>除非添加@ThreadLocal注解,不然会被冻结从而可以在线程间共享</strong>。对于其中的属性，lazy是被允许的。</li>
+</ul>
+<p>相信对于从JVM转过来的人来说，我们还是习惯写单例而不是全局变量。就算是保存一个全局变量，也还是习惯于放在一个单例里作为单例的属性。于是坑就出现了。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">object</span> Foo&#123;<br>    <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> A:String<br>    init&#123;<br>        <span class="hljs-comment">//某些操作....</span><br>        A = ......<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">//某些操作.....</span><br>        A = .....<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>根据上面的规则，猜猜看结果会是什么样吧。我想大部分人都会认为<code>init</code>中对A的赋值应该是可以的，至于<code>foo</code>中的赋值则要看是在哪个线程里执行了。但事实是，两个都不行，无论什么情况都不行。即使A是<code>lateinit</code>的，只要Foo被<code>frozen</code>了，里面的属性就不能再被修改。Kotlin Native是真的很严格，就算我们自始至终只有一个主线程也不行。所以<code>object</code>几乎是必须加上<code>@ThreadLocal</code>注解。<br>但是加上<code>@ThreadLocal</code>真的就能解决问题了吗，规则里说，加上<code>@ThreadLocal</code>的变量会在每个线程间复制一份，不知道你们是怎么理解的，反正我最开始看到这端话的时候觉得这个<em>复制</em>应该会在<em>新的线程创建的时候把创建这个线程的线程中的变量复制到新的线程上</em>。举个例子<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-meta">@ThreadLocal</span><br><span class="hljs-keyword">object</span> Foo&#123;<br>    <span class="hljs-keyword">var</span> A:String? = <span class="hljs-literal">null</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    Foo.A = <span class="hljs-string">"Hello"</span><br>    Worker.start().execute(Transport.SAFE,&#123;&#125;)&#123;<br>        println(Foo.A)<br>    &#125;.consume&#123;&#125;<br>&#125;<br><span class="hljs-comment">//我期望的输出</span><br>Hello<br><span class="hljs-comment">//实际上的输出</span><br><span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这谁顶得住啊</p>
+</blockquote>
+<p>总之就是被Kotlin Native的文档秀了一脸。它说的复制，就是保证其他线程上也有一个叫做<code>Foo</code>的单例。而单例里面是什么则完全取决于它初始化完了是什么。这简直是颠覆了我对多线程的认识。那么正确的做法是什么呢。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-meta">@ThreadLocal</span><br><span class="hljs-keyword">object</span> Foo&#123;<br>    <span class="hljs-keyword">var</span> A:String? = <span class="hljs-literal">null</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    Foo.A = <span class="hljs-string">"Hello"</span><br>    Worker.start().execute(Transport.SAFE,&#123;<br>        <span class="hljs-keyword">object</span>.A<br>    &#125;)&#123; str-&gt;<br>        Foo.A = str<br>        println(Foo.A)<br>    &#125;.consume&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p><code>execute</code>的第一个lambada参数就给我们用来干这个事情的，这是唯一一个能让其他线程与主线程产生联系的地方。我们需要在这里把想要<em>复制</em>的值传到子线程，然后在子线程里做<em>粘贴</em>的工作。  </p>
+<h1 id="共享可变量"><a href="#共享可变量" class="headerlink" title="共享可变量"></a>共享可变量</h1><p>但是这样的<em>复制</em>很明显是不够的，比如说我想在Worker里运行一个Event Loop，我必然要在Worker运行的时候向它传递一些数据。于是这个时候就必须要跳出Kotlin Native的管理，寻求C的帮助了。<br>虽然Kotlin的变量在线程间是独立的，但是通过<code>nativeHeap.alloc</code>分配的内存在线程间依然是共享的。所以我们就可以写出这样的代码<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> ptr = nativeHeap.allocArray&lt;ByteVar&gt;(<span class="hljs-number">10</span>)<br>    memScope&#123;<br>        memcpy(ptr,<span class="hljs-string">"A"</span>.cstr.ptr,<span class="hljs-string">"A"</span>.cstr.size)<br>    &#125;<br>    <span class="hljs-keyword">val</span> future = Worker.start().execute(Transport.SAFE,&#123;<br>        ptr<br>    &#125;)&#123; _ptr-&gt;<br>        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)&#123;<br>            println(_ptr.toKString())<br>            sleep(<span class="hljs-number">100</span>)<br>        &#125;<br>    &#125;<br>    sleep(<span class="hljs-number">100</span>)<br>    memScope&#123;<br>        memcpy(ptr,<span class="hljs-string">"B"</span>.cstr,ptr,<span class="hljs-string">"B"</span>.cstr.size)<br>    &#125;<br>    future.consume&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>通过这种方法就可以在线程间共享可变的变量了。当然这和传统的多线程模型一样，如果设计不当依然会导致各种多线程中常见的问题。<br>这样的共享方式是比较原始的，毕竟我们共享的是最原始的数据，如果想要共享一个对象的话，就需要使用<code>Object subgraph detachment</code></p>
+<blockquote>
+<p>一个没有外部引用的对象子图可以通过<code>DetachedObjectGraph&lt;T&gt;</code>解除连接(disconnected)变成一个<code>COpaquePointer</code>从而存储在C的结构体中，接着可以在任意的线程或Worker中通过<code>DetachedObjectGraph&lt;T&gt;.attach()</code>重新连接得到这个对象子图。</p>
+</blockquote>
+<p>配合前面的方法，就可以在线程间共享对象了。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>Kotlin Native的多线程模型就如Kotlin的空安全机制一样，可以说是为了解决传统多线程中的问题做出了许多设计上的规范，但是为了应对一些特殊的情况，这种规范也是要做出让步的，这种时候还是得我们自己来注意多线程间的问题。<br>那么至此，Kotlin Native的系列就算是结束了。基本上把我在做KN开发时候遇到的一些坑都写在里面了，要说体验如何的话，一是资料太少了，官方的又只有英文，有些是它没说清楚，有些是我理解有差，导致了许多莫名其妙的问题。二是库太少了，整个github上，关于Kotlin Native的库只有两个，一个是只有IOS版本的Ktor，另一个是libui的Kotlin Native Binding，而且好久没有更新了。三是太依赖C语言了，没点C/C++开发基础还真搞不定。<br>总之Kotlin Native作为一个连1.0版本都没到的语言(姑且叫它语言吧)，能用它写出一个还算像样的工具已经是挺不错的。相信只要JetBrains没有放弃KN，KN应该也会成为一门像Go一样大众的语言。</p>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        
+        
+        
+        <a class="post-tag button" href="/tags/Kotlin/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>Kotlin</a>
+        
+        <a class="post-tag button" href="/tags/Native/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>Native</a>
+        
+        <a class="post-tag button" href="/tags/C/" style="background: #47aaff;" rel="tag"><i class="fas fa-tags"></i>C</a>
+        
+        <a class="post-tag button" href="/tags/多线程/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>多线程</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-2/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="Wooyme">
@@ -766,71 +855,6 @@
     </footer>
   </article>
   
-  <article class="index-post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="http://Wooyme.github.io/2018/07/05/TCP中的坑/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="Wooyme">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.png">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="Wooyme's Blog">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/07/05/TCP中的坑/" itemprop="url">TCP中的坑</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T00:28:45+08:00">2018-07-05 00:28:45</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h2 id="1-我发的那个包呢"><a href="#1-我发的那个包呢" class="headerlink" title="1.我发的那个包呢"></a><strong>1.我发的那个包呢</strong></h2><p>对于不熟悉TCP协议的人来说，各种tcp库提供的send函数都是那么的具有欺骗性。或者说，我们每个人都被这些封装好的send函数欺骗过。这里就拿Vert.x为例（虽然Vert.x里不叫send）<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> client=vertx.createNetClient(NetClientOptions().setReceiveBufferSize(<span class="hljs-number">5120</span>).setUsePooledBuffers(<span class="hljs-literal">true</span>))<br>client.connect(PORT, IP) &#123;<br>  <span class="hljs-keyword">this</span>.write(<span class="hljs-string">"This is an example of TCP Client"</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>现在让我们来想一想这段代码会实现一个什么样的效果,我们首先连接到了一个服务端，然后我们向服务端发送了一句话，而我们的服务端也会理所当然的收到这句话没。这非常简单，但是当这句话变得稍微长一点的时候情况就可能不再是这样了。由于种种原因，当<code>write</code>的buffer变长的时候，我们的服务端会收到多个数据包，只有将这些数据包拼起来我们才能得到完整的buffer。<br>一段完整的数据被分成多段数据只是一种情况，在TCP连接中，还有另一种同样致命的情况————<strong>粘包</strong>。当我们的发送频率比较高的时候，我们甚至可以看到多个包被放在一个缓冲区里，如果我们的服务端假设每次收到的数据都是一个独立的包的话，粘包将会导致无数的问题。</p>
-<h2 id="2-把包还给我"><a href="#2-把包还给我" class="headerlink" title="2.把包还给我"></a><strong>2.把包还给我</strong></h2><p>为了解决<strong>分包</strong>和<strong>粘包</strong>的问题，我们不得不做一些妥协。可能你已经规定了一个非常棒的数据结构、编码规则来传输数据，但是现在你必须改变，TCP就是这么的让人讨厌,当然UDP也没有好到哪里去。<br>不过好在，我们有很多的东西可以参考，毕竟现在有那么多的协议是建立在TCP之上的，早就有人为我们踏平了道路。这里就让我们来看一个非常经典的协议<code>HTTP</code>。  </p>
-<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP的特点实在是太鲜明了。</p>
-<ul>
-<li>短连接<br>我知道HTTP有长连接的情况，但是你不能否认HTTP也是使用短连接的对吧。短连接是解决分包和粘包的一个非常彻底的方案。在<strong>把一段完整的响应发送完之后就关闭连接</strong>，用这样的方式，客户端就可以很轻松的判断出什么时候自己接收到了所有的数据，并且可以开始处理数据。</li>
-<li>Content-Length<br>客户端(也就是浏览器)可以通过连接关闭事件来触发数据处理，但是服务端就没有这么幸运了，如果客户端在发送完之后就关闭了连接，服务端就只能表示一脸懵逼。于是，为了让服务端也能正确的接收到数据，客户端在发送HTTP请求的时候必须要加上Content-Length。服务端在接收到Content-Length之后，就数着后续收到的数据长度，只有达到了要求才开始处理数据。</li>
-<li>分割符<br>HTTP的分割符比较特殊，它只在请求头的部分有效，因为一旦到了请求内容里，这个<code>\r\n</code>很有可能引发混乱，特别是当我们在传输文件的时候，如果我们的文件里碰巧也有<code>\r\n</code>，那么谁能分的清哪个才是真正的分割符号呢。虽然说HTTP的分割符不那么典型，但是这也是一种我们能够使用的思路</li>
-</ul>
-<h4 id="我们的选择"><a href="#我们的选择" class="headerlink" title="我们的选择"></a>我们的选择</h4><p>很明显，一般来说我们不需要像HTTP一样把这些方式全部用上。在这三种里面我们可以按自己的需要选择其中一种。</p>
-<ul>
-<li>我的数据只有ASCII(或是其他特定的编码)<br>当我们非常确定我们的数据编码的时候，分割符无疑是最简单的选择，在包的开头加上<code>0xffffff</code>，在包尾加上<code>0xefefef</code>，剩下的就是些常规操作了</li>
-<li>我传的就是二进制  <ul>
-<li>发送频率不高，并且对返回不感兴趣<br>这种时候使用短连接也不失为一种不错的选择，一方面是短连接天生就能起到分包的作用，另一方面也可以把连接数释放给其他的客户端。</li>
-<li>高频率，要返回<br>这种时候，在包里加上包长度就变成必须的操作了。在高频率的传输情况下，使用短连接无疑是会浪费大量的网络资源，毕竟三握手的成本还是非常高的。</li>
-</ul>
-</li>
-<li>我有个大胆的想法<br>为什么不试试UDT呢</li>
-</ul>
-<h2 id="3-小结"><a href="#3-小结" class="headerlink" title="3.小结"></a><strong>3.小结</strong></h2><p>能解决TCP中粘包和分包问题的方法还是很多的，多看看其他的协议是怎么解决问题的往往能给我们不少的启发。毕竟相比UDP来说，TCP已经可靠多了，我们要做的只是解决一下缓冲区里的一点小小问题而已。</p>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        
-        
-        
-        <a class="post-tag button" href="/tags/网络协议/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>网络协议</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
   
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a>
@@ -863,7 +887,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">归档</div>
-      <div><a href="/archives/">14</a></div>
+      <div><a href="/archives/">15</a></div>
     </div>
     
     
@@ -873,7 +897,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">标签</div>
-      <div><a href="/tags/">12</a></div>
+      <div><a href="/tags/">13</a></div>
     </div>
     
   </div>
