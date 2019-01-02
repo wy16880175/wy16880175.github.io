@@ -513,8 +513,28 @@
 <blockquote>
 <p><a href="http://start.vertx.io/" target="_blank" rel="noopener">http://start.vertx.io/</a></p>
 </blockquote>
-<p>如果你不知道怎么配置的话，可以直接在这里开始。<br>在这个系列里，我可能不常使用Java，而更加倾向于使用Kotlin。因为Kotlin和Vert.x的契合度非常高，Kotlin提供的协程可以很好的解决一些因为异步导致的问题，并且Kotlin完全兼容Java的特点也让Kotlin在许多其他语言中脱颖而出。<br>那让我们来看一个最简单的Http服务端是怎么实现的。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">import</span> io.vertx.core.Vertx<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">(args:<span class="hljs-type">Array</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span>&#123;<br>  <span class="hljs-keyword">val</span> vertx = Vertx.vertx()<br>  vertx.createHttpServer().requestHandler&#123;<br>    it.response().end(<span class="hljs-string">"Welcome to our first Http Server!"</span>)<br>  &#125;.listen(<span class="hljs-number">80</span>)&#123;<br>    <span class="hljs-keyword">if</span>(it.failed())<br>      it.cause.printStackTrace()<br>    <span class="hljs-keyword">else</span><br>      println(<span class="hljs-string">"Listening on 80"</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>这是用Kotlin实现一个简单HttpServer的版本。如果你从来没有接触过Kotlin的话，你只要记住一点func{}等于func({}),函数的最后一个lambda参数是可以放到小括号外面去的。然后对于只有一个参数的lambda，这个参数默认的名称叫做it。<br>我们可以看看这段代码到底做了什么。首先，我们得到了一个vertx对象，这个vertx是一切的起源。接着我们调用了createHttpServer方法，创建了一个Server。在创建完Server之后我们为它添加了一个handler，可以看到，Vert.x的API大多是流式的，写起来非常漂亮，fp的美感。在Kotlin里，这个handler表现为一个lambda，实际上这个requestHandler所需要的参数是一个Handler<httpserverrequest>接口，所以在Java里，写法就变成了<br><figure class="highlight Java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Java">vertx.createHttpServer().requestHandler(<span class="hljs-keyword">new</span> Handler&lt;HttpServerRequest&gt;()&#123;<br>  <span class="hljs-meta">@Override</span><br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(HttpServerRequest req)</span></span>&#123;<br>    req.response().end(<span class="hljs-string">"Welcome to our first Http Server!"</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></httpserverrequest></p>
+<p>如果你不知道怎么配置的话，可以直接在这里开始。<br>在这个系列里，我可能不常使用Java，而更加倾向于使用Kotlin。因为Kotlin和Vert.x的契合度非常高，Kotlin提供的协程可以很好的解决一些因为异步导致的问题，并且Kotlin完全兼容Java的特点也让Kotlin在许多其他语言中脱颖而出。<br>那让我们来看一个最简单的Http服务端是怎么实现的。</p>
+<pre><code class="Kotlin">import io.vertx.core.Vertx
+fun main(args:Array&lt;String&gt;){
+  val vertx = Vertx.vertx()
+  vertx.createHttpServer().requestHandler{
+    it.response().end(&quot;Welcome to our first Http Server!&quot;)
+  }.listen(80){
+    if(it.failed())
+      it.cause.printStackTrace()
+    else
+      println(&quot;Listening on 80&quot;)
+  }
+}
+</code></pre>
+<p>这是用Kotlin实现一个简单HttpServer的版本。如果你从来没有接触过Kotlin的话，你只要记住一点func{}等于func({}),函数的最后一个lambda参数是可以放到小括号外面去的。然后对于只有一个参数的lambda，这个参数默认的名称叫做it。<br>我们可以看看这段代码到底做了什么。首先，我们得到了一个vertx对象，这个vertx是一切的起源。接着我们调用了createHttpServer方法，创建了一个Server。在创建完Server之后我们为它添加了一个handler，可以看到，Vert.x的API大多是流式的，写起来非常漂亮，fp的美感。在Kotlin里，这个handler表现为一个lambda，实际上这个requestHandler所需要的参数是一个Handler<httpserverrequest>接口，所以在Java里，写法就变成了</httpserverrequest></p>
+<pre><code class="Java">vertx.createHttpServer().requestHandler(new Handler&lt;HttpServerRequest&gt;(){
+  @Override
+  void handle(HttpServerRequest req){
+    req.response().end(&quot;Welcome to our first Http Server!&quot;);
+  }
+});
+</code></pre>
 <p>当然这种写法比较过时，java8已经加入了lambda，但是为了更加清晰一点，这里我把这种原始的版本表示出来。<br>这个handler是在服务端启动后，每当有用户访问我们的服务端，服务端就会返回一个欢迎词，就像nginx的默认页面一样。同样的，listen也是差不多的过程，第一个参数是监听的端口，第二个参数则是用来处理监听结果的handler，这个handler在端口成功打开或是打开失败的时候被调用，所以我们可以知道我们的服务端有没有成功运行。<br>其实这里异步的特点就已经有所体现了，我们没有等待用户访问，也没有等待端口打开，所有的一切都是异步的。当有结果的时候，Vert.x就会来调用我们设定的handler，而当没有结果的时候，Evnetloop就会在那里自己循环，只要我们不写阻塞代码，Eventloop就永远不会停止循环。</p>
 <h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><em>小结</em></h2><p>第一篇就大概介绍一下Vert.x的理念，实际上Vert.x的许多特性比介绍的要复杂的多，有兴趣的人可以去看中问文档，里面有讲关于Verticle的，关于分布式的，以及一些类似于热部署的。这里写的一个例子也非常的简单，但是如果你从来没有接触过异步，这对你来说可能是个挑战。你得明白，为什么这段代码不是按照顺序执行的，以及什么是lambda(这个不是非常重要，lambda只是一种表现形式而已，我们实例化一个接口也完全可以实现同样的功能)。<br>下一篇应该是会讲请求的处理，get的和post的，以及Router这个扩展。</p>
 

@@ -494,12 +494,45 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>廉价VPS的小内存实在是供不起JVM，所以只好找别的出路了。php呢不是很喜欢，python又不是很想用，于是选了个硬核一点的Perl作为后端语言。反正前后分离，没了渲染压力后端想怎么玩怎么玩。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a><strong>正文</strong></h2><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">apt-get install nginx libfcgi-perl wget<br></code></pre></td></tr></table></figure>
-<p>改nginx配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs undefined">server &#123;<br>  listen   80;<br>  root   /var/www/example.com;<br><br>  location / &#123;<br>      index  index.html index.htm index.pl;<br>  &#125;  <br><br>  location ~ \.pl|cgi$ &#123;<br>      try_files $uri =404;<br>      gzip off;<br>      fastcgi_pass  127.0.0.1:8999;<br>      fastcgi_index index.pl;<br>      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;<br>      include fastcgi_params;<br>      &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
-<p>创建目录,给权限<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell">mkdir /var/www/example.com<br>chown -R www-data:www-data /var/www/example.com<br></code></pre></td></tr></table></figure></p>
-<p>下载配置FastCGI<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Shell">wget http://nginxlibrary.com/downloads/perl-fcgi/fastcgi-wrapper -O /usr/bin/fastcgi-wrapper.pl<br>wget http://nginxlibrary.com/downloads/perl-fcgi/perl-fcgi -O /etc/init.d/perl-fcgi<br>chmod +x /usr/bin/fastcgi-wrapper.pl<br>chmod +x /etc/init.d/perl-fcgi<br>update-rc.d perl-fcgi defaults<br>/usr/lib/insserv/insserv perl-fcgi<br></code></pre></td></tr></table></figure></p>
-<p>启动!<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Shell">service nginx start<br>service perl-fcgi start<br></code></pre></td></tr></table></figure></p>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a><strong>坑</strong></h2><p>顺利的话，就启动了。不顺利的话，启动perl-fastcgi的时候会失败，报错说<code>this account is currently not available</code>。Google了一圈好像没人在配置cgi的时候遇到这样的问题，比较多的是有些脑洞大开的人想从ssh登录到www-data这个用户上。<br>顺便说一下www-data这个用户，如果看Nginx的进程的话<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Shell">ps -ef | grep nginx<br></code></pre></td></tr></table></figure></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a><strong>正文</strong></h2><pre><code class="Shell">apt-get install nginx libfcgi-perl wget
+</code></pre>
+<p>改nginx配置</p>
+<pre><code>server {
+  listen   80;
+  root   /var/www/example.com;
+
+  location / {
+      index  index.html index.htm index.pl;
+  }  
+
+  location ~ \.pl|cgi$ {
+      try_files $uri =404;
+      gzip off;
+      fastcgi_pass  127.0.0.1:8999;
+      fastcgi_index index.pl;
+      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+      include fastcgi_params;
+      }
+}
+</code></pre><p>创建目录,给权限</p>
+<pre><code class="Shell">mkdir /var/www/example.com
+chown -R www-data:www-data /var/www/example.com
+</code></pre>
+<p>下载配置FastCGI</p>
+<pre><code class="Shell">wget http://nginxlibrary.com/downloads/perl-fcgi/fastcgi-wrapper -O /usr/bin/fastcgi-wrapper.pl
+wget http://nginxlibrary.com/downloads/perl-fcgi/perl-fcgi -O /etc/init.d/perl-fcgi
+chmod +x /usr/bin/fastcgi-wrapper.pl
+chmod +x /etc/init.d/perl-fcgi
+update-rc.d perl-fcgi defaults
+/usr/lib/insserv/insserv perl-fcgi
+</code></pre>
+<p>启动!</p>
+<pre><code class="Shell">service nginx start
+service perl-fcgi start
+</code></pre>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a><strong>坑</strong></h2><p>顺利的话，就启动了。不顺利的话，启动perl-fastcgi的时候会失败，报错说<code>this account is currently not available</code>。Google了一圈好像没人在配置cgi的时候遇到这样的问题，比较多的是有些脑洞大开的人想从ssh登录到www-data这个用户上。<br>顺便说一下www-data这个用户，如果看Nginx的进程的话</p>
+<pre><code class="Shell">ps -ef | grep nginx
+</code></pre>
 <p>会看到nginx的几个worker-process所属的用户都是www-data，这个就是专门给web应用提供的用户。<br>看了一下这些登录不了的解决方案，发现cgi的问题应该也可以用同样的方法解决。</p>
 <p>在<code>/etc/passwd</code>里，我们可以找到www-data的那行，然后就会发现它的结尾是<code>/usr/sbin/nologin</code>，我们要改成<code>/bin/bash</code>。这样这个用户就有运行perl脚本的能力了。重新启动一下服务，就OK了。</p>
 

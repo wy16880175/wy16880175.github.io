@@ -493,7 +493,12 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="1-我发的那个包呢"><a href="#1-我发的那个包呢" class="headerlink" title="1.我发的那个包呢"></a><strong>1.我发的那个包呢</strong></h2><p>对于不熟悉TCP协议的人来说，各种tcp库提供的send函数都是那么的具有欺骗性。或者说，我们每个人都被这些封装好的send函数欺骗过。这里就拿Vert.x为例（虽然Vert.x里不叫send）<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> client=vertx.createNetClient(NetClientOptions().setReceiveBufferSize(<span class="hljs-number">5120</span>).setUsePooledBuffers(<span class="hljs-literal">true</span>))<br>client.connect(PORT, IP) &#123;<br>  <span class="hljs-keyword">this</span>.write(<span class="hljs-string">"This is an example of TCP Client"</span>)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+        <h2 id="1-我发的那个包呢"><a href="#1-我发的那个包呢" class="headerlink" title="1.我发的那个包呢"></a><strong>1.我发的那个包呢</strong></h2><p>对于不熟悉TCP协议的人来说，各种tcp库提供的send函数都是那么的具有欺骗性。或者说，我们每个人都被这些封装好的send函数欺骗过。这里就拿Vert.x为例（虽然Vert.x里不叫send）</p>
+<pre><code class="Kotlin">val client=vertx.createNetClient(NetClientOptions().setReceiveBufferSize(5120).setUsePooledBuffers(true))
+client.connect(PORT, IP) {
+  this.write(&quot;This is an example of TCP Client&quot;)
+}
+</code></pre>
 <p>现在让我们来想一想这段代码会实现一个什么样的效果,我们首先连接到了一个服务端，然后我们向服务端发送了一句话，而我们的服务端也会理所当然的收到这句话没。这非常简单，但是当这句话变得稍微长一点的时候情况就可能不再是这样了。由于种种原因，当<code>write</code>的buffer变长的时候，我们的服务端会收到多个数据包，只有将这些数据包拼起来我们才能得到完整的buffer。<br>一段完整的数据被分成多段数据只是一种情况，在TCP连接中，还有另一种同样致命的情况————<strong>粘包</strong>。当我们的发送频率比较高的时候，我们甚至可以看到多个包被放在一个缓冲区里，如果我们的服务端假设每次收到的数据都是一个独立的包的话，粘包将会导致无数的问题。</p>
 <h2 id="2-把包还给我"><a href="#2-把包还给我" class="headerlink" title="2.把包还给我"></a><strong>2.把包还给我</strong></h2><p>为了解决<strong>分包</strong>和<strong>粘包</strong>的问题，我们不得不做一些妥协。可能你已经规定了一个非常棒的数据结构、编码规则来传输数据，但是现在你必须改变，TCP就是这么的让人讨厌,当然UDP也没有好到哪里去。<br>不过好在，我们有很多的东西可以参考，毕竟现在有那么多的协议是建立在TCP之上的，早就有人为我们踏平了道路。这里就让我们来看一个非常经典的协议<code>HTTP</code>。  </p>
 <h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP的特点实在是太鲜明了。</p>

@@ -502,10 +502,10 @@
 </blockquote>
 <p>相信看看链接大家也就懂了。18.04还是EPR，能不能用就看造化了。16.04应该能用，但是我不确定，因为我是ubuntu gnome16.04。<code>稍微科普一下，ubuntu17.10前的桌面系统是Unity，然后因为大家喜好有差，就出现了Ubuntu Gnome和KUbuntu(Ubuntu Kde)这两个发行版</code>然后amdgpu-pro在我的电脑上似乎不太行，如果你是官方的Ubuntu发行版，说不定可以试试。<br>安装完之后不要忘了修改grub</p>
 <blockquote>
-<pre><code><pre><code class="hljs undefined">Edit /etc/default/grub as root and modify GRUB_CMDLINE_LINUX_DEFAULT in order to add &quot;amdgpu.vm_fragment_size=9&quot; (without the quotes). The line may look something like this after the change:
- GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash amdgpu.vm_fragment_size=9&quot;
- Update grub and reboot as root:
- update-grub;reboot</code></pre>
+<pre><code>   Edit /etc/default/grub as root and modify GRUB_CMDLINE_LINUX_DEFAULT in order to add &quot;amdgpu.vm_fragment_size=9&quot; (without the quotes). The line may look something like this after the change:
+    GRUB_CMDLINE_LINUX_DEFAULT=&quot;quiet splash amdgpu.vm_fragment_size=9&quot;
+    Update grub and reboot as root:
+    update-grub;reboot
 </code></pre></blockquote>
 <p>官方丧心病狂的把这段话写在网页的后半部分，可能很多人都没有注意。</p>
 <p>接下来就是非常关键的部分了。如果你安装完之后成功的进入了桌面系统，你可能会在gnome的 <em>设置-&gt;详细信息-&gt;图形</em> 里看到LLVM的字样(顺便说一句，看到LLVM的时候我就总觉得这玩意不太靠谱)，当然根据显卡型号不同，你可能会看到不一样的结果。只要你没看到Intel之类的东西，你多半是成功了。  </p>
@@ -519,7 +519,23 @@
 <blockquote>
 <p>这里给一个范例<br><code>grep -A 3 &#39;Start-Date: 2018-07-16  22:56:10&#39; /var/log/apt/history.log |sudo tail -1 &gt; tmp.log</code><br>再用Vim删除一些不用的信息<br><code>tr &#39; &#39; &#39;\n&#39; &lt;tmp.log | sed &#39;/,$/d&#39; &gt; tmp0.log</code><br>再删除最后一行</p>
 </blockquote>
-<p>最终就可以得到一个完整的安装列表。<br>写一个脚本<br><figure class="highlight Shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Shell"><span class="hljs-meta">#</span><span class="bash"> Run as root</span><br><span class="hljs-meta"><br>#</span><span class="bash"> Store packages name <span class="hljs-keyword">in</span> <span class="hljs-variable">$p</span></span><br>p="$(&lt;/tmp/final.packages.txt)"<br><span class="hljs-meta"><br>#</span><span class="bash"> Nuke it</span><br>apt-get --purge remove $p<br><span class="hljs-meta"><br><br>#</span><span class="bash">clears out the <span class="hljs-built_in">local</span> repository of retrieved package files</span><br>apt-get clean<br><span class="hljs-meta"><br><br>#</span><span class="bash"> Just <span class="hljs-keyword">in</span> <span class="hljs-keyword">case</span> ...</span><br>apt-get autoremove<br></code></pre></td></tr></table></figure></p>
+<p>最终就可以得到一个完整的安装列表。<br>写一个脚本</p>
+<pre><code class="Shell"># Run as root
+
+# Store packages name in $p
+p=&quot;$(&lt;/tmp/final.packages.txt)&quot;
+
+# Nuke it
+apt-get --purge remove $p
+
+
+#clears out the local repository of retrieved package files
+apt-get clean
+
+
+# Just in case ...
+apt-get autoremove
+</code></pre>
 <p>运行一下，大功告成。</p>
 
         
