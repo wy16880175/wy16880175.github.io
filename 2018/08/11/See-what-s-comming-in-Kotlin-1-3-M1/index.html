@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            See what&#39;s comming in Kotlin 1.3-M1 译文 | 
+        
+        Wooyme&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content=",Kotlin">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+            
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Wooyme&#39;s Blog">
+    <meta name="msapplication-starturl" content="http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="See what&#39;s comming in Kotlin 1.3-M1 译文 | Wooyme&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Kotlin"> 
+
+    
+        <meta property="article:published_time" content="Sat Aug 11 2018 19:41:08 GMT+0800">
+        <meta property="article:modified_time" content="Sat Aug 11 2018 22:16:36 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html",
+    "headline": "See what's comming in Kotlin 1.3-M1 译文",
+    "datePublished": "Sat Aug 11 2018 19:41:08 GMT+0800",
+    "dateModified": "Sat Aug 11 2018 22:16:36 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Kotlin",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#稳定版的协程-1-3之前一直是实验版"><span class="post-toc-number">2.</span> <span class="post-toc-text">稳定版的协程(1.3之前一直是实验版)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#转战新协程"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">转战新协程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一些新特性"><span class="post-toc-number">3.</span> <span class="post-toc-text">一些新特性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#捕获when中的参数"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">捕获when中的参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#伴生接口中的-JvmStatic和-JvmField"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">伴生接口中的@JvmStatic和@JvmField</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可嵌套的注解声明"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">可嵌套的注解声明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数类型可以有更多参数"><span class="post-toc-number">3.0.4.</span> <span class="post-toc-text">函数类型可以有更多参数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实验性特性"><span class="post-toc-number">4.</span> <span class="post-toc-text">实验性特性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内联类"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">内联类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无符号数字类型"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">无符号数字类型</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#新的标准库API"><span class="post-toc-number">5.</span> <span class="post-toc-text">新的标准库API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SuccessOrFailure"><span class="post-toc-number">5.0.1.</span> <span class="post-toc-text">SuccessOrFailure</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多平台随机数生成器"><span class="post-toc-number">5.0.2.</span> <span class="post-toc-text">多平台随机数生成器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Boolean类型的伴生对象"><span class="post-toc-number">5.0.3.</span> <span class="post-toc-text">Boolean类型的伴生对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本类型伴生对象的常亮"><span class="post-toc-number">5.0.4.</span> <span class="post-toc-text">基本类型伴生对象的常亮</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                See what's comming in Kotlin 1.3-M1 译文
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>8月 11, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Kotlin/">Kotlin</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=See what&#39;s comming in Kotlin 1.3-M1 译文&url=http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html&pic=http://Wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=See what&#39;s comming in Kotlin 1.3-M1 译文&url=http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p>原文在:<br><a href="https://blog.jetbrains.com/kotlin/2018/07/see-whats-coming-in-kotlin-1-3-m1/" target="_blank" rel="noopener">https://blog.jetbrains.com/kotlin/2018/07/see-whats-coming-in-kotlin-1-3-m1/</a>   </p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天，在一长串的关于Kotlin 1.2.x的更新之后，是时候看看Kotlin 1.3会带来什么。我们很高兴的宣布Kotlin 1.3的尝鲜体验版Kotlin 1.3-M1正式发布。<br>Kotlin 1.3相比之前版本有许多的进步，其中包括 <em>完全体的协程</em>，<em>实验版的无符号类型</em>(Java至今没有的东西),<em>inline class</em> 以及其他更多特性。<br>这里要感谢为我们的新版本贡献代码的社区群众:Raluca Sauciuc, Toshiaki Kameyama, Leonardo Lopes, Jake Wharton, Jeff Wright, Lucas Smaira, Mon_chi, Nico Mandery, Oskar Drozda.  </p>
+<blockquote>
+<p>完整的ChangeLog<br><a href="https://github.com/JetBrains/kotlin/blob/1.3-M1/ChangeLog.md" target="_blank" rel="noopener">https://github.com/JetBrains/kotlin/blob/1.3-M1/ChangeLog.md</a></p>
+</blockquote>
+<h1 id="稳定版的协程-1-3之前一直是实验版"><a href="#稳定版的协程-1-3之前一直是实验版" class="headerlink" title="稳定版的协程(1.3之前一直是实验版)"></a>稳定版的协程(1.3之前一直是实验版)</h1><p>终于，在1.3中协程不再是实验性的。无论是语法糖还是标准库都将趋于稳定并且保持向后兼容。自从1.1版本加入协程之后，协程这一特性一直保持着显著的提高。</p>
+<blockquote>
+<p>几个重要的特性<br>KT-16908 Support callable references to suspending functions<br>KT-18559 Serializability of all coroutine-related classes</p>
+</blockquote>
+<p>现在，我们简化了协程的核心API，并且去掉了<code>experimental</code>包。同时，我们还在协程的跨平台性中做了许多工作，包括对基于Kotlin/Native（Kotlin的LLVM版本)的IOS支持</p>
+<h3 id="转战新协程"><a href="#转战新协程" class="headerlink" title="转战新协程"></a>转战新协程</h3><p>就像我们之前说的一样，所有与协程有关的函数都都已经丢掉了<code>experimental</code>的包名。同时，<code>buildSequence</code>和<code>buildIterator</code>函数也放到了他们在<code>kotlin.sequences</code>包中常驻的地方。<br>在语言的层面上，我们仍然使用<code>suspend</code>关键字来支持协程并且所有的规则几乎与实验版中的规则一致。<br>我们简化了稳定版中的<code>Continuation&lt;T&gt;</code>接口。现在它只保留了 <code>resumeWith(result: SuccessOrFailure&lt;T&gt;)</code>这一个成员函数。原先的<code>resume(value: T)</code>和<code>resumeWithException(exception: Throwable)</code>现在以扩展的形式出现。这个改动只影响了那些少数自己定义协程构造器，那些将回调函数包装成挂起函数(suspending functions)的代码大多数不会发生改变。比如说，为类<code>CompletableFuture&lt;T&gt;</code>定义挂起函数<code>await()</code>还是会像之前一样。</p>
+<pre><code class="Kotlin">suspend fun &lt;T&gt; CompletableFuture&lt;T&gt;.await(): T = suspendCoroutine { cont -&gt;
+    whenComplete { value, exception -&gt;
+        when {
+            exception != null -&gt; cont.resumeWithException(exception)
+            else -&gt; cont.resume(value)
+        }
+    }
+}
+</code></pre>
+<p>稳定版的协程采用了不同的二进制接口，它们并不能与实验版的协程二进制兼容。为了确保代码能够平稳的转移，我们将在1.3中增加一个兼容层，并且实验版中的类都将保留在标准库中。在Kotlin/JVM中使用Kotlin 1.1-1.2的已经编译好的代码都能在Kotlin 1.3中运行。<br>但是Kotlin 1.3中不提供任何调用1.2(原文中写了1.3，应该是写错了)版本中编译好的实验性协程的支持。如果想要在1.3稳定版协程中使用旧版本协程的库，你需要在1.3版本下重新编译它们。这只是一个暂时的问题，我们会尽快处理。(JetBrains团队的尽快，往往是真的很快)<br>我们还将提供<code>kotlinx.coroutines</code>库的<code>x.x.x-eap13</code>版本。<br>IDE将提示你转移到新的协程上去。我们会在1.3正式版发布前进一步扩大协程的使用范围。</p>
+<h1 id="一些新特性"><a href="#一些新特性" class="headerlink" title="一些新特性"></a>一些新特性</h1><p>更重要的特性会出现在实验性部分，这里只提一些为大家带来便利的小特性</p>
+<h3 id="捕获when中的参数"><a href="#捕获when中的参数" class="headerlink" title="捕获when中的参数"></a>捕获when中的参数</h3><p>这段懒得翻译了，就看一下代码吧。已经非常明了了</p>
+<pre><code class="Kotlin">fun Request.getBody() =
+    when (val response = executeRequest()) {
+        is Success -&gt; response.body
+        is HttpError -&gt; throw HttpException(response.status)
+    }
+</code></pre>
+<h3 id="伴生接口中的-JvmStatic和-JvmField"><a href="#伴生接口中的-JvmStatic和-JvmField" class="headerlink" title="伴生接口中的@JvmStatic和@JvmField"></a>伴生接口中的@JvmStatic和@JvmField</h3><pre><code class="Kotlin">interface Service {
+    companion object {
+        @JvmField
+        val ID = 0xF0EF
+
+        @JvmStatic
+        fun create(): Service = ...
+    }
+}
+</code></pre>
+<p>Kotlin中的接口现在可以把静态成员暴露给Java(捞你Java一手)。</p>
+<h3 id="可嵌套的注解声明"><a href="#可嵌套的注解声明" class="headerlink" title="可嵌套的注解声明"></a>可嵌套的注解声明</h3><p>在Kotlin 1.3之前，注解类不能拥有类体(bodies)。1.3版本放宽了这一限制，现在我们允许注解类拥有嵌套类，接口和伴生对象</p>
+<pre><code class="Kotlin">annotation class Outer(val param: Inner) {
+    annotation class Inner(val value: String)
+}
+
+annotation class Annotation {
+    companion object {
+        @JvmField
+        val timestamp = System.currentTimeMillis()
+    }
+}
+
+</code></pre>
+<h3 id="函数类型可以有更多参数"><a href="#函数类型可以有更多参数" class="headerlink" title="函数类型可以有更多参数"></a>函数类型可以有更多参数</h3><p>现在一个函数类型，可以拥有超过22个参数了！(Kotlin的一个梗，程序员的暴力美学)。我们现在将上限提高到了JVM的极限——255。如果你想知道我们是怎么做到在不定义额外233个类的情况下实现这个功能的话，请看这里</p>
+<blockquote>
+<p><a href="https://github.com/Kotlin/KEEP/blob/master/proposals/functional-types-with-big-arity-on-jvm.md" target="_blank" rel="noopener">https://github.com/Kotlin/KEEP/blob/master/proposals/functional-types-with-big-arity-on-jvm.md</a></p>
+</blockquote>
+<h1 id="实验性特性"><a href="#实验性特性" class="headerlink" title="实验性特性"></a>实验性特性</h1><p>就像协程已经证明了的一样，通过把EAP的重要特性设为实验性能帮助我们从社区中收集到可贵的反馈。我们将继续使用这个技术，让Kotlin的所有特性都经过实战的检验。Kotlin 1.3将带来三个激动人心的实验性特性。你需要明确选择使用这些特性，不然编译器会提示警告或者错误。</p>
+<h3 id="内联类"><a href="#内联类" class="headerlink" title="内联类"></a>内联类</h3><p>内联类能让你在不用真正创建一个类的情况下包装某个类型。</p>
+<pre><code class="Kotlin">inline class Name(internal val value: String)
+</code></pre>
+<p>当使用这样一个类的时候，编译器会内联它的内容，并且所有操作会直接作用在被包装的类本身。于是，就像下面这样</p>
+<pre><code class="Kotlin">val name: Name = Name(&quot;Mike&quot;)
+fun capitalize(name: Name): Name = Name(name.value.capitalize())
+</code></pre>
+<p>编译结果会与下面的代码一样</p>
+<pre><code class="Kotlin">val name: String = &quot;Mike&quot;
+fun capitalize(name: String): String = name.capitalize()
+</code></pre>
+<p>内联类与类型别名有些相似，但它们不是赋值兼容的。所以你不能把<code>String</code>赋值给<code>Name</code>,反之亦然。<br>由于内联类实际并不存在，所以不能对它们使用<code>===</code>操作符。<br>还有其他内联类产生包装器的地方，就像<code>Int</code>的装箱一样</p>
+<pre><code class="Kotlin">val key: Any = Name(&quot;Mike&quot;) // boxing to actual Name wrapper
+
+val pair = Name(&quot;Mike&quot;) to 27 // Pair is a generic type, so Name is boxed here too
+</code></pre>
+<p>这个特性可以通过添加编译选项<code>-XXLanguage:+InlineClasses</code>来开启</p>
+<h3 id="无符号数字类型"><a href="#无符号数字类型" class="headerlink" title="无符号数字类型"></a>无符号数字类型</h3><p>内联类最明显的应用就是无符号类型。现在标准库已经加入了<code>UInt</code>，<code>ULong</code>，<code>UByte</code>和<code>UShort</code>。通过内联类，这些类型定义了自己的运算符，可以将存储的数值转化为无符号类型。</p>
+<pre><code class="Kotlin">val operand1 = 42
+val operand2 = 1000 * 100_000
+
+val signed: Int = operand1 * operand2
+val unsigned: UInt = operand1.toUInt() * operand2.toUInt()
+</code></pre>
+<p>除了新的类型，我们还添加了一些新的语言特性来让它们变得特殊</p>
+<ul>
+<li><p>允许在变长参数中使用无符号类型，这与其他内联类不用</p>
+<pre><code class="Kotlin">fun maxOf(vararg values: UInt): UInt { ... }
+</code></pre>
+</li>
+<li><p>无符号类型的关键字</p>
+<pre><code class="Kotlin">val uintMask = 0xFFFF_FFFFu
+val ulongUpperPartMask = 0xFFFF_FFFF_0000_0000uL
+</code></pre>
+</li>
+<li><p>无符号常量</p>
+<pre><code class="Kotlin">const val MAX_SIZE = 32768u
+//Koltin 1.3-M1暂不支持无符号常量的复杂表达式
+const val MAX_SIZE_BITS = MAX_SIZE * 8u // Error in 1.3-M1
+</code></pre>
+</li>
+</ul>
+<p>为了使用无符号类型，你需要选择启动它们</p>
+<ul>
+<li>either annotate the code element that uses unsigned types with the @UseExperimental(ExperimentalUnsignedTypes::class) annotation</li>
+<li>or specify the -Xuse-experimental=kotlin.ExperimentalUnsignedTypes compiler option.</li>
+</ul>
+<h1 id="新的标准库API"><a href="#新的标准库API" class="headerlink" title="新的标准库API"></a>新的标准库API</h1><p>现在让我们看看1.3中的新API</p>
+<h3 id="SuccessOrFailure"><a href="#SuccessOrFailure" class="headerlink" title="SuccessOrFailure"></a>SuccessOrFailure</h3><p>内联类<code>SuccessOrFailure</code>是一个有效的判别函数执行成功或失败<code>Success T | Failure Throwable</code>的集合。它被用来捕获函数的执行结果无论成功或失败，以便于我们在之后的代码中处理它们。</p>
+<pre><code class="Kotlin">val files = listOf(File(&quot;a.txt&quot;), File(&quot;b.txt&quot;), File(&quot;42.txt&quot;))
+val contents: List&lt;SuccessOrFailure&lt;String&gt;&gt; = files.map { runCatching { readFileData(it) } }
+
+println(&quot;map successful items:&quot;)
+val upperCaseContents: List&lt;SuccessOrFailure&lt;String&gt;&gt; =
+    contents.map { r -&gt; r.map { it.toUpperCase() } }
+upperCaseContents.printResults()
+
+println()
+println(&quot;map successful items catching error from transform operation:&quot;)
+val intContents: List&lt;SuccessOrFailure&lt;Int&gt;&gt; =
+    contents.map { r -&gt; r.mapCatching { it.toInt() } }
+intContents.printResults()
+</code></pre>
+<p>引入这个类最主要的原因是我们想要在新的协程接口中使用<code>resumeWith(result: SuccessOrFailure&lt;T&gt;)</code>而不是<code>resume(T)</code>和<code>resumeWithException(Throwable)</code></p>
+<h3 id="多平台随机数生成器"><a href="#多平台随机数生成器" class="headerlink" title="多平台随机数生成器"></a>多平台随机数生成器</h3><p>没啥好说的，原本Kotlin/JVM的东西现在支持Kotlin的所有平台了</p>
+<h3 id="Boolean类型的伴生对象"><a href="#Boolean类型的伴生对象" class="headerlink" title="Boolean类型的伴生对象"></a>Boolean类型的伴生对象</h3><p>为Boolean加了个内容为空的伴生对象。今后可能有用，像各种类型比较，转换之类的地方。</p>
+<h3 id="基本类型伴生对象的常亮"><a href="#基本类型伴生对象的常亮" class="headerlink" title="基本类型伴生对象的常亮"></a>基本类型伴生对象的常亮</h3><ul>
+<li><p>为Byte, Short, Int, Long, Char几个类型加入了SIZE_BITS和SIZE_BYTES</p>
+</li>
+<li><p>为Char增加了MAX_VALUE(‘\u0000’)和MIN_VALUE(‘\uFFFF’)</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JetBrains的效率是真的挺高。2018年6月发布Kotlin 1.2.50，转眼1个月之后又发布了1.3-M1。1.3版本比较重要的就是协程不再带有实验性标志。同时最有趣的就是内联类了。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018/09/08/Nginx配置fastcgi-perl/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/07/30/SQL简单调优-1/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Wooyme's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        wy867653608@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/12/">十二月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">9</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/about" title="About">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                About
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            主题 - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Wooyme's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+    
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
+        
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
