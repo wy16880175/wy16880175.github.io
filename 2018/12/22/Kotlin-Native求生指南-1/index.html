@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html style="display: none;" lang="zh">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.5.6 -->
+    <script>
+        window.materialVersion = "1.5.6"
+        // Delete localstorage with these tags
+        window.oldVersion = [
+            'codestartv1',
+            '1.3.4',
+            '1.4.0',
+            '1.4.0b1',
+            '1.5.0',
+            '1.5.2',
+            '1.5.5'
+        ]
+    </script>
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+
+
+
+
+
+
+
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
+
+
+
+
+
+    <!-- Meta & Info -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Title -->
+    
+    <title>
+        
+            Kotlin Native求生指南(1) | 
+        
+        Wooyme&#39;s Blog
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" href="/img/favicon.png">
+
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" itemprop="description" content="">
+    <meta name="keywords" content=",Kotlin,Native,C">
+    <meta name="theme-color" content="#0097A7">
+
+    <!-- Disable Fucking Bloody Baidu Tranformation -->
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.en.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import lsloader -->
+    <script>(function(){window.lsloader={jsRunSequence:[],jsnamemap:{},cssnamemap:{}};lsloader.removeLS=function(a){try{localStorage.removeItem(a)}catch(b){}};lsloader.setLS=function(a,c){try{localStorage.setItem(a,c)}catch(b){}};lsloader.getLS=function(a){var c="";try{c=localStorage.getItem(a)}catch(b){c=""}return c};versionString="/*"+(window.materialVersion||"unknownVersion")+"*/";lsloader.clean=function(){try{var b=[];for(var a=0;a<localStorage.length;a++){b.push(localStorage.key(a))}b.forEach(function(e){var f=lsloader.getLS(e);if(window.oldVersion){var d=window.oldVersion.reduce(function(g,h){return g||f.indexOf("/*"+h+"*/")!==-1},false);if(d){lsloader.removeLS(e)}}})}catch(c){}};lsloader.clean();lsloader.load=function(f,a,b,d){if(typeof b==="boolean"){d=b;b=undefined}d=d||false;b=b||function(){};var e;e=this.getLS(f);if(e&&e.indexOf(versionString)===-1){this.removeLS(f);this.requestResource(f,a,b,d);return}if(e){var c=e.split(versionString)[0];if(c!=a){console.log("reload:"+a);this.removeLS(f);this.requestResource(f,a,b,d);return}e=e.split(versionString)[1];if(d){this.jsRunSequence.push({name:f,code:e});this.runjs(a,f,e)}else{document.getElementById(f).appendChild(document.createTextNode(e));b()}}else{this.requestResource(f,a,b,d)}};lsloader.requestResource=function(b,e,a,c){var d=this;if(c){this.iojs(e,b,function(h,f,g){d.setLS(f,h+versionString+g);d.runjs(h,f,g)})}else{this.iocss(e,b,function(f){document.getElementById(b).appendChild(document.createTextNode(f));d.setLS(b,e+versionString+f)},a)}};lsloader.iojs=function(d,b,g){var a=this;a.jsRunSequence.push({name:b,code:""});try{var f=new XMLHttpRequest();f.open("get",d,true);f.onreadystatechange=function(){if(f.readyState==4){if((f.status>=200&&f.status<300)||f.status==304){if(f.response!=""){g(d,b,f.response);return}}a.jsfallback(d,b)}};f.send(null)}catch(c){a.jsfallback(d,b)}};lsloader.iocss=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.iofonts=function(f,c,h,a){var b=this;try{var g=new XMLHttpRequest();g.open("get",f,true);g.onreadystatechange=function(){if(g.readyState==4){if((g.status>=200&&g.status<300)||g.status==304){if(g.response!=""){h(g.response);a();return}}b.cssfallback(f,c,a)}};g.send(null)}catch(d){b.cssfallback(f,c,a)}};lsloader.runjs=function(f,c,e){if(!!c&&!!e){for(var b in this.jsRunSequence){if(this.jsRunSequence[b].name==c){this.jsRunSequence[b].code=e}}}if(!!this.jsRunSequence[0]&&!!this.jsRunSequence[0].code&&this.jsRunSequence[0].status!="failed"){var a=document.createElement("script");a.appendChild(document.createTextNode(this.jsRunSequence[0].code));a.type="text/javascript";document.getElementsByTagName("head")[0].appendChild(a);this.jsRunSequence.shift();if(this.jsRunSequence.length>0){this.runjs()}}else{if(!!this.jsRunSequence[0]&&this.jsRunSequence[0].status=="failed"){var d=this;var a=document.createElement("script");a.src=this.jsRunSequence[0].path;a.type="text/javascript";this.jsRunSequence[0].status="loading";a.onload=function(){d.jsRunSequence.shift();if(d.jsRunSequence.length>0){d.runjs()}};document.body.appendChild(a)}}};lsloader.tagLoad=function(b,a){this.jsRunSequence.push({name:a,code:"",path:b,status:"failed"});this.runjs()};lsloader.jsfallback=function(c,b){if(!!this.jsnamemap[b]){return}else{this.jsnamemap[b]=b}for(var a in this.jsRunSequence){if(this.jsRunSequence[a].name==b){this.jsRunSequence[a].code="";this.jsRunSequence[a].status="failed";this.jsRunSequence[a].path=c}}this.runjs()};lsloader.cssfallback=function(e,c,b){if(!!this.cssnamemap[c]){return}else{this.cssnamemap[c]=1}var d=document.createElement("link");d.type="text/css";d.href=e;d.rel="stylesheet";d.onload=d.onerror=b;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(d,a)};lsloader.runInlineScript=function(c,b){var a=document.getElementById(b).innerText;this.jsRunSequence.push({name:c,code:a});this.runjs()}})();</script>
+
+    <!-- Import queue -->
+    <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
+
+    <!-- Import CSS -->
+    
+        <style id="material_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_css","/css/material.min.css?Z7a72R1E4SxzBKR/WGctOA==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+        <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+        
+
+    
+
+    
+
+    <!-- Config CSS -->
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    overflow-x: hidden !important;
+  }
+  
+  code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+<!-- Import Font -->
+<!-- Import Roboto -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+
+<!-- Import Material Icons -->
+
+
+    <style id="material_icons"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("material_icons","/css/material-icons.css?pqhB/Rd/ab0H2+kZp0RDmw==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+
+
+
+
+    <!-- Import jQuery -->
+    
+        <script>lsloader.load("jq_js","/js/jquery.min.js?qcusAULNeBksqffqUM2+Ig==", true)</script>
+    
+
+    <!-- WebAPP Icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Wooyme&#39;s Blog">
+    <meta name="msapplication-starturl" content="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/">
+    <meta name="msapplication-navbutton-color" content="#0097A7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Site Verification -->
+    
+    
+
+    <!-- RSS -->
+    
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Kotlin Native求生指南(1) | Wooyme&#39;s Blog">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta property="og:description" content="">
+    <meta property="og:article:tag" content="Kotlin"> <meta property="og:article:tag" content="Native"> <meta property="og:article:tag" content="C"> 
+
+    
+        <meta property="article:published_time" content="Sat Dec 22 2018 00:13:19 GMT+0800">
+        <meta property="article:modified_time" content="Sat Dec 22 2018 02:15:17 GMT+0800">
+    
+
+    <!-- The Twitter Card protocol -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Add canonical link for SEO -->
+    
+        <link rel="canonical" href="http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html" />
+    
+
+    <!-- Structured-data for SEO -->
+    
+        
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html",
+    "headline": "Kotlin Native求生指南(1)",
+    "datePublished": "Sat Dec 22 2018 00:13:19 GMT+0800",
+    "dateModified": "Sat Dec 22 2018 02:15:17 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Kotlin,Native,C",
+    "description": "",
+}
+</script>
+
+
+    
+
+    <!-- Analytics -->
+    
+    
+    
+
+    <!-- Custom Head -->
+    
+
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span id="MD-burger-id" class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#项目地址"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目地址</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">2.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开发环境"><span class="post-toc-number">3.</span> <span class="post-toc-text">开发环境</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#第一个工-小-程-坑"><span class="post-toc-number">4.</span> <span class="post-toc-text">第一个工(小)程(坑)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#我能干什么"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">我能干什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#认清现实"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">认清现实</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#nativeHeap和memScope？"><span class="post-toc-number">5.</span> <span class="post-toc-text">nativeHeap和memScope？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#memScope"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">memScope</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nativeHeap"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">nativeHeap</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#内存管理导致的坑"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">内存管理导致的坑</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">6.</span> <span class="post-toc-text">小结</span></a></li></ol>
+    </ul>
+    
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Kotlin Native求生指南(1)
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>12月 22, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/C/">C</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Kotlin/">Kotlin</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Native/">Native</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Kotlin Native求生指南(1)&url=http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html&pic=http://Wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Weibo
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Kotlin Native求生指南(1)&url=http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                شارك على Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><blockquote>
+<p><a href="https://github.com/Wooyme/Wsocks-Naitve-Client" target="_blank" rel="noopener">https://github.com/Wooyme/Wsocks-Naitve-Client</a></p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>C++是一门好语言，Go也是一门好语言，Kotlin Native不是。</p>
+</blockquote>
+<p>首先确定一个观点，写Kotlin-JVM不一定要很懂Java，比如我自己。但是写Kotlin-Native要是不懂C，那就等着吃屎吧。Kotlin Native不是一个让我们跳过C语言走上Native开发道路的神器，至少现在不是。如果你想要Native又不想学C有关的东西的话，选Go吧，我能在这里列举1000个Go的优点和0个缺点。如果一定要说Go有什么缺点的话，那就只能是程序崩溃的时候Go打印的栈信息不能像Java那样漂亮。<br>当然Kotlin Native也不是一无是处，至少它可以督促我再复习一遍C语言的知识。 </p>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><p>现在IDEA和CLION都可以支持Kotlin Native的开发。这个项目我用的是IDEA和Gradle，在开发这个项目之前我也用过CLION和Cmake的组合，要做个比较的话，还是Gradle更加适合我们这些从Kotlin-JVM转过来的玩家，毕竟对于不熟悉Cmake的人来说，看看别人写的CmakeList就已经够头疼的了，更何况要自己写。<br>顺便一提，我是在Ubuntu18.04上开发的。Windows和Linux上开发可能会有比较大的差异，还是推荐Windows上装一下Cygwin，能一定程度上减小这个差异。</p>
+<h1 id="第一个工-小-程-坑"><a href="#第一个工-小-程-坑" class="headerlink" title="第一个工(小)程(坑)"></a>第一个工(小)程(坑)</h1><p>从IDEA里创建一个工程是很容易的。不过我遇到了一个小坑，IDEA创完工程之后会出现kt文件打不开的情况，应对的办法是<code>File-&gt;Invalidate Cache/Restart...</code><br>从这第一个坑开始，我们就踏上了Kotlin Native的漫漫坑爹路。工程创建之后会有一个默认的文件，里面是个hello world，我们编译运行一下。编译这个过程只能从Gradle里执行，在<code>other</code>里<code>runProgram</code>，顺利的话Hello World就就会成功打印出来。这里应该不会遇到什么问题，Gradle会智能的下载KN的编译器，只是可能会有点慢。</p>
+<h2 id="我能干什么"><a href="#我能干什么" class="headerlink" title="我能干什么"></a>我能干什么</h2><p>爬过第一个坑之后，你可能迫不及待的想写点什么，比如来一个文件IO，你可能会习惯性的写一个<code>File</code>然后等待IDEA的语法提示，但是令人失望的是，IDEA除了把你的<code>File</code>标记为红色以外什么都不会做。然后你也许还会试一试其他你在JVM里经常用的类，但是它们多半没有，除了<code>StringBuilder</code>这个SB，它还是依然坚挺。<br>这个时候你可能才意识到，大清亡了，世界变了，原来的那些小伙伴都不在了。剩下的只有少的可怜的<em>Kotlin标准库</em>和陌生的<em>stdlib</em>、<em>posix</em>、<em>win32</em>或者<em>linux</em>、<em>darwin</em>以及我至今不能理解为什么要放在默认支持库里的<em>zlib</em>(我觉得唯一的可能就是JetBrains的人想试试cinterop好不好用)。</p>
+<h2 id="认清现实"><a href="#认清现实" class="headerlink" title="认清现实"></a>认清现实</h2><p>好了，既然之前的都用不了了，那就不得不重新开始。让我们来看一看Kotlin Native的文件操作应该是什么样的。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-comment">//读取一个完整的文件，保存到String中</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> fp = fopen(myHome+<span class="hljs-string">"save.json"</span>, <span class="hljs-string">"r"</span>) ?: <span class="hljs-keyword">return</span> println(<span class="hljs-string">"Cannot open"</span>)<br>    <span class="hljs-keyword">val</span> fileStat = nativeHeap.alloc&lt;stat&gt;()<br>    stat(myHome+<span class="hljs-string">"save.json"</span>,fileStat.ptr)<br>    <span class="hljs-keyword">val</span> size = fileStat.st_size.toInt()+<span class="hljs-number">1</span><br>    <span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br>    fread(bytes,size.toULong(),size.toULong(),fp)<br>    <span class="hljs-keyword">val</span> text = bytes.toKString()<br>    nativeHeap.free(fileStat.ptr)<br>    fclose(fp)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>OK,先说明一下，官方的例程里很少使用nativeHeap，它们比较喜欢用memScope{}，这两个的区别我会在之后说明。现在先让我们看完这段代码。相信如果你还记得C语言的东西的话，你肯定会说:”这tm不就是C吗”。没错，这tm就是Kotlin版C语言。Old fashion的<code>fopen</code>，<code>stat</code>，<code>fread</code>，当然这一切都无可厚非，毕竟Native的世界和Java的世界本来就大相径庭。我们也可以自己动手封装一个File类出来，我也相信Jetbrains会在某一个版本把这些基本的工具加入到Kotlin Native的标准库中去的。<br>除开C的部分，还是有些东西值得我们关注的，比如刚刚说的<code>nativeHeap</code>，以及一个有趣的方法——<code>toKString()</code>。这个方法真的可以说是Kotlin Native最后的仁慈了。我们知道Kotlin的String和C的const char<em> 是两个完全不同的体系。String类里有记录String长度的部分，好让我们知道String在什么位置结束，但是const char</em> 不同，它依赖结尾处的<code>0x00</code>来判断字符串是否结束。于是这里Kotlin Native很<strong>贴心</strong>的为我们加入了<code>toKString()</code>和<code>String.cstr</code>来保证两者间的转换。</p>
+<h1 id="nativeHeap和memScope？"><a href="#nativeHeap和memScope？" class="headerlink" title="nativeHeap和memScope？"></a>nativeHeap和memScope？</h1><blockquote>
+<p>参考资料 <a href="https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/5_Kotlin-Native%20concurrency%20and%20memory%20model%20(1).pdf" target="_blank" rel="noopener">https://resources.jetbrains.com/storage/products/kotlinconf2018/slides/5_Kotlin-Native%20concurrency%20and%20memory%20model%20(1).pdf</a></p>
+</blockquote>
+<p>有一点是我们必须要知道的，那就是Kotlin Native是有GC的。在Kotlin自己的世界里，GC是隐藏在代码之下的，就像java一样，它们用引用计数法(<em>Simple local reference-counter based algorithm</em>)、”试图删除法”(<em>Cycle collector based on the trial deletion</em>)等算法保证GC的工作。但是由于Kotlin Native提供的东西实在是太少了，我们不得不依赖很多<em>C library</em>,于是手动分配内存就成了不可避免的事情。<br>手动内存管理是场噩梦，这个道理让最顽固的C++也被迫妥协，从析构到现在的智能指针，C++可以说是做了许多让步了。毫无疑问，Kotlin也是懂这个道理的。于是JetBrains推出了memScope这个东西。</p>
+<h2 id="memScope"><a href="#memScope" class="headerlink" title="memScope"></a>memScope</h2><p>memScope的作用是当memScope的作用域结束的时候，自动释放在里面分配的所有内存，以刚才的例子来说<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br></code></pre></td></tr></table></figure></p>
+<p>应该写成<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> text = memScope&#123;<br>    <span class="hljs-keyword">val</span> bytes = nativeHeap.allocArray&lt;ByteVar&gt;(size)<br>    fread(bytes,size.toULong(),size.toULong(),fp)<br>    bytes.toKString()<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这样当memScope结束的时候，bytes就被自动释放了，而text则是通过<code>toKString()</code>方法实例化的一个String类，可以被KN自己的GC机制回收。所以这段代码不会导致任何内存泄露。除此之外还有很多方法是需要在memScope中才能执行的，比如说<code>CValues&lt;T&gt;.ptr</code>这是用来获取CValues的指针，关于这个稍微说一下我的看法,ptr的getter应该是<em>重新分配</em>了一块内存，然后把CValues中的值<em>复制</em>了进去，因此才需要在memScope中执行，以保证内存不会泄露，不过这又导致了一个新的坑，我在之后会提到。</p>
+<h2 id="nativeHeap"><a href="#nativeHeap" class="headerlink" title="nativeHeap"></a>nativeHeap</h2><p>那为什么我们还需要nativeHeap这样的方式来分配内存呢。还是举个例子吧。<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> mgr = nativeHeap.alloc&lt;mg_mgr&gt;().ptr<br>    mg_mgr_init(mgr, <span class="hljs-literal">null</span>)<br>    <span class="hljs-keyword">while</span> (flag) &#123;<br>        mg_mgr_poll(_mgr, <span class="hljs-number">100</span>)<br>    &#125;<br>    mg_mgr_free(mgr)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>mg是一个C的网络库，我们启动了一个事件循环来处理各种网络请求。可以看到，这个库自带了一个释放函数<code>mg_mgr_free</code>,被<code>mg_mgr_init</code>初始化过的内存应该由这个库本身来释放。如果我们把代码写成下面这样<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> &#123;<br>    memScope&#123;<br>        <span class="hljs-keyword">val</span> mgr = alloc&lt;mg_mgr&gt;().ptr<br>        mg_mgr_init(mgr, <span class="hljs-literal">null</span>)<br>        <span class="hljs-keyword">while</span> (flag) &#123;<br>            mg_mgr_poll(_mgr, <span class="hljs-number">100</span>)<br>        &#125;<br>        mg_mgr_free(mgr)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>那么在循环终止，程序运行完<code>mg_mgr_free</code>之后很有可能就会因为<code>double free</code>而<em>崩溃</em>。其实我也不是很理解为什么一块内存不能释放两次，或者应该说free为什么不能对同一块内存执行两次，就算已经释放了，给我返回个false也好，何必搞个崩溃呢。总之这也算是刚开始写KN时很容易遇到的一个坑。</p>
+<h2 id="内存管理导致的坑"><a href="#内存管理导致的坑" class="headerlink" title="内存管理导致的坑"></a>内存管理导致的坑</h2><p>在我的工程里，遇到了这么个情况。我有一个系统托盘的功能，里面有一些菜单元素也就是Item，这些Item都是要显示一些字，图标之类的，当然还有回调，每次菜单变化的时候都需要调用一个<code>update</code>函数，这个函数的执行过程实际上就是重新初始化一个整个菜单。<br>最初我的代码是这样的<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> tray = nativeHeap.alloc&lt;tray&gt;()<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">//设成2是因为tray的C实现需要以空为结尾</span><br>    <span class="hljs-keyword">val</span> menus = nativeHeap.allocArray&lt;tray_menu&gt;(<span class="hljs-number">2</span>)<br>    memScope&#123;<br>        menus[<span class="hljs-number">0</span>].text = <span class="hljs-string">"设置"</span>.cstr.ptr<br>        <span class="hljs-comment">//staticCFunction看名字就能知道是为了提供C语言中的"函数指针"</span><br>        menus[<span class="hljs-number">0</span>].cb = staticCFunction &#123; _ -&gt;<br>            <span class="hljs-comment">//balabalabalabala</span><br>            tray_update(tray.ptr)<br>        &#125;<br>        tray.menu = menus<br>        tray_init(tray.ptr)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>代码看上去没什么问题，启动的时候也没什么问题，但是当运行<code>menus[0]</code>的<code>callback</code>执行的时候问题就来了。update之后”设置“这两个字变成了乱码，而罪魁祸首就是memScope。memScope在作用域结束的时候释放掉了<code>&quot;设置&quot;.cstr.ptr</code>这个指针(ptr)对应的内存，也就是说在<code>tray_init</code>之后<code>menus[0].text</code>已经是个野指针了。于是当我们执行<code>tray_update</code>的时候，这块内存会是什么样子已经不是我们能够控制的了。于是，我被迫写出了这样的代码<br><figure class="highlight Kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-keyword">val</span> tray = nativeHeap.alloc&lt;tray&gt;()<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-comment">//设成2是因为tray的C实现需要以空为结尾</span><br>    <span class="hljs-keyword">val</span> menus = nativeHeap.allocArray&lt;tray_menu&gt;(<span class="hljs-number">2</span>)<br>    <span class="hljs-keyword">val</span> text = <span class="hljs-string">"设置"</span>.cstr<br>    <span class="hljs-keyword">val</span> textPtr = nativeHeap.allocArray&lt;ByteVar&gt;(text.size)<br>    memScope&#123;<br>        <span class="hljs-comment">//把内存复制到不会被自动释放的地方</span><br>        memcpy(textPtr,text.ptr,text.size.toULong())<br>    &#125;<br>    menus[<span class="hljs-number">0</span>].text = textPtr<br>    menus[<span class="hljs-number">0</span>].cb = staticCFunction &#123; _ -&gt;<br>            <span class="hljs-comment">//balabalabalabala</span><br>            tray_update(tray.ptr)<br>        &#125;<br>        tray.menu = menus<br>        tray_init(tray.ptr)<br>&#125;<br></code></pre></td></tr></table></figure></p>
+<p>这只能说是很傻逼了,可能KN提供了一些更加优雅的方式只是我不知道。但总之Kotlin Native的<code>memScope</code>在某些情况下是会与C产生冲突的，而且这种问题往往很隐蔽，这也就是为什么野指针会成为困扰C/C++这么久的问题。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>OK，去掉代码大概有3000个字了。<br>第一篇就先到此为止，大概写了一下我对Kotlin Native的看法和对它内存模型的认识以及使用中遇到的几个坑。下一篇会应该会写一下Cinterop，和Kotlin Native的多线程模型。KN的多线程对于初学者来说也是个神坑，就没见过这样的线程模型，而且文档也比较含糊，不过毕竟还在频繁更新，很多东西变的太快了，文档也确实比较难写。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018/12/22/Kotlin-Native求生指南-2/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            أحدث
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/12/16/自己动手写Ss/" id="post_nav-older" class="next-content">
+            أقدم
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="Wooyme's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        youremail@email.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="#" target="_blank" title="Email Me">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                الرئيسية
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    أرشيف
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2018/12/">十二月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">9</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+
+    <!-- Pages  -->
+    
+
+    <!-- Article Number  -->
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+    <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+        <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+            سمة - Material
+            <span class="sidebar-badge badge-circle">i</span>
+        </div>
+    </a>
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-gplus">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+
+    <!-- V2EX -->
+    
+
+    <!-- Segmentfault -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Wooyme's Blog
+            
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import JS File -->
+
+    <script>lsloader.load("lazyload_js","/js/lazyload.min.js?1BcfzuNXqV+ntF6gq+5X3Q==", true)</script>
+
+
+
+    <script>lsloader.load("js_js","/js/js.min.js?Bn9UzEm8RrBSxqyZB0zPjA==", true)</script>
+
+
+
+    <script>lsloader.load("np_js","/js/nprogress.js?pl3Qhb9lvqR1FlyLUna1Yw==", true)</script>
+
+
+<script type="text/ls-javascript" id="NProgress-script">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- UC Browser Compatible -->
+<script>
+	var agent = navigator.userAgent.toLowerCase();
+	if(agent.indexOf('ucbrowser')>0) {
+		document.write('<link rel="stylesheet" href="/css/uc.css">');
+	   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+	}
+</script>
+
+<!-- Import prettify js  -->
+
+
+
+<!-- Window Load -->
+<!-- add class for prettify -->
+<script type="text/ls-javascript" id="window-load">
+    $(window).on('load', function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+
+    
+    
+</script>
+
+<!-- MathJax Load-->
+
+
+<!-- Bing Background -->
+
+
+<script type="text/ls-javascript" id="lazy-load">
+    // Offer LazyLoad
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    // Start Queue
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+<!-- Custom Footer -->
+
+
+
+<script>
+    var copyrightNow = new Date().getFullYear();
+    var textContent = document.querySelector('span[year]')
+
+    copyrightSince = 0000;
+    if (copyrightSince === copyrightNow||copyrightSince === 0000) {
+        textContent.textContent = copyrightNow
+    } else {
+        textContent.textContent = copyrightSince + ' - ' + copyrightNow
+    }
+
+    (function(){
+        var scriptList = document.querySelectorAll('script[type="text/ls-javascript"]')
+
+        for (var i = 0; i < scriptList.length; ++i) {
+            var item = scriptList[i];
+            lsloader.runInlineScript(item.id,item.id);
+        }
+    })()
+console.log('\n %c © Material Theme | Version: 1.5.6 | https://github.com/viosey/hexo-theme-material %c \n', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-left-radius:5px;border-bottom-left-radius:5px;', 'color:#455a64;background:#e0e0e0;padding:5px 0;border-top-right-radius:5px;border-bottom-right-radius:5px;');
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
