@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://Wooyme.github.io/"/>
+  <link href="http://wooyme.github.io/"/>
   <updated>2019-01-03T15:14:46.556Z</updated>
-  <id>http://Wooyme.github.io/</id>
+  <id>http://wooyme.github.io/</id>
   
   <author>
     <name>Wooyme</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>如何占baidu的便宜</title>
-    <link href="http://Wooyme.github.io/2019/01/03/%E5%A6%82%E4%BD%95%E5%8D%A0baidu%E7%9A%84%E4%BE%BF%E5%AE%9C/"/>
-    <id>http://Wooyme.github.io/2019/01/03/如何占baidu的便宜/</id>
+    <link href="http://wooyme.github.io/2019/01/03/%E5%A6%82%E4%BD%95%E5%8D%A0baidu%E7%9A%84%E4%BE%BF%E5%AE%9C/"/>
+    <id>http://wooyme.github.io/2019/01/03/如何占baidu的便宜/</id>
     <published>2019-01-03T09:34:22.000Z</published>
     <updated>2019-01-03T15:14:46.556Z</updated>
     
@@ -38,22 +38,22 @@
     </summary>
     
     
-      <category term="perl" scheme="http://Wooyme.github.io/tags/perl/"/>
+      <category term="perl" scheme="http://wooyme.github.io/tags/perl/"/>
     
-      <category term="Typescript" scheme="http://Wooyme.github.io/tags/Typescript/"/>
+      <category term="Typescript" scheme="http://wooyme.github.io/tags/Typescript/"/>
     
-      <category term="Android" scheme="http://Wooyme.github.io/tags/Android/"/>
+      <category term="Android" scheme="http://wooyme.github.io/tags/Android/"/>
     
-      <category term="Ionic" scheme="http://Wooyme.github.io/tags/Ionic/"/>
+      <category term="Ionic" scheme="http://wooyme.github.io/tags/Ionic/"/>
     
-      <category term="前端" scheme="http://Wooyme.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+      <category term="前端" scheme="http://wooyme.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
   <entry>
     <title>Kotlin Native求生指南(3)</title>
-    <link href="http://Wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-3/"/>
-    <id>http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-3/</id>
+    <link href="http://wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-3/"/>
+    <id>http://wooyme.github.io/2018/12/22/Kotlin-Native求生指南-3/</id>
     <published>2018-12-22T09:09:55.000Z</published>
     <updated>2019-01-03T09:24:47.922Z</updated>
     
@@ -70,20 +70,20 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="Native" scheme="http://Wooyme.github.io/tags/Native/"/>
+      <category term="Native" scheme="http://wooyme.github.io/tags/Native/"/>
     
-      <category term="C" scheme="http://Wooyme.github.io/tags/C/"/>
+      <category term="C" scheme="http://wooyme.github.io/tags/C/"/>
     
-      <category term="多线程" scheme="http://Wooyme.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+      <category term="多线程" scheme="http://wooyme.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Kotlin Native求生指南(2)</title>
-    <link href="http://Wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-2/"/>
-    <id>http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-2/</id>
+    <link href="http://wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-2/"/>
+    <id>http://wooyme.github.io/2018/12/22/Kotlin-Native求生指南-2/</id>
     <published>2018-12-22T06:36:17.000Z</published>
     <updated>2018-12-22T09:08:41.767Z</updated>
     
@@ -100,18 +100,18 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="Native" scheme="http://Wooyme.github.io/tags/Native/"/>
+      <category term="Native" scheme="http://wooyme.github.io/tags/Native/"/>
     
-      <category term="C" scheme="http://Wooyme.github.io/tags/C/"/>
+      <category term="C" scheme="http://wooyme.github.io/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>Kotlin Native求生指南(1)</title>
-    <link href="http://Wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
-    <id>http://Wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/</id>
+    <link href="http://wooyme.github.io/2018/12/22/Kotlin-Native%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
+    <id>http://wooyme.github.io/2018/12/22/Kotlin-Native求生指南-1/</id>
     <published>2018-12-21T16:13:19.000Z</published>
     <updated>2018-12-21T18:15:17.865Z</updated>
     
@@ -128,18 +128,18 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="Native" scheme="http://Wooyme.github.io/tags/Native/"/>
+      <category term="Native" scheme="http://wooyme.github.io/tags/Native/"/>
     
-      <category term="C" scheme="http://Wooyme.github.io/tags/C/"/>
+      <category term="C" scheme="http://wooyme.github.io/tags/C/"/>
     
   </entry>
   
   <entry>
     <title>自己动手写Ss</title>
-    <link href="http://Wooyme.github.io/2018/12/16/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%86%99Ss/"/>
-    <id>http://Wooyme.github.io/2018/12/16/自己动手写Ss/</id>
+    <link href="http://wooyme.github.io/2018/12/16/%E8%87%AA%E5%B7%B1%E5%8A%A8%E6%89%8B%E5%86%99Ss/"/>
+    <id>http://wooyme.github.io/2018/12/16/自己动手写Ss/</id>
     <published>2018-12-15T16:28:59.000Z</published>
     <updated>2018-12-15T18:47:00.433Z</updated>
     
@@ -156,18 +156,18 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
-      <category term="VPN" scheme="http://Wooyme.github.io/tags/VPN/"/>
+      <category term="VPN" scheme="http://wooyme.github.io/tags/VPN/"/>
     
   </entry>
   
   <entry>
     <title>Nginx配置fastcgi-perl</title>
-    <link href="http://Wooyme.github.io/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
-    <id>http://Wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/</id>
+    <link href="http://wooyme.github.io/2018/09/08/Nginx%E9%85%8D%E7%BD%AEfastcgi-perl/"/>
+    <id>http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/</id>
     <published>2018-09-08T06:56:59.000Z</published>
     <updated>2018-09-08T07:17:06.592Z</updated>
     
@@ -183,18 +183,18 @@
     </summary>
     
     
-      <category term="Nginx" scheme="http://Wooyme.github.io/tags/Nginx/"/>
+      <category term="Nginx" scheme="http://wooyme.github.io/tags/Nginx/"/>
     
-      <category term="perl" scheme="http://Wooyme.github.io/tags/perl/"/>
+      <category term="perl" scheme="http://wooyme.github.io/tags/perl/"/>
     
-      <category term="运维" scheme="http://Wooyme.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
+      <category term="运维" scheme="http://wooyme.github.io/tags/%E8%BF%90%E7%BB%B4/"/>
     
   </entry>
   
   <entry>
     <title>See what&#39;s comming in Kotlin 1.3-M1 译文</title>
-    <link href="http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/"/>
-    <id>http://Wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/</id>
+    <link href="http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/"/>
+    <id>http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/</id>
     <published>2018-08-11T11:41:08.000Z</published>
     <updated>2018-08-11T14:16:36.188Z</updated>
     
@@ -211,14 +211,14 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
   </entry>
   
   <entry>
     <title>SQL简单调优(1)</title>
-    <link href="http://Wooyme.github.io/2018/07/30/SQL%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98-1/"/>
-    <id>http://Wooyme.github.io/2018/07/30/SQL简单调优-1/</id>
+    <link href="http://wooyme.github.io/2018/07/30/SQL%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98-1/"/>
+    <id>http://wooyme.github.io/2018/07/30/SQL简单调优-1/</id>
     <published>2018-07-30T03:53:35.000Z</published>
     <updated>2018-09-08T06:57:38.527Z</updated>
     
@@ -234,14 +234,14 @@
     </summary>
     
     
-      <category term="SQL" scheme="http://Wooyme.github.io/tags/SQL/"/>
+      <category term="SQL" scheme="http://wooyme.github.io/tags/SQL/"/>
     
   </entry>
   
   <entry>
     <title>Ubuntu求生指南(1)</title>
-    <link href="http://Wooyme.github.io/2018/07/16/Ubuntu%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
-    <id>http://Wooyme.github.io/2018/07/16/Ubuntu求生指南-1/</id>
+    <link href="http://wooyme.github.io/2018/07/16/Ubuntu%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-1/"/>
+    <id>http://wooyme.github.io/2018/07/16/Ubuntu求生指南-1/</id>
     <published>2018-07-15T16:42:21.000Z</published>
     <updated>2018-07-16T15:34:18.270Z</updated>
     
@@ -257,16 +257,16 @@
     </summary>
     
     
-      <category term="Ubuntu" scheme="http://Wooyme.github.io/tags/Ubuntu/"/>
+      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
     
-      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>如何快速学习一门语言</title>
-    <link href="http://Wooyme.github.io/2018/07/07/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E8%AF%AD%E8%A8%80/"/>
-    <id>http://Wooyme.github.io/2018/07/07/如何快速学习一门语言/</id>
+    <link href="http://wooyme.github.io/2018/07/07/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E4%B8%80%E9%97%A8%E8%AF%AD%E8%A8%80/"/>
+    <id>http://wooyme.github.io/2018/07/07/如何快速学习一门语言/</id>
     <published>2018-07-07T15:05:09.000Z</published>
     <updated>2018-07-07T15:56:11.725Z</updated>
     
@@ -282,14 +282,14 @@
     </summary>
     
     
-      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>为什么Kotlin排在第49位</title>
-    <link href="http://Wooyme.github.io/2018/07/05/%E4%B8%BA%E4%BB%80%E4%B9%88Kotlin%E6%8E%92%E5%9C%A8%E7%AC%AC49%E4%BD%8D/"/>
-    <id>http://Wooyme.github.io/2018/07/05/为什么Kotlin排在第49位/</id>
+    <link href="http://wooyme.github.io/2018/07/05/%E4%B8%BA%E4%BB%80%E4%B9%88Kotlin%E6%8E%92%E5%9C%A8%E7%AC%AC49%E4%BD%8D/"/>
+    <id>http://wooyme.github.io/2018/07/05/为什么Kotlin排在第49位/</id>
     <published>2018-07-04T17:56:12.000Z</published>
     <updated>2018-07-07T15:04:05.476Z</updated>
     
@@ -305,16 +305,16 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://Wooyme.github.io/tags/Kotlin/"/>
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
-      <category term="杂谈" scheme="http://Wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
   <entry>
     <title>TCP中的坑</title>
-    <link href="http://Wooyme.github.io/2018/07/05/TCP%E4%B8%AD%E7%9A%84%E5%9D%91/"/>
-    <id>http://Wooyme.github.io/2018/07/05/TCP中的坑/</id>
+    <link href="http://wooyme.github.io/2018/07/05/TCP%E4%B8%AD%E7%9A%84%E5%9D%91/"/>
+    <id>http://wooyme.github.io/2018/07/05/TCP中的坑/</id>
     <published>2018-07-04T16:28:45.000Z</published>
     <updated>2018-07-04T17:49:16.769Z</updated>
     
@@ -330,14 +330,14 @@
     </summary>
     
     
-      <category term="网络协议" scheme="http://Wooyme.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
+      <category term="网络协议" scheme="http://wooyme.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南(3)</title>
-    <link href="http://Wooyme.github.io/2018/07/03/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-3/"/>
-    <id>http://Wooyme.github.io/2018/07/03/Vert-x后端漫游指南-3/</id>
+    <link href="http://wooyme.github.io/2018/07/03/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-3/"/>
+    <id>http://wooyme.github.io/2018/07/03/Vert-x后端漫游指南-3/</id>
     <published>2018-07-02T18:20:09.000Z</published>
     <updated>2018-07-04T17:48:57.225Z</updated>
     
@@ -353,14 +353,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x墙外漫游指南 (1)</title>
-    <link href="http://Wooyme.github.io/2018/07/03/Vert-x%E5%A2%99%E5%A4%96%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-1/"/>
-    <id>http://Wooyme.github.io/2018/07/03/Vert-x墙外漫游指南-1/</id>
+    <link href="http://wooyme.github.io/2018/07/03/Vert-x%E5%A2%99%E5%A4%96%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-1/"/>
+    <id>http://wooyme.github.io/2018/07/03/Vert-x墙外漫游指南-1/</id>
     <published>2018-07-02T16:45:53.000Z</published>
     <updated>2018-07-04T17:48:20.401Z</updated>
     
@@ -376,14 +376,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南(2)</title>
-    <link href="http://Wooyme.github.io/2018/07/02/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-2/"/>
-    <id>http://Wooyme.github.io/2018/07/02/Vert-x后端漫游指南-2/</id>
+    <link href="http://wooyme.github.io/2018/07/02/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-2/"/>
+    <id>http://wooyme.github.io/2018/07/02/Vert-x后端漫游指南-2/</id>
     <published>2018-07-02T09:30:06.000Z</published>
     <updated>2018-07-04T17:48:50.005Z</updated>
     
@@ -399,14 +399,14 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
   <entry>
     <title>Vert.x后端漫游指南（1）</title>
-    <link href="http://Wooyme.github.io/2018/07/01/Vert-x%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8/"/>
-    <id>http://Wooyme.github.io/2018/07/01/Vert-x搭建服务端应用入门/</id>
+    <link href="http://wooyme.github.io/2018/07/01/Vert-x%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8/"/>
+    <id>http://wooyme.github.io/2018/07/01/Vert-x搭建服务端应用入门/</id>
     <published>2018-07-01T14:40:34.000Z</published>
     <updated>2018-07-04T17:48:44.329Z</updated>
     
@@ -422,7 +422,7 @@
     </summary>
     
     
-      <category term="Vert.x" scheme="http://Wooyme.github.io/tags/Vert-x/"/>
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
