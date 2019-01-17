@@ -46,7 +46,7 @@
     
     <title>
         
-            See what&#39;s comming in Kotlin 1.3-M1 译文 | 
+            Vert.x后端漫游指南(4) | 
         
         Wooyme&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content=",Kotlin">
+    <meta name="keywords" content="">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -223,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -238,16 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="See what&#39;s comming in Kotlin 1.3-M1 译文 | Wooyme&#39;s Blog">
+    <meta property="og:title" content="Vert.x后端漫游指南(4) | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    <meta property="og:article:tag" content="Kotlin"> 
+    
 
     
-        <meta property="article:published_time" content="Sat Aug 11 2018 19:41:08 GMT+0800">
-        <meta property="article:modified_time" content="Sat Aug 11 2018 22:16:36 GMT+0800">
+        <meta property="article:published_time" content="Thu Jan 17 2019 18:09:03 GMT+0800">
+        <meta property="article:modified_time" content="Thu Jan 17 2019 20:57:28 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -255,7 +255,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -267,10 +267,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html",
-    "headline": "See what's comming in Kotlin 1.3-M1 译文",
-    "datePublished": "Sat Aug 11 2018 19:41:08 GMT+0800",
-    "dateModified": "Sat Aug 11 2018 22:16:36 GMT+0800",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html",
+    "headline": "Vert.x后端漫游指南(4)",
+    "datePublished": "Thu Jan 17 2019 18:09:03 GMT+0800",
+    "dateModified": "Thu Jan 17 2019 20:57:28 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Wooyme",
@@ -288,7 +288,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",Kotlin",
+    "keywords": "",
     "description": "我怎么会是正经人呢",
 }
 </script>
@@ -354,7 +354,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#稳定版的协程-1-3之前一直是实验版"><span class="post-toc-number">2.</span> <span class="post-toc-text">稳定版的协程(1.3之前一直是实验版)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#转战新协程"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">转战新协程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一些新特性"><span class="post-toc-number">3.</span> <span class="post-toc-text">一些新特性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#捕获when中的参数"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">捕获when中的参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#伴生接口中的-JvmStatic和-JvmField"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">伴生接口中的@JvmStatic和@JvmField</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可嵌套的注解声明"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">可嵌套的注解声明</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数类型可以有更多参数"><span class="post-toc-number">3.0.4.</span> <span class="post-toc-text">函数类型可以有更多参数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实验性特性"><span class="post-toc-number">4.</span> <span class="post-toc-text">实验性特性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内联类"><span class="post-toc-number">4.0.1.</span> <span class="post-toc-text">内联类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无符号数字类型"><span class="post-toc-number">4.0.2.</span> <span class="post-toc-text">无符号数字类型</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#新的标准库API"><span class="post-toc-number">5.</span> <span class="post-toc-text">新的标准库API</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SuccessOrFailure"><span class="post-toc-number">5.0.1.</span> <span class="post-toc-text">SuccessOrFailure</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多平台随机数生成器"><span class="post-toc-number">5.0.2.</span> <span class="post-toc-text">多平台随机数生成器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Boolean类型的伴生对象"><span class="post-toc-number">5.0.3.</span> <span class="post-toc-text">Boolean类型的伴生对象</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本类型伴生对象的常亮"><span class="post-toc-number">5.0.4.</span> <span class="post-toc-text">基本类型伴生对象的常亮</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#API？"><span class="post-toc-number">2.</span> <span class="post-toc-text">API？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Swagger-amp-OpenAPI"><span class="post-toc-number">3.</span> <span class="post-toc-text">Swagger &amp; OpenAPI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#yaml"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">yaml</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swagger-Codegen"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Swagger-Codegen</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vert-x的Web-API-Contract"><span class="post-toc-number">4.</span> <span class="post-toc-text">Vert.x的Web API Contract</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">构建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建一个工厂"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">创建一个工厂</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vert-x的Web-API-Service"><span class="post-toc-number">5.</span> <span class="post-toc-text">Vert.x的Web API Service</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建-1"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">构建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Interface"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">使用Interface</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加Service到RouterFactory"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">添加Service到RouterFactory</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">6.</span> <span class="post-toc-text">小结</span></a></li></ol>
     </ul>
     
 
@@ -386,7 +386,7 @@
         
     
             <p class="article-headline-p">
-                See what's comming in Kotlin 1.3-M1 译文
+                Vert.x后端漫游指南(4)
             </p>
         </div>
 
@@ -405,7 +405,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Wooyme</strong>
-        <span>8月 11, 2018</span>
+        <span>1月 17, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -423,15 +423,6 @@
 
     <!-- Tags (bookmark) -->
     
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Kotlin/">Kotlin</a>
-    </ul>
-    
 
     <!-- Share -->
     
@@ -446,7 +437,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=See what&#39;s comming in Kotlin 1.3-M1 译文&url=http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Vert.x后端漫游指南(4)&url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -455,7 +446,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=See what&#39;s comming in Kotlin 1.3-M1 译文&url=http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html&via=Wooyme" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Vert.x后端漫游指南(4)&url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html&via=Wooyme" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -464,7 +455,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -473,7 +464,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -498,139 +489,208 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <blockquote>
-<p>原文在:<br><a href="https://blog.jetbrains.com/kotlin/2018/07/see-whats-coming-in-kotlin-1-3-m1/" target="_blank" rel="noopener">https://blog.jetbrains.com/kotlin/2018/07/see-whats-coming-in-kotlin-1-3-m1/</a>   </p>
-</blockquote>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天，在一长串的关于Kotlin 1.2.x的更新之后，是时候看看Kotlin 1.3会带来什么。我们很高兴的宣布Kotlin 1.3的尝鲜体验版Kotlin 1.3-M1正式发布。<br>Kotlin 1.3相比之前版本有许多的进步，其中包括 <em>完全体的协程</em>，<em>实验版的无符号类型</em>(Java至今没有的东西),<em>inline class</em> 以及其他更多特性。<br>这里要感谢为我们的新版本贡献代码的社区群众:Raluca Sauciuc, Toshiaki Kameyama, Leonardo Lopes, Jake Wharton, Jeff Wright, Lucas Smaira, Mon_chi, Nico Mandery, Oskar Drozda.  </p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>非常非常久没有更新 <em>Vert.x后端漫游指南</em> 了。主要是因为之前觉得Vert.x的Web后端实在是没有什么好写的，都是一些常规操作。再者，也有很长一段时间没有碰Vert.x的后端开发了。但是呢，因为打算做一个Vert.x全栈的服务端应用，所以又把Web后端的部分拿出来了。</p>
+<h1 id="API？"><a href="#API？" class="headerlink" title="API？"></a>API？</h1><p>虽然Vertx-Web也支持模板引擎这类的东西，但是无论是从潮流还是从Vertx支持程度的角度来看，前后端分离的开发方式更加适合现在的Web开发。那么既然前后端分离，提供一套完整、合理的API就非常重要了。<br>回顾一下之前的 <em>Vert.x后端漫游指南</em> ,我们使用了<code>Router.route(&quot;/api/path&quot;)</code>的方式来设置API。这种方式非常的简单粗暴，没有注解，没有配置文件，完完全全的硬编码。对于单人开发的简单服务来说，这样当然是没有问题的。但是当有了开发团队，需要前后端沟通的时候，这种硬编码的方式就变得很麻烦了。<br>一方面这意味着还得再单独写一份API文档给前端，</p>
 <blockquote>
-<p>完整的ChangeLog<br><a href="https://github.com/JetBrains/kotlin/blob/1.3-M1/ChangeLog.md" target="_blank" rel="noopener">https://github.com/JetBrains/kotlin/blob/1.3-M1/ChangeLog.md</a></p>
+<p>程序员最讨厌两种事情，一是没有文档，二是写文档。</p>
 </blockquote>
-<h1 id="稳定版的协程-1-3之前一直是实验版"><a href="#稳定版的协程-1-3之前一直是实验版" class="headerlink" title="稳定版的协程(1.3之前一直是实验版)"></a>稳定版的协程(1.3之前一直是实验版)</h1><p>终于，在1.3中协程不再是实验性的。无论是语法糖还是标准库都将趋于稳定并且保持向后兼容。自从1.1版本加入协程之后，协程这一特性一直保持着显著的提高。</p>
+<p>另一方面是一旦要做什么修改，就必须要重新编译程序。  </p>
+<h1 id="Swagger-amp-OpenAPI"><a href="#Swagger-amp-OpenAPI" class="headerlink" title="Swagger &amp; OpenAPI"></a>Swagger &amp; OpenAPI</h1><blockquote>
+<p>Swagger <a href="https://swagger.io/" target="_blank" rel="noopener">https://swagger.io/</a></p>
+</blockquote>
 <blockquote>
-<p>几个重要的特性<br>KT-16908 Support callable references to suspending functions<br>KT-18559 Serializability of all coroutine-related classes</p>
+<p>OpenApi <a href="https://www.openapis.org/" target="_blank" rel="noopener">https://www.openapis.org/</a></p>
 </blockquote>
-<p>现在，我们简化了协程的核心API，并且去掉了<code>experimental</code>包。同时，我们还在协程的跨平台性中做了许多工作，包括对基于Kotlin/Native（Kotlin的LLVM版本)的IOS支持</p>
-<h3 id="转战新协程"><a href="#转战新协程" class="headerlink" title="转战新协程"></a>转战新协程</h3><p>就像我们之前说的一样，所有与协程有关的函数都都已经丢掉了<code>experimental</code>的包名。同时，<code>buildSequence</code>和<code>buildIterator</code>函数也放到了他们在<code>kotlin.sequences</code>包中常驻的地方。<br>在语言的层面上，我们仍然使用<code>suspend</code>关键字来支持协程并且所有的规则几乎与实验版中的规则一致。<br>我们简化了稳定版中的<code>Continuation&lt;T&gt;</code>接口。现在它只保留了 <code>resumeWith(result: SuccessOrFailure&lt;T&gt;)</code>这一个成员函数。原先的<code>resume(value: T)</code>和<code>resumeWithException(exception: Throwable)</code>现在以扩展的形式出现。这个改动只影响了那些少数自己定义协程构造器，那些将回调函数包装成挂起函数(suspending functions)的代码大多数不会发生改变。比如说，为类<code>CompletableFuture&lt;T&gt;</code>定义挂起函数<code>await()</code>还是会像之前一样。</p>
-<pre><code class="Kotlin">suspend fun &lt;T&gt; CompletableFuture&lt;T&gt;.await(): T = suspendCoroutine { cont -&gt;
-    whenComplete { value, exception -&gt;
-        when {
-            exception != null -&gt; cont.resumeWithException(exception)
-            else -&gt; cont.resume(value)
-        }
-    }
-}
+<p>OpenAPI和Swagger给API开发带来了不一样的体验。Swagger是一套非常完善的API开发工具，最新的版本已经提供了对OpenAPI 3.0 的支持。</p>
+<h2 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h2><p>Swagger使用yaml作为配置文件，</p>
+<pre><code class="yaml">openapi: 3.0.0
+info:
+    title: Sample API
+    description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
+    version: 0.1.9
+servers:
+  - url: /v1
+    description: Optional server description, e.g. Main (production) server
+  - url: http://staging-api.example.com
+    description: Optional server description, e.g. Internal staging server for testing    
+paths:
+    /api/transactions/{id}:
+        get:
+            operationId: getTransactionsList
+            parameters:
+                -   name: id
+                    in: path
+                    required: true
+                    schema:
+                        type: string     
+                -   name: from
+                    in: query
+                    required: false
+                    schema:
+                        type: string
+                -   name: to
+                    in: query
+                    required: false
+                    schema:
+                        type: string
+            responses: 
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+        put:
+            operationId: putTransaction
+            parameters:
+                -   name: id
+                    in: path
+                    required: true
+                    schema:
+                        type: string
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                from:
+                                    type: string
+                                    format: email
+                                to:
+                                    type: string
+                                    format: email
+                                value:
+                                    type: number
+                                    format: double
+                            additionalProperties: false
+                            required:
+                                - from
+                                - to
+                                - value
+            responses: ...
 </code></pre>
-<p>稳定版的协程采用了不同的二进制接口，它们并不能与实验版的协程二进制兼容。为了确保代码能够平稳的转移，我们将在1.3中增加一个兼容层，并且实验版中的类都将保留在标准库中。在Kotlin/JVM中使用Kotlin 1.1-1.2的已经编译好的代码都能在Kotlin 1.3中运行。<br>但是Kotlin 1.3中不提供任何调用1.2(原文中写了1.3，应该是写错了)版本中编译好的实验性协程的支持。如果想要在1.3稳定版协程中使用旧版本协程的库，你需要在1.3版本下重新编译它们。这只是一个暂时的问题，我们会尽快处理。(JetBrains团队的尽快，往往是真的很快)<br>我们还将提供<code>kotlinx.coroutines</code>库的<code>x.x.x-eap13</code>版本。<br>IDE将提示你转移到新的协程上去。我们会在1.3正式版发布前进一步扩大协程的使用范围。</p>
-<h1 id="一些新特性"><a href="#一些新特性" class="headerlink" title="一些新特性"></a>一些新特性</h1><p>更重要的特性会出现在实验性部分，这里只提一些为大家带来便利的小特性</p>
-<h3 id="捕获when中的参数"><a href="#捕获when中的参数" class="headerlink" title="捕获when中的参数"></a>捕获when中的参数</h3><p>这段懒得翻译了，就看一下代码吧。已经非常明了了</p>
-<pre><code class="Kotlin">fun Request.getBody() =
-    when (val response = executeRequest()) {
-        is Success -&gt; response.body
-        is HttpError -&gt; throw HttpException(response.status)
-    }
-</code></pre>
-<h3 id="伴生接口中的-JvmStatic和-JvmField"><a href="#伴生接口中的-JvmStatic和-JvmField" class="headerlink" title="伴生接口中的@JvmStatic和@JvmField"></a>伴生接口中的@JvmStatic和@JvmField</h3><pre><code class="Kotlin">interface Service {
-    companion object {
-        @JvmField
-        val ID = 0xF0EF
-
-        @JvmStatic
-        fun create(): Service = ...
-    }
-}
-</code></pre>
-<p>Kotlin中的接口现在可以把静态成员暴露给Java(捞你Java一手)。</p>
-<h3 id="可嵌套的注解声明"><a href="#可嵌套的注解声明" class="headerlink" title="可嵌套的注解声明"></a>可嵌套的注解声明</h3><p>在Kotlin 1.3之前，注解类不能拥有类体(bodies)。1.3版本放宽了这一限制，现在我们允许注解类拥有嵌套类，接口和伴生对象</p>
-<pre><code class="Kotlin">annotation class Outer(val param: Inner) {
-    annotation class Inner(val value: String)
-}
-
-annotation class Annotation {
-    companion object {
-        @JvmField
-        val timestamp = System.currentTimeMillis()
-    }
-}
-
-</code></pre>
-<h3 id="函数类型可以有更多参数"><a href="#函数类型可以有更多参数" class="headerlink" title="函数类型可以有更多参数"></a>函数类型可以有更多参数</h3><p>现在一个函数类型，可以拥有超过22个参数了！(Kotlin的一个梗，程序员的暴力美学)。我们现在将上限提高到了JVM的极限——255。如果你想知道我们是怎么做到在不定义额外233个类的情况下实现这个功能的话，请看这里</p>
+<p>大致上就是这个样子,详细的关于swagger中yaml配置的编写可以看官方文档</p>
 <blockquote>
-<p><a href="https://github.com/Kotlin/KEEP/blob/master/proposals/functional-types-with-big-arity-on-jvm.md" target="_blank" rel="noopener">https://github.com/Kotlin/KEEP/blob/master/proposals/functional-types-with-big-arity-on-jvm.md</a></p>
+<p><a href="https://swagger.io/docs/specification/basic-structure/" target="_blank" rel="noopener">https://swagger.io/docs/specification/basic-structure/</a></p>
 </blockquote>
-<h1 id="实验性特性"><a href="#实验性特性" class="headerlink" title="实验性特性"></a>实验性特性</h1><p>就像协程已经证明了的一样，通过把EAP的重要特性设为实验性能帮助我们从社区中收集到可贵的反馈。我们将继续使用这个技术，让Kotlin的所有特性都经过实战的检验。Kotlin 1.3将带来三个激动人心的实验性特性。你需要明确选择使用这些特性，不然编译器会提示警告或者错误。</p>
-<h3 id="内联类"><a href="#内联类" class="headerlink" title="内联类"></a>内联类</h3><p>内联类能让你在不用真正创建一个类的情况下包装某个类型。</p>
-<pre><code class="Kotlin">inline class Name(internal val value: String)
+<p>总体来说就是把原来的硬编码改成了文件配置的模式。通过<code>paths</code>和<code>get</code>,<code>put</code>,<code>post</code>,<code>delete</code>一起组成各种API，同时也通过<code>parameters</code>和<code>requestBody</code>规定了各个API所需的参数，以及最后的<code>responses</code>用于规定服务端返回的数据结构。  </p>
+<h2 id="Swagger-Codegen"><a href="#Swagger-Codegen" class="headerlink" title="Swagger-Codegen"></a>Swagger-Codegen</h2><p>有了配置文件之后当然还是要能够生成对应的代码才行。Swagger提供了Swagger-Codegen来生成各种语言、框架的服务端和客户端代码。</p>
+<blockquote>
+<p><a href="https://github.com/swagger-api/swagger-codegen" target="_blank" rel="noopener">https://github.com/swagger-api/swagger-codegen</a></p>
+</blockquote>
+<p>如果要使用<strong>OpenAPI 3.0</strong>的话就必须要安装3.0.0版本以上的Swagger-Codegen。目前由于这个工具还在频繁的更新中，所以bug也是挺多的，特别是在客户端代码的部分，前几天就遇到生成的<code>typescript-angular</code>的代码里没有把body放到<code>post</code>和<code>put</code>的参数里的问题。<br>如果开发的时候遇到了不可理喻的问题，就去issues里看看吧。</p>
+<h1 id="Vert-x的Web-API-Contract"><a href="#Vert-x的Web-API-Contract" class="headerlink" title="Vert.x的Web API Contract"></a>Vert.x的Web API Contract</h1><p>在写完Swagger之后呢，就要来看看Vert.x的Web API Contract了。为什么明明有Swagger了，Vert.x的团队还要搞个Contract呢，因为<strong>Swagger不支持Vert.x</strong>( 笑 。Swagger虽然已经支持很多主流框架了，但是很明显Vert.x还不是那么的”主流”。</p>
+<blockquote>
+<p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-contract/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-contract/java/</a></p>
+</blockquote>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>Maven</p>
+<pre><code class="xml">&lt;dependency&gt;
+ &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+ &lt;artifactId&gt;vertx-web-api-contract&lt;/artifactId&gt;
+ &lt;version&gt;3.6.2&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
-<p>当使用这样一个类的时候，编译器会内联它的内容，并且所有操作会直接作用在被包装的类本身。于是，就像下面这样</p>
-<pre><code class="Kotlin">val name: Name = Name(&quot;Mike&quot;)
-fun capitalize(name: Name): Name = Name(name.value.capitalize())
+<p>Gradle</p>
+<pre><code class="Groovy">dependencies {
+ compile &#39;io.vertx:vertx-web-api-contract:3.6.2&#39;
+}
 </code></pre>
-<p>编译结果会与下面的代码一样</p>
-<pre><code class="Kotlin">val name: String = &quot;Mike&quot;
-fun capitalize(name: String): String = name.capitalize()
+<h2 id="创建一个工厂"><a href="#创建一个工厂" class="headerlink" title="创建一个工厂"></a>创建一个工厂</h2><pre><code class="Java">OpenAPI3RouterFactory.create(vertx, &quot;yaml的路径,支持本地文件或是http、https的地址&quot;, ar -&gt; {
+  if (ar.succeeded()) {
+    //得到了一个路由工厂
+    OpenAPI3RouterFactory routerFactory = ar.result();
+  } else {
+    Throwable exception = ar.cause();
+  }
+});
 </code></pre>
-<p>内联类与类型别名有些相似，但它们不是赋值兼容的。所以你不能把<code>String</code>赋值给<code>Name</code>,反之亦然。<br>由于内联类实际并不存在，所以不能对它们使用<code>===</code>操作符。<br>还有其他内联类产生包装器的地方，就像<code>Int</code>的装箱一样</p>
-<pre><code class="Kotlin">val key: Any = Name(&quot;Mike&quot;) // boxing to actual Name wrapper
+<p>得到这样一个工厂之后，就可以添加各种处理器</p>
+<pre><code class="Java">routerFactory.addHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {
+  RequestParameters params = routingContext.get(&quot;parsedParameters&quot;);
+  RequestParameter body = params.body();
+  JsonObject jsonBody = body.getJsonObject();
+  // Do something with body
+});
+routerFactory.addFailureHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {
+  // Handle failure
+});
+</code></pre>
+<p>这里的<code>OperationId</code>就对应了yaml文件中的<code>OperationId</code>，对于需要做权限控制的路由，还可以添加<code>Security Handler</code></p>
+<pre><code class="Java">routerFactory.addSecurityHandler(&quot;security_scheme_name&quot;, securityHandler);
+</code></pre>
+<p>对于之前我们用到的SessionHandler、CookieHandler，可以通过调用<code>addGlobalHandler</code>的方式来添加。需要注意的是BodyHandler不能用<code>addGlobalHandler</code>，<code>OpenAPI3RouterFactory</code>为它提供了专门的方法。</p>
+<p>在添加完处理器之后，就可以生产路由了</p>
+<pre><code class="Java">Router router = routerFactory.getRouter();
 
-val pair = Name(&quot;Mike&quot;) to 27 // Pair is a generic type, so Name is boxed here too
+HttpServer server = vertx.createHttpServer(new HttpServerOptions().setPort(8080).setHost(&quot;localhost&quot;));
+server.requestHandler(router).listen();
 </code></pre>
-<p>这个特性可以通过添加编译选项<code>-XXLanguage:+InlineClasses</code>来开启</p>
-<h3 id="无符号数字类型"><a href="#无符号数字类型" class="headerlink" title="无符号数字类型"></a>无符号数字类型</h3><p>内联类最明显的应用就是无符号类型。现在标准库已经加入了<code>UInt</code>，<code>ULong</code>，<code>UByte</code>和<code>UShort</code>。通过内联类，这些类型定义了自己的运算符，可以将存储的数值转化为无符号类型。</p>
-<pre><code class="Kotlin">val operand1 = 42
-val operand2 = 1000 * 100_000
-
-val signed: Int = operand1 * operand2
-val unsigned: UInt = operand1.toUInt() * operand2.toUInt()
+<p>这部分跟之前相差无几，唯一要注意的是<code>router::accept</code>已经被弃用了，现在直接向<code>requestHandler</code>传递<code>router</code>就可以了。</p>
+<h1 id="Vert-x的Web-API-Service"><a href="#Vert-x的Web-API-Service" class="headerlink" title="Vert.x的Web API Service"></a>Vert.x的Web API Service</h1><blockquote>
+<p>Contract之后再来个Service是要干什么。</p>
+</blockquote>
+<p>各位肯定也都发现了，Web API Contract用起来是一点都不方便，先不说每个处理器都要通过<code>operationId</code>单独绑定，就说处理器得到的参数吧，一点都不智能，完全没有用到Yaml中配置的<code>parameters</code>，参数还是要像以前一样从<code>RoutingContext</code>里获取。<br>为了获得更好的开发体验，就必须要引入Web API Service了。</p>
+<blockquote>
+<p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-service/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-service/java/</a></p>
+</blockquote>
+<h2 id="构建-1"><a href="#构建-1" class="headerlink" title="构建"></a>构建</h2><p>Maven</p>
+<pre><code class="xml">&lt;dependency&gt;
+ &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+ &lt;artifactId&gt;vertx-codegen&lt;/artifactId&gt;
+ &lt;version&gt;3.6.2&lt;/version&gt;
+ &lt;classifier&gt;processor&lt;/classifier&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+ &lt;groupId&gt;io.vertx&lt;/groupId&gt;
+ &lt;artifactId&gt;vertx-web-api-service&lt;/artifactId&gt;
+ &lt;version&gt;3.6.2&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
-<p>除了新的类型，我们还添加了一些新的语言特性来让它们变得特殊</p>
+<p>Gradle</p>
+<pre><code class="Groovy">dependencies {
+ compile &#39;io.vertx:vertx-codegen:3.6.2:processor&#39;
+ compile &#39;io.vertx:vertx-web-api-service:3.6.2&#39;
+}
+</code></pre>
+<p>可以看到，除了<code>vertx-web-api-service</code>以外，还引入了<code>vertx-codegen</code>。在codegen面前，没有什么问题是解决不了的。</p>
+<h2 id="使用Interface"><a href="#使用Interface" class="headerlink" title="使用Interface"></a>使用Interface</h2><pre><code class="Java">@WebApiServiceGen
+interface TransactionService {
+ void getTransactionsList(String from, String to, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler);
+ void putTransaction(JsonObject body, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler);
+}
+</code></pre>
+<p>Web API Service提供了另一种绑定handler的方式。接口中的方法名称需要和<code>operationId</code>相同，其中的参数也需要和<code>parameters</code>相同，需要注意的是如果使用<code>requestBody</code>，则对应<code>JsonObject body</code>。最后的<code>OperationRequest context</code>和<code>Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler</code>是必须写的部分。分别代表了请求的额外信息和响应的对象。</p>
 <ul>
-<li><p>允许在变长参数中使用无符号类型，这与其他内联类不用</p>
-<pre><code class="Kotlin">fun maxOf(vararg values: UInt): UInt { ... }
-</code></pre>
+<li>OperationRequest<ul>
+<li>getHeaders 请求头信息</li>
+<li>getParams 请求参数</li>
+<li>getUser 如果使用Auth，User就在这里</li>
+<li>getExtra 可以通过向RouterFactory添加<code>setExtraOperationContextPayloadMapper</code>来<strong>额外设置extra</strong>，这个很重要,通过这种方式可以把session带到handler里来。</li>
+</ul>
 </li>
-<li><p>无符号类型的关键字</p>
-<pre><code class="Kotlin">val uintMask = 0xFFFF_FFFFu
-val ulongUpperPartMask = 0xFFFF_FFFF_0000_0000uL
-</code></pre>
-</li>
-<li><p>无符号常量</p>
-<pre><code class="Kotlin">const val MAX_SIZE = 32768u
-//Koltin 1.3-M1暂不支持无符号常量的复杂表达式
-const val MAX_SIZE_BITS = MAX_SIZE * 8u // Error in 1.3-M1
-</code></pre>
+<li>OperationResponses<ul>
+<li>响应头</li>
+<li>响应状态</li>
+<li>响应主体</li>
+</ul>
 </li>
 </ul>
-<p>为了使用无符号类型，你需要选择启动它们</p>
-<ul>
-<li>either annotate the code element that uses unsigned types with the @UseExperimental(ExperimentalUnsignedTypes::class) annotation</li>
-<li>or specify the -Xuse-experimental=kotlin.ExperimentalUnsignedTypes compiler option.</li>
-</ul>
-<h1 id="新的标准库API"><a href="#新的标准库API" class="headerlink" title="新的标准库API"></a>新的标准库API</h1><p>现在让我们看看1.3中的新API</p>
-<h3 id="SuccessOrFailure"><a href="#SuccessOrFailure" class="headerlink" title="SuccessOrFailure"></a>SuccessOrFailure</h3><p>内联类<code>SuccessOrFailure</code>是一个有效的判别函数执行成功或失败<code>Success T | Failure Throwable</code>的集合。它被用来捕获函数的执行结果无论成功或失败，以便于我们在之后的代码中处理它们。</p>
-<pre><code class="Kotlin">val files = listOf(File(&quot;a.txt&quot;), File(&quot;b.txt&quot;), File(&quot;42.txt&quot;))
-val contents: List&lt;SuccessOrFailure&lt;String&gt;&gt; = files.map { runCatching { readFileData(it) } }
-
-println(&quot;map successful items:&quot;)
-val upperCaseContents: List&lt;SuccessOrFailure&lt;String&gt;&gt; =
-    contents.map { r -&gt; r.map { it.toUpperCase() } }
-upperCaseContents.printResults()
-
-println()
-println(&quot;map successful items catching error from transform operation:&quot;)
-val intContents: List&lt;SuccessOrFailure&lt;Int&gt;&gt; =
-    contents.map { r -&gt; r.mapCatching { it.toInt() } }
-intContents.printResults()
+<h2 id="添加Service到RouterFactory"><a href="#添加Service到RouterFactory" class="headerlink" title="添加Service到RouterFactory"></a>添加Service到RouterFactory</h2><pre><code class="Kotlin">OpenAPI3RouterFactory.create(vertx,&quot;yaml文件路径&quot;){
+    val serviceImpl = ServiceImpl()
+    ServiceBinder(vertx)
+        .setAddress(&quot;my-service&quot;)
+        .register(Service::class.java,ServiceImpl)
+    it.result().mountServiceInterface(Service::class.java,&quot;my-service&quot;)
+    //因为Web API Contract并不会处理yaml中的servers，所以需要自己设置sub-router
+    val router = Router.router(vertx).mountSubRouter(&quot;/api&quot;,it.result().router)
+    vertx.createHttpServer().requestHandler(router).listen(80){
+        logger.info(&quot;Listen at 80&quot;)
+    }    
+}
 </code></pre>
-<p>引入这个类最主要的原因是我们想要在新的协程接口中使用<code>resumeWith(result: SuccessOrFailure&lt;T&gt;)</code>而不是<code>resume(T)</code>和<code>resumeWithException(Throwable)</code></p>
-<h3 id="多平台随机数生成器"><a href="#多平台随机数生成器" class="headerlink" title="多平台随机数生成器"></a>多平台随机数生成器</h3><p>没啥好说的，原本Kotlin/JVM的东西现在支持Kotlin的所有平台了</p>
-<h3 id="Boolean类型的伴生对象"><a href="#Boolean类型的伴生对象" class="headerlink" title="Boolean类型的伴生对象"></a>Boolean类型的伴生对象</h3><p>为Boolean加了个内容为空的伴生对象。今后可能有用，像各种类型比较，转换之类的地方。</p>
-<h3 id="基本类型伴生对象的常亮"><a href="#基本类型伴生对象的常亮" class="headerlink" title="基本类型伴生对象的常亮"></a>基本类型伴生对象的常亮</h3><ul>
-<li><p>为Byte, Short, Int, Long, Char几个类型加入了SIZE_BITS和SIZE_BYTES</p>
-</li>
-<li><p>为Char增加了MAX_VALUE(‘\u0000’)和MIN_VALUE(‘\uFFFF’)</p>
-</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>JetBrains的效率是真的挺高。2018年6月发布Kotlin 1.2.50，转眼1个月之后又发布了1.3-M1。1.3版本比较重要的就是协程不再带有实验性标志。同时最有趣的就是内联类了。</p>
+<p>这样就可以非常方便的使用Vert.x的Web API Service了。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>在使用了OpenAPI之后，Vert.x的后端开发就算是比较完整了。这种开发方式也能给前端开发提供很多便利，比硬编码的模式要更加适合现在的开发形式。</p>
 
         
     
@@ -651,21 +711,13 @@ intContents.printResults()
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/09/08/Nginx配置fastcgi-perl/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/07/30/SQL简单调优-1/" id="post_nav-older" class="next-content">
+        <a href="/2019/01/03/如何占baidu的便宜/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
