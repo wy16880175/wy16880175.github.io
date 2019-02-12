@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>川叔的Ubuntu私房菜（2333</title>
+      <link href="/2019/02/12/%E5%B7%9D%E5%8F%94%E7%9A%84Ubuntu%E7%A7%81%E6%88%BF%E8%8F%9C%EF%BC%882333/"/>
+      <url>/2019/02/12/%E5%B7%9D%E5%8F%94%E7%9A%84Ubuntu%E7%A7%81%E6%88%BF%E8%8F%9C%EF%BC%882333/</url>
+      <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><strong>本篇针对Ubuntu18.04或Ubuntu Gnome</strong><br>推荐一本书《鸟哥的Linux私房菜》，虽然我没有看完，但真的是一本很棒的书。由于鸟哥的Linux写的非常深入，所以对于不做运维的人来说有些太难了。<br>这篇《川叔的Ubuntu私房菜》就作为我记录各种在使用Ubuntu时学到的小技巧的地方。<strong>顺便一提利根川赛高</strong>。</p><h1 id="SCP-不是基金会"><a href="#SCP-不是基金会" class="headerlink" title="SCP (不是基金会)"></a>SCP (不是基金会)</h1><blockquote><p>Linux之间传文件有除了ftp外更简单的方式</p></blockquote><p>不知道为什么，每次在服务器上装vsftpd都是一件非常痛苦的事情，总会遇到各种奇奇怪怪的问题。以至于后来有一段时间，我甚至选择使用网盘、github这种第三方存储作为上传文件到服务器的媒介。<br>这种情况终止于一天逛<strong>Ubuntu Forums</strong>的时候发现有人用</p><pre><code class="bash">scp xxx root@xxx:/home/xxx</code></pre><p>的命令。查了一下才知道，这就是基于ssh的文件上传。</p><pre><code>usage: scp [-346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]           [-l limit] [-o ssh_option] [-P port] [-S program]           [[user@]host1:]file1 ... [[user@]host2:]file2</code></pre><p>example</p><pre><code class="bash">scp this.zip root@my.server.com:/home/www/this.zip</code></pre><p>要注意的是目录需要提前建好，不然会报<em>没有找到目录或文件</em>的错。</p><h1 id="kill-9-PID-amp-xkill"><a href="#kill-9-PID-amp-xkill" class="headerlink" title="kill -9 PID &amp; xkill"></a>kill -9 PID &amp; xkill</h1><p>有时会遇到执行了<code>kill PID</code>但是进程还是杀不死的情况。这个时候加上<code>-9</code>参数就可以杀死进程了。<br>另外在桌面端的时候有时候会遇到Chrome、QQ、LibreOffice卡死的情况，这个时候可以<code>Ctrl+Alt+T</code>打开终端输入<code>xkill</code>,然后鼠标就会变成一个”x”，点一下卡死的窗口就可以关掉了。顺便一提的是有时候Ubuntu会弹出系统崩溃、系统错误这样的对话框，实际上其中只有很小一部分是真正的系统崩溃，大部分都是某个软件崩溃了，具体内容可以展开详情看看。</p><h1 id="QQ-amp-TIM"><a href="#QQ-amp-TIM" class="headerlink" title="QQ &amp; TIM"></a>QQ &amp; TIM</h1><p>由于腾讯压根就没有提供Linux的版本所以在Ubuntu上用QQ是一个比较麻烦的事情。Github上有很多QQ for Linux的项目，但是其实最终都指向了一个唯一的解决方案——<code>Wine</code>。  </p><blockquote><p>说个冷知识，<code>Wine</code>的全称是<code>Wine Is Not an Emulator</code></p></blockquote><p>Wine给在Linux、Mac上运行Windows程序提供了可能。虽然各种奇怪的bug和内存泄露是经常的事，但是有总比没有好。不过呢如果真的要从安装Wine、安装各种.Net库、字体开始到最终安装QQ、TIM，那也太麻烦了。比较简单的是去Github上找已经打成<code>AppImage</code>的发行版，但是还有一种更通用、更稳定的方法——<code>Crossover</code>。</p><p><code>Crossover</code>是一款商业软件、所以是收费的，终身是100多，不想付的话网上也应该能找到破解版。</p><blockquote><p>官网 <a href="http://www.crossoverchina.com/goumai.html?lid=1984" target="_blank" rel="noopener">http://www.crossoverchina.com/goumai.html?lid=1984</a></p></blockquote><p>装了<code>Crossover</code>之后安装Windows上的程序就完全傻瓜化了，而且会有各种软件在Linux上兼容性的评分。QQ和TIM间建议安装TIM，QQ有时候会突然崩溃，比较僵硬。</p><h1 id="系统监视器-任务管理器"><a href="#系统监视器-任务管理器" class="headerlink" title="系统监视器(任务管理器)"></a>系统监视器(任务管理器)</h1><p>Ubuntu是有个类似于任务管理器的东西的，只不过Gnome并没有为他绑定快捷键，如果想要像Windows一样使用任务管理器的话需要在<code>设置</code>-&gt;<code>设备</code>-&gt;<code>键盘</code>里添加。系统监视器对应的命令是<code>gnome-system-monitor</code></p><h1 id="美化桌面"><a href="#美化桌面" class="headerlink" title="美化桌面"></a>美化桌面</h1><p>虽然18.04换了Gnome，但是完完全全的继承了原本Unity的丑。看看隔壁<code>Kali</code>的桌面，帅到爆。再看看Ubuntu，开机基佬紫就不说了，桌面侧边栏真是丑到没话说。<br>首先要安装<code>User Themes</code>，</p><blockquote><p><a href="https://extensions.gnome.org/extension/19/user-themes/" target="_blank" rel="noopener">https://extensions.gnome.org/extension/19/user-themes/</a></p></blockquote><p>为了更方便的安装插件、需要在Chrome中先安装<code>extensions.gnome.org</code>的插件。</p><p>安装好User Themes后(最好再装一个<code>dash to dock</code>或者<code>dash to panel</code>)就可以到gnome-look里挑一个中意的主题了。</p><blockquote><p><a href="https://www.gnome-look.org" target="_blank" rel="noopener">https://www.gnome-look.org</a></p></blockquote><p>主题的作者一般会在下载的地方写好安装方法。</p><h1 id="美化登录"><a href="#美化登录" class="headerlink" title="美化登录"></a>美化登录</h1><p>如果说桌面还可以接受的话、那登录界面真是人神共愤了。不过好在gnome-look里一样提供了很多gdm的主题。我个人比较推荐这个</p><blockquote><p><a href="https://www.gnome-look.org/p/1241489/" target="_blank" rel="noopener">https://www.gnome-look.org/p/1241489/</a></p></blockquote><p>作者的README写的也非常清楚</p><blockquote><p>复制bg-boat.jpg到背景目录<br>cp ~/Downloads/Ocean-blue-GDM3/bg-boat.jpg /usr/share/backgrounds/</p><p>备份默认的ubuntu.css<br>cp /usr/share/gnome-shell/theme/ubuntu.css /usr/share/gnome-shell/theme/ubuntu.bk</p><p>覆盖ubuntu.css<br>cp ~/Downloads/Ocean-blue-GDM3/ubuntu.css /usr/share/gnome-shell/theme/</p><p>重启<br>reboot -f</p></blockquote>]]></content>
+      
+      
+        <tags>
+            
+            <tag> Ubuntu </tag>
+            
+            <tag> 杂谈 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Vert.x后端漫游指南(4)</title>
       <link href="/2019/01/17/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-4/"/>
       <url>/2019/01/17/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-4/</url>
@@ -20,8 +37,6 @@
       
         <tags>
             
-            <tag> perl </tag>
-            
             <tag> Typescript </tag>
             
             <tag> Android </tag>
@@ -29,6 +44,8 @@
             <tag> Ionic </tag>
             
             <tag> 前端 </tag>
+            
+            <tag> perl </tag>
             
         </tags>
       
@@ -121,9 +138,9 @@
       
         <tags>
             
-            <tag> Nginx </tag>
-            
             <tag> perl </tag>
+            
+            <tag> Nginx </tag>
             
             <tag> 运维 </tag>
             
@@ -170,9 +187,9 @@
       
         <tags>
             
-            <tag> 杂谈 </tag>
-            
             <tag> Ubuntu </tag>
+            
+            <tag> 杂谈 </tag>
             
         </tags>
       
