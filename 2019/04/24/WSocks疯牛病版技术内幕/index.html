@@ -46,7 +46,7 @@
     
     <title>
         
-            标签: perl | 
+            WSocks疯牛病版技术内幕 | 
         
         Wooyme&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",Kotlin,Vert.x,C/C++,网络协议">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -84,6 +84,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -220,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/tags/perl/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -235,13 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/tags/perl/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: perl | Wooyme&#39;s Blog">
+    <meta property="og:title" content="WSocks疯牛病版技术内幕 | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    
+    <meta property="og:article:tag" content="Kotlin"> <meta property="og:article:tag" content="Vert.x"> <meta property="og:article:tag" content="C/C++"> <meta property="og:article:tag" content="网络协议"> 
 
+    
+        <meta property="article:published_time" content="Wed Apr 24 2019 20:47:48 GMT+0800">
+        <meta property="article:modified_time" content="Wed Apr 24 2019 22:25:26 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -249,13 +255,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/tags/perl/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html",
+    "headline": "WSocks疯牛病版技术内幕",
+    "datePublished": "Wed Apr 24 2019 20:47:48 GMT+0800",
+    "dateModified": "Wed Apr 24 2019 22:25:26 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "我怎么会是正经人呢"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Kotlin,Vert.x,C/C++,网络协议",
+    "description": "我怎么会是正经人呢",
+}
+</script>
 
 
     
@@ -289,93 +325,257 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#项目地址"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目地址</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">2.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#TCP拥塞控制"><span class="post-toc-number">3.</span> <span class="post-toc-text">TCP拥塞控制</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#更无耻的UDP"><span class="post-toc-number">4.</span> <span class="post-toc-text">更无耻的UDP</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#比UDP更无耻"><span class="post-toc-number">5.</span> <span class="post-toc-text">比UDP更无耻</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Option（伪造IP）"><span class="post-toc-number">6.</span> <span class="post-toc-text">Option（伪造IP）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/09/08/Nginx配置fastcgi-perl/">Nginx配置fastcgi-perl</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/09/08/Nginx配置fastcgi-perl/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>9月 08, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                WSocks疯牛病版技术内幕
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>4月 24, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/C-C/">C/C++</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Kotlin/">Kotlin</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Vert-x/">Vert.x</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/网络协议/">网络协议</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=WSocks疯牛病版技术内幕&url=http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=WSocks疯牛病版技术内幕&url=http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/04/24/WSocks疯牛病版技术内幕/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h1><blockquote>
+<p><a href="https://github.com/Wooyme/Wsocks" target="_blank" rel="noopener">https://github.com/Wooyme/Wsocks</a><br>kcp-raw分支</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前在LowEndBox上看到一个非常非常便宜的VPS，一年8刀。借着50块买不了吃亏，买不了上当的想法，就随手买了一年。当然，这个机器确实非常垃圾。不过这也很正常，OpenVZ的低价VPS肯定是超售的，而这样便宜的机器要是没有问题才是真的有问题。<br>最开始，我尝试在上面装了一下WSocks2.0，然后发现速度只有几k，基本上就是打开个网页都卡的水平，而且因为是openvz(最坑的是说好的SolusVM到了最后也不知所踪)所以bbr和锐速都上不了，本来是打算就此作罢了。但是无意中看到了几篇关于bbr原理的文章，然后几经周折，被打开了新世界的大门。</p>
+<h1 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h1><p>装过bbr或者锐速的朋友肯定体验过这两个补丁近乎开挂的速度。尤其是锐速，凭借其更加流氓的算法，能几乎把带宽跑满。那么为什么使用了这些模块之后能让速度更快呢？ 这就要谈到TCP的拥塞控制了。</p>
+<blockquote>
+<p>源自简书 <a href="https://www.jianshu.com/p/97e5d7e73ba0" target="_blank" rel="noopener">https://www.jianshu.com/p/97e5d7e73ba0</a></p>
+</blockquote>
+<blockquote>
+<p>拥塞控制就是防止过多的数据注入到网络中，这样可以防止网络中的路由器或链路不致过载。拥塞控制所要做的都有一个前提，就是网络能够承受现有的网络负荷。拥塞控制是一个全局性的过程，涉及到所有的主机、所有的路由器，以及与降低网络传输性能有关的所有因素。</p>
+</blockquote>
+<p>那么防止链路过载的方式主要有两种，一是 <strong>慢开始</strong>， 二是 <strong>拥塞避免</strong></p>
+<ul>
+<li>慢开始<blockquote>
+<p>慢开始算法中的主要方法就是有小到大逐渐增大发送窗口。<br>举个例子：首先，发送方设置cwnd=1（为方便理解，这里用报文段的个数作为窗口大小的单位），在收到接收方发来的确认后（也就是下个传输轮次），设置cwnd=2，然后将发送窗口的数据发送出去。在一次收到接收方发来的确认后，发送方设置cwnd=4，再讲发送窗口中的数据发送出去。然后再重复上面的过程。</p>
+</blockquote>
+</li>
+<li>拥塞避免<blockquote>
+<p>TCP/IP 中规定无论是在慢开始阶段还是在拥塞避免阶段，只要发现网络中出现拥塞（没有按时收到确认），就要把ssthresh设置为此时发送窗口的一半大小（不能小于2）。</p>
+</blockquote>
+</li>
+</ul>
+<p>主要的问题在于拥塞避免阶段，常用的拥塞避免算法中，一旦发现超时，窗口大小就会下降的非常快，并且之后上升的速度也会非常慢，于是传输速度就很垃圾了。<br>而bbr和锐速都是修改了这部分算法，让窗口保持在比较大的阶段。当然这种行为本质是流氓行为，不然在Linux 4.10之后的内核中也不会默认关闭bbr。当只有少数人使用的时候，网速会得到非常高的提升，但是一旦大家都用了这种算法，效果也就会趋于平庸了。</p>
+<h1 id="更无耻的UDP"><a href="#更无耻的UDP" class="headerlink" title="更无耻的UDP"></a>更无耻的UDP</h1><p>可是我们的OpenVZ并不能安装bbr或锐速。于是从内核层面修改算法就显得不太现实了。但是除了TCP之外，我们还有一个更加简单的协议可以选择————UDP。<br>UDP是真的很简单，没有流控、没有拥塞控制、也不管数据是否真的传达到了。一旦用了UDP，只管发就是了。当然，简单的背后就是各种的不可靠，无论是丢包或是到达顺序错误都会导致上层出错，这显然是我们不想看到的。于是Google了许久，找到了一个国人开发的UDP Base协议——KCP。</p>
+<blockquote>
+<p>KCP <a href="https://github.com/skywind3000/kcp" target="_blank" rel="noopener">https://github.com/skywind3000/kcp</a></p>
+</blockquote>
+<p>KCP为UDP添加了类似连接的机制，包括连接标识符，ack，窗口，缓冲区等。它让UDP成为了可靠的传输协议。而且由于这些东西都是KCP添加的，所以都不受制于内核，完全可以自己调节。作者就为我们提供了 “极速模式”,实测效果确实很给力，通过开启快速重传、关闭流量控制、调大发送接收窗口，减小mtu，基本可以把服务器带宽压榨干净，而且延迟也确实降低了很多。</p>
+<h1 id="比UDP更无耻"><a href="#比UDP更无耻" class="headerlink" title="比UDP更无耻"></a>比UDP更无耻</h1><p>在实际测试中发现，虽然KCP能达到锐速之类的效果，但是有时候因为ISP的干扰，UDP报文可能会被丢弃。毕竟因为TCP有阻塞控制，把资源分配给TCP会更加合理一些。但是我们既然都已经这么流氓了，再流氓点又如何呢。<br>TCP和UDP在报文上的区别仅仅是报头有些不同，我们完全可以用原始套接字(Raw Socket)自己构造一个TCP报头。这里不得不吹一下KCP的作者，简直就是天才。KCP虽然是以 “Reliable UDP”自诩，但是实际上KCP下层完全可以接任何协议，所以接一个畸形的TCP也是完全没问题的。<br>在KCP的output中，我取了udp2raw_tunnel的部分代码</p>
+<blockquote>
+<p><a href="https://github.com/wangyu-/udp2raw-tunnel" target="_blank" rel="noopener">https://github.com/wangyu-/udp2raw-tunnel</a></p>
+</blockquote>
+<p>让KCP发送的数据变成披着TCP外皮的UDP包。现在只要解决接收的部分，就可以完成客户端与服务端的通信了。这里唯一的问题就是，这种畸形的TCP包，普通的TCP服务端是接收不到的。所以我加入了PCAP</p>
+<blockquote>
+<p>PCAP的java封装 <a href="https://github.com/kaitoy/pcap4j" target="_blank" rel="noopener">https://github.com/kaitoy/pcap4j</a></p>
+</blockquote>
+<p>用于捕获所有从远程服务器的规定端口发送的数据，再把这些数据作为KCP的input传输进去。至此一个基于Raw Socket的KCP协议就完成了。</p>
+<h1 id="Option（伪造IP）"><a href="#Option（伪造IP）" class="headerlink" title="Option（伪造IP）"></a>Option（伪造IP）</h1><p>这里加个题外话。其实也不是题外话，在WSocks的kcp分支里，我实现了一个伪造IP发送UDP包的功能。该功能总的来说就是让服务端用真实的IP接收客户端请求，再从另一个IP发送返回的数据。以前做过一些伪造IP的实验，但都失败了，因为在实际的网络中，各种路由器、网关会检测这个IP是否属于自己包含的范围，如果不是这个包就会被丢掉。所以在公网上想要假装自己是某台机器其实是不现实的。但是如果换一个思路，我们并不需要假装自己是谁，我们只需要让自己不是自己就行了。于是我重新做了些测试，发现在一定范围内，修改IP完全是可行的。在我一台加利福尼亚的VPS上，可供选择的IP多达65535个。通过这种IP伪装的方式，一定程度上也可以保护服务器。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上就是WSocks疯牛病版的一些原理，总的来说就是一个逐渐突破下限的过程。既然想要空手套白狼，那只有比无耻更无耻了。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/02/18/Angular下的Bootstrap-Modal/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -533,6 +733,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -682,6 +890,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -694,6 +906,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
