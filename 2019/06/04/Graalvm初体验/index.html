@@ -46,7 +46,7 @@
     
     <title>
         
-            如何快速学习一门语言 | 
+            Graalvm native-image JavaFx初体验 | 
         
         Wooyme&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content=",杂谈">
+    <meta name="keywords" content="">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -223,7 +223,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/2018/07/07/如何快速学习一门语言/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/06/04/Graalvm初体验/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -238,16 +238,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/2018/07/07/如何快速学习一门语言/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/06/04/Graalvm初体验/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="如何快速学习一门语言 | Wooyme&#39;s Blog">
+    <meta property="og:title" content="Graalvm native-image JavaFx初体验 | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    <meta property="og:article:tag" content="杂谈"> 
+    
 
     
-        <meta property="article:published_time" content="Sat Jul 07 2018 23:05:09 GMT+0800">
-        <meta property="article:modified_time" content="Sat Jul 07 2018 23:56:11 GMT+0800">
+        <meta property="article:published_time" content="Tue Jun 04 2019 19:08:17 GMT+0800">
+        <meta property="article:modified_time" content="Fri Jul 26 2019 20:58:29 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -255,7 +255,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -267,10 +267,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html",
-    "headline": "如何快速学习一门语言",
-    "datePublished": "Sat Jul 07 2018 23:05:09 GMT+0800",
-    "dateModified": "Sat Jul 07 2018 23:56:11 GMT+0800",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html",
+    "headline": "Graalvm native-image JavaFx初体验",
+    "datePublished": "Tue Jun 04 2019 19:08:17 GMT+0800",
+    "dateModified": "Fri Jul 26 2019 20:58:29 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Wooyme",
@@ -288,7 +288,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",杂谈",
+    "keywords": "",
     "description": "我怎么会是正经人呢",
 }
 </script>
@@ -354,7 +354,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Level-1"><span class="post-toc-number">2.</span> <span class="post-toc-text">Level 1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Level-2"><span class="post-toc-number">3.</span> <span class="post-toc-text">Level 2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#语言的通性"><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">语言的通性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#寻找联系"><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">寻找联系</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#看看库函数源码"><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">看看库函数源码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#勇敢尝试"><span class="post-toc-number">3.0.4.</span> <span class="post-toc-text">勇敢尝试</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Graalvm"><span class="post-toc-number">2.</span> <span class="post-toc-text">Graalvm</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Native-image"><span class="post-toc-number">3.</span> <span class="post-toc-text">Native image</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Native的客户端"><span class="post-toc-number">4.</span> <span class="post-toc-text">Native的客户端</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JavaFX"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">JavaFX</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#OpenJFX"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">OpenJFX</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#小结"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">小结</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -386,7 +386,7 @@
         
     
             <p class="article-headline-p">
-                如何快速学习一门语言
+                Graalvm native-image JavaFx初体验
             </p>
         </div>
 
@@ -405,7 +405,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Wooyme</strong>
-        <span>7月 07, 2018</span>
+        <span>6月 04, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -423,15 +423,6 @@
 
     <!-- Tags (bookmark) -->
     
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/杂谈/">杂谈</a>
-    </ul>
-    
 
     <!-- Share -->
     
@@ -446,7 +437,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=如何快速学习一门语言&url=http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Graalvm native-image JavaFx初体验&url=http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -455,7 +446,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=如何快速学习一门语言&url=http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html&via=Wooyme" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Graalvm native-image JavaFx初体验&url=http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html&via=Wooyme" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -464,7 +455,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -473,7 +464,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2018/07/07/如何快速学习一门语言/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/06/04/Graalvm初体验/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -498,13 +489,175 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>这不是一篇英语或是某个小语种学习教程</strong><br>这篇文章还是给那些已经入了程序的门的人看的，对于那些还没有了解过任何一种程序语言的人来说，可能看的意义不大。当然对于前者可能意义也不大:)</p>
-<h2 id="Level-1"><a href="#Level-1" class="headerlink" title="Level 1"></a>Level 1</h2><p>如果我还没太脱离时代的话，大多数人学的第一门语言应该是C。要我个人说的话，初学者学C真是一件要命的事。许多人抱着对程序的好奇想要跨进这扇大门，结果就是迈不过这道门槛。说实在的，在学习C语言的过程里，很难有什么成就感这类的东西来激励自己，学了很久发现自己还是只能写写printf,scanf。<em>偷偷告诉你们一个函数，如果你之前从来没有用过的话，这会是个很有趣的函数,system。再顺便告诉你们一个有趣的参数，如果你是windows的话，可以写”del /f C:\*.*“,如果你是linux的话，则是”rm -rf /*“</em>。<br>话题好像有点跑偏了。让我们回到C语言的学习上，如果你已经成功的学习了C语言，并且能够完全理解里面的内容，那你就是天选之人、被命运选中的kami，相信其他语言的学习对你来说也不会有什么问题。但是如果你在学C语言的过程中遇到了很多的困难，那么这里有个非常不错的建议，<strong>女装吧</strong>（笑 。<br>开个玩笑，不过说不定真的有用哦。如果C语言对你来说很难，但你又不想放弃程序的道路(被迫的或是自愿的)，你应该试一试其他语言，比如javascript，或者其他的脚本语言，也许python也是个不错的选择。如果这篇文章不幸被搜索引擎收录，而你又不幸搜索了”如果快速学习一门语言”这个关键字,那我希望你记住一点，<strong>绝对！绝对！不要去选择某个国产语言</strong></p>
-<h2 id="Level-2"><a href="#Level-2" class="headerlink" title="Level 2"></a>Level 2</h2><p>相信学习js(javascript)的路途会比C轻松的多，大部分人应该很快就可以看到自己的成果，也许是一个网页，也许是一个nodejs的程序。总之学习Js的反馈还是很快的。那么现在我们就进入了下一个level。这个时候你会发现，即使你已经掌握了一门语言，你还是不能完成许多工作。网页上有js，ts，后台有java，php，asp(dead),ruby,桌面端有C++,C#,移动端有Kotlin，Dart，oc，swift，这是一个无底洞，所以如何快速学习一门语言就变得非常重要。  </p>
-<h4 id="语言的通性"><a href="#语言的通性" class="headerlink" title="语言的通性"></a>语言的通性</h4><p>学习一门语言不应该是从头开始的。至少大家都是图灵完备的，那些基本操作就不应该再去重新学习一遍了。在抛开图灵之后，语言也有着很显著门派之分，面向过程，面向对象，函数式等等名词。当然记这些名词没有意义，咬文嚼字也没多大意思，我们只需要了解这些类别中，大家公认的通性就可以了。比如说你在某个语言里看到了<code>class</code>关键字，那很显然，接下来也应该会有<code>private</code>,<code>public</code>，<code>extends</code>或许还有<code>static</code>。如果你看到了一个语言有<code>int</code>，那多半也会有<code>float</code>,<code>double</code>，而如果你看到了<code>number</code>那很有可能就没有其他数字类型了。</p>
-<h4 id="寻找联系"><a href="#寻找联系" class="headerlink" title="寻找联系"></a>寻找联系</h4><p>有些大神很快就能上手一门语言，并不是因为他能在一个小时内看完这门语言的所有文档和例程，更多的时候他只是在用自己更加熟悉的另一种语言的方式来写代码。刚才也说了，语言之间都是有通性的，这种通性往往可以让我们用一种更加熟悉的方式coding。很简单的例子，Kotlin有函数式编程，ts也有，于是当我拿到一个<code>array</code>的时候，我就会想到这里应该有<code>filter</code>,<code>forEach</code>,<code>reserve</code>之类的函数，而这也从来没有让我失望过。</p>
-<h4 id="看看库函数源码"><a href="#看看库函数源码" class="headerlink" title="看看库函数源码"></a>看看库函数源码</h4><p>没有比库函数源码注释更详细，涉及面更广，也更容易获取的代码了。如果你用JetBrains家的IDE的话，按住Ctrl然后鼠标点击你想看的部分就可以了，如果你用其他的IDE的话，我非常建议你换成JetBrains的。</p>
-<h4 id="勇敢尝试"><a href="#勇敢尝试" class="headerlink" title="勇敢尝试"></a>勇敢尝试</h4><p><em>就算写错了，电脑会爆炸吗</em> 反正犯错是没有成本的，为什么不犯错。很多东西都是试出来的，特别是当你没有时间看那些又臭又长的文档的时候。但是这里有一点，很多初学者都不愿意去看一样东西，那就是<strong>报错信息</strong>。我知道报错信息大部分时候都是英文的，但是没有什么是比报错信息更能指明问题的了,花点时间看一看，或者复制到百度，谷歌里去，他们会给你答案的。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>尝试了一段时间的Go，发现一是还是舍不得Kotlin，二是Go的UI库实在有点蛋疼，所以最近还是寻找了一些重返Kotlin的解决方案。Graalvm我早有耳闻，也有过一次不愉快的尝试，但是看到它的版本号在今年脱离了RC的标志来到了19.1.1，我决定还是再给它一个机会。</p>
+<h1 id="Graalvm"><a href="#Graalvm" class="headerlink" title="Graalvm"></a>Graalvm</h1><blockquote>
+<p>官网地址: <a href="https://www.graalvm.org/" target="_blank" rel="noopener">https://www.graalvm.org/</a></p>
+</blockquote>
+<p>还是稍微介绍一下<em>Graalvm</em>吧。就目前看来Graalvm算是近年来Oracle最有创造力的产品了。</p>
+<blockquote>
+<p>GraalVM is a universal virtual machine for running applications written in JavaScript, Python, Ruby, R, JVM-based languages like Java, Scala, Groovy, Kotlin, Clojure, and LLVM-based languages such as C and C++.<br>GraalVM removes the isolation between programming languages and enables interoperability in a shared runtime. It can run either standalone or in the context of OpenJDK, Node.js or Oracle Database.</p>
+</blockquote>
+<blockquote>
+<p>Graalvm是一款通用虚拟机，可以运行由Javascript，Python，Ruby，R和基于JVM(Java,Kotlin,Scala,Groovy)以及基于LLVM(C和C++)的语言开发的程序。GraalVM去除了语言之间的隔阂，并且允许它们在运行过程中保持互通。GraalVm既可以独立运行，也可以在OpenJDk，NodeJs或者Oracle数据库的环境中运行(这句话，不明所以)。</p>
+</blockquote>
+<p>以及一些特性</p>
+<ul>
+<li>Polyglot(通用性)<blockquote>
+<p>Zero overhead interoperability between programming languages allows you to write polyglot applications and select the best language for your task.<br>不同语言间无痛交互，根据业务情况任意选择语言</p>
+</blockquote>
+</li>
+<li>Native(原生,这是重点)<blockquote>
+<p>Native images compiled with GraalVM ahead-of-time improve the startup time and reduce the memory footprint of JVM-based applications.<br>GraalVM生成的Native image(可以认为就是可执行文件) 使用AOT技术加快启动时间并且减少基于JVM的应用的启动内存(Java系客户端的两大痛处)</p>
+</blockquote>
+</li>
+<li>Embeddable(嵌入式，不是单片机那个)<blockquote>
+<p>GraalVM can be embedded in both managed and native applications. There are existing integrations into OpenJDK, Node.js and Oracle Database<br>这个Embeddable的特性我还没有接触过，所以并不理解它所说的与OpenJDK这些一起运行是个什么意思</p>
+</blockquote>
+</li>
+</ul>
+<p>GraalVM的这么多特性，对于我来说，最有价值的就是Native了。相信对于大部分Java系的开发者来说也是如此，“我Java系的生态要啥有啥，还要其他语言干嘛？”<br>所以接下来就写一下GraalVM这个不成熟到能跟Kotlin Native 55开的Native image吧。</p>
+<h1 id="Native-image"><a href="#Native-image" class="headerlink" title="Native image"></a>Native image</h1><blockquote>
+<p>官方文档 <a href="https://www.graalvm.org/docs/reference-manual/aot-compilation" target="_blank" rel="noopener">https://www.graalvm.org/docs/reference-manual/aot-compilation</a></p>
+</blockquote>
+<p>话是说的很漂亮，解决了Java写客户端的两大痛处，但是实际用起来那可真全是痛处。当然这里说的痛处是开发中的痛处，在成功build了native image之后，确实是如官网所说，启动速度快，内存占用小(除了莫名其妙的申请了32G虚拟内存)。</p>
+<p>首先一点是，在19.0之后，native-image不再包含在Graal的基础包中了，要安装的话，需要运行个命令</p>
+<blockquote>
+<p>gu install native-image</p>
+</blockquote>
+<p> Linux上这个操作可能需要sudo。文件是从gtihub上下载的，所以国内下载可能会很慢，官网上表示可以配置代理，但是我好像不太成功。总归等了挺久之后也算是下载下来了。</p>
+<p>目前Native image还有很多的限制。按照github上的官方文档，Native image对一些Java的特性还不能支持</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>支持情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>动态类加载</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>反射</td>
+<td>需要配置文件</td>
+</tr>
+<tr>
+<td>动态代理</td>
+<td>需要配置文件</td>
+</tr>
+<tr>
+<td>JNI</td>
+<td>大多数支持</td>
+</tr>
+<tr>
+<td>Unsafe Memory Access</td>
+<td>大多数支持</td>
+</tr>
+<tr>
+<td>类初始化(static里初始化类)</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>InvokeDynamic</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>Lambda Expressions</td>
+<td>支持(有问题)</td>
+</tr>
+<tr>
+<td>Synchronized, wait, and notify</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Finalizers</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>References</td>
+<td>大多数支持</td>
+</tr>
+<tr>
+<td>Threads</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Identity Hash Code</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>Security Manager</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>JVMTI, JMX, other native VM interfaces</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>JCA Security Services</td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<p>首先动态类加载肯定是不用想了，native的部分与非native的部分明显不能建立联系。而反射可以通过传入配置文件来获得支持，这就让许多框架的使用成为了可能。</p>
+<h1 id="Native的客户端"><a href="#Native的客户端" class="headerlink" title="Native的客户端"></a>Native的客户端</h1><p>如果只是一个简单的，单线程的console应用，那么native image的使用基本上是不会有任何问题。但是一旦涉及了GUI，这个native image就有点搞人心态了。 </p>
+<p>Java上大家熟知的GUI方案无外乎Swing和Javafx，在graal的issues中可以看到现在尚且不能支持swing，而且由于swing已经是个如此年迈的框架，我也不倾向于使用它。那么现在的选择就只有javafx了。</p>
+<h2 id="JavaFX"><a href="#JavaFX" class="headerlink" title="JavaFX"></a>JavaFX</h2><p>GraalVM有两个版本，一个CE，一个EE，其中CE版是不带JavaFx的。而EE中所带的JavaFx会在编译成native image的过程中出现无数的问题，于是我搜索了graal的issues，并且成功找到了一些前人的经验</p>
+<blockquote>
+<p><a href="https://github.com/oracle/graal/issues/403" target="_blank" rel="noopener">https://github.com/oracle/graal/issues/403</a></p>
+<p><a href="https://github.com/oracle/graal/issues/994" target="_blank" rel="noopener">https://github.com/oracle/graal/issues/994</a></p>
+</blockquote>
+<p><em>其中issue403是Glavo大佬提出的</em></p>
+<p><strong>在 403 的评论中可以看到一个叫做gluonhq的产品</strong>，</p>
+<blockquote>
+<p> <a href="https://github.com/gluonhq/client-samples" target="_blank" rel="noopener">https://github.com/gluonhq/client-samples</a></p>
+</blockquote>
+<p>应该有人通过它成功编译了javafx的native image。我也按照gluonhq的文档做了一些尝试，非常遗憾的是，我并没有成功，失败的原因也不是说出现了什么错误，而是这货占用的内存量有点夸张。几次尝试编译都因为内存不足而告终，后来我曾试图把开发环境搬到生产服务器上(一台16核32G的虚拟服务器)，但最终因为gluonhq不支持windows而宣告失败。所以如果看到这篇文章的人中有不用Windows且内存达到16G的话，可以尝试一下直接使用gluonhq client。</p>
+<p>虽然用gluonhq失败了，但是至少说明已经有人成功了吧。于是我在994中的最后一条评论里找到了这个仓库</p>
+<blockquote>
+<p><a href="https://github.com/maxum2610/HelloJFX-GraalSVM" target="_blank" rel="noopener">https://github.com/maxum2610/HelloJFX-GraalSVM</a></p>
+</blockquote>
+<p>maxum2610表示要构建naive image需要自己build一个OpenJFX。这简直是打开了新世界的大门。既然都自己构建OpenJFX了，那稍微改改代码总也不是什么大事吧。于是参考maxum2610的文档，我开始了自己的旅程。</p>
+<h2 id="OpenJFX"><a href="#OpenJFX" class="headerlink" title="OpenJFX"></a>OpenJFX</h2><p>build OpenJFX的过程中只有遇到了一个问题，这货要求gradle的版本是1.8，然后IDEA默认的是5.1，所以要自己调整一下。</p>
+<p>整个构建的过程是很愉快的，把构建得到的<code>/build/sdk/rt/lib</code>里的文件复制到Graalvm的jre下就可以得到一个自己的JavaFx环境了。接着我开始尝试编译Native image,并且不出意外的失败了。</p>
+<p>报的错误是issue1376中的错误</p>
+<blockquote>
+<p><a href="https://github.com/oracle/graal/issues/1376" target="_blank" rel="noopener">https://github.com/oracle/graal/issues/1376</a></p>
+<p>Invoke with MethodHandle argument could not be reduced to at most a single call: java.lang.invoke.MethodHandleImpl.buildVarargsArray(MethodHandle, MethodHandle, int)</p>
+</blockquote>
+<p>解决方案是把所有报这个错的地方的lambda全部改成java6的语法。</p>
+<p>在全部改完之后就可以成功生成naive image了。当然走到了这步还没有成功。<br>在运行的过程中会发现加载libglass.so失败的问题，一开始我以为是路径有问题，后来发现是在调用JNI_Onload的时候返回了-1。</p>
+<p>于是本着既然都改了源码了，再改点C的代码又怎么样呢的想法，大概看了一下glass_general.cpp中JNI_Onload函数的内容，发现是在加载<code>sun/misc/GThreadHelper</code>的时候报错了，</p>
+<pre><code class="C++">   clazz = env-&gt;FindClass(&quot;sun/misc/GThreadHelper&quot;);
+   if (env-&gt;ExceptionCheck()) return JNI_ERR;
+   if (clazz) {
+       jmethodID mid_getAndSetInitializationNeededFlag = env-&gt;GetStaticMethodID(clazz, &quot;getAndSetInitializationNeededFlag&quot;, &quot;()Z&quot;);
+       if (env-&gt;ExceptionCheck()) return JNI_ERR;
+       jmethodID mid_lock = env-&gt;GetStaticMethodID(clazz, &quot;lock&quot;, &quot;()V&quot;);
+       if (env-&gt;ExceptionCheck()) return JNI_ERR;
+       jmethodID mid_unlock = env-&gt;GetStaticMethodID(clazz, &quot;unlock&quot;, &quot;()V&quot;);
+       if (env-&gt;ExceptionCheck()) return JNI_ERR;
+
+       env-&gt;CallStaticVoidMethod(clazz, mid_lock);
+
+       if (!env-&gt;CallStaticBooleanMethod(clazz, mid_getAndSetInitializationNeededFlag)) {
+           init_threads();
+       }
+
+       env-&gt;CallStaticVoidMethod(clazz, mid_unlock);
+   } else {
+        env-&gt;ExceptionClear();
+        init_threads();
+   }
+</code></pre>
+<p>确认了一下jniconfig，发现确实没有这个库。在搜索了一圈之后决定干脆不加载了，直接走else分支。成功！</p>
+<p>我修改的OpenJFX已经传到github上了</p>
+<blockquote>
+<p> <a href="https://github.com/Wooyme/openjdk-jfx" target="_blank" rel="noopener">https://github.com/Wooyme/openjdk-jfx</a></p>
+</blockquote>
+<p>重新build OpenJFX之后编译出的naive image就可以正常运行了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>Graalvm依然是个很不成熟的技术，要尝试的话就得做好踩坑的觉悟。</p>
 
         
     
@@ -525,21 +678,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/07/16/Ubuntu求生指南-1/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2018/07/05/为什么Kotlin排在第49位/" id="post_nav-older" class="next-content">
+        <a href="/2019/05/25/Ubuntu求生指南-2/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
@@ -631,7 +776,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">十二月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">9</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/06/">六月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/05/">五月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/02/">二月 2019<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/01/">一月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/12/">十二月 2018<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/09/">九月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/08/">八月 2018<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2018/07/">七月 2018<span class="sidebar_archives-count">6</span></a>
             </ul>
         </li>
         
