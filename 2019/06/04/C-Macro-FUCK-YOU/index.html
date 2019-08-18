@@ -247,7 +247,7 @@
 
     
         <meta property="article:published_time" content="Tue Jun 04 2019 21:10:26 GMT+0800">
-        <meta property="article:modified_time" content="Mon Aug 19 2019 00:55:13 GMT+0800">
+        <meta property="article:modified_time" content="Mon Aug 19 2019 00:59:45 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -270,7 +270,7 @@
     "mainEntityOfPage": "http://wooyme.github.io/2019/06/04/C-Macro-FUCK-YOU/index.html",
     "headline": "C++ Macro,  FUCK YOU!",
     "datePublished": "Tue Jun 04 2019 21:10:26 GMT+0800",
-    "dateModified": "Mon Aug 19 2019 00:55:13 GMT+0800",
+    "dateModified": "Mon Aug 19 2019 00:59:45 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Wooyme",
@@ -534,7 +534,7 @@ void printPoint(struct Point *p) {
 }
 </code></pre>
 <p>实现了什么功能不重要，重要的是其中的<code>POLYGLOT_DECLARE_STRUCT</code>和<code>polyglot_from_Point</code>以及<code>polyglot_from_Point_array</code>这三个东西。</p>
-<p>首先我们可以确定，<code>Point</code>这个东西是我们自己定义的，所以显然这两个带Point的函数也不可能是由<code>polyglot.h</code>提供的。那么为什么在我们也没有定义这两个函数的情况下这段程序可以正常编译呢？这就要靠神器的(<em>FUCKING UNREADABLE</em>)宏来实现了。</p>
+<p>首先我们可以确定，<code>Point</code>这个东西是我们自己定义的，所以显然这两个带Point的函数也不可能是由<code>polyglot.h</code>提供的。那么为什么在我们也没有定义这两个函数的情况下这段程序可以正常编译呢？这就要靠神奇的(<em>FUCKING UNREADABLE</em>)宏来实现了。</p>
 <p>按照国际惯例(幸好你们还有个国际惯例)宏是全部大写的，所以<code>POLYGLOT_DECLARE_STRUCT</code>就一定是个宏了。于是我在<code>polyglot.h</code>的最底下找到了关于这个的定义。</p>
 <pre><code class="C">#define POLYGLOT_DECLARE_STRUCT(type) __POLYGLOT_DECLARE_GENERIC_TYPE(struct type, type)
 
@@ -566,7 +566,7 @@ void printPoint(struct Point *p) {
   }
 </code></pre>
 <p>最后发现<code>POLYGLOT_DECLARE_STRUCT(Point)</code>的<code>Point</code>就是宏里的<code>typename</code>。这就破案了，这段宏为我们定义了<code>polyglot_from_##typename</code>和<code>polyglot_from_##typename##_array</code>这两个方法，而其中的<code>typename</code>在编译期就被<code>Point</code>替换掉了（我看你是在为难我IDE）。</p>
-<h2 id="骚气满满的EventBus"><a href="#骚气满满的EventBus" class="headerlink" title="骚气满满的EventBus"></a>骚气满满的EventBus</h2><p>上一个还是很容易理解的，毕竟只是使用了<code>##var</code>这么个特性罢了。不知道的时候觉得很神器，知道了之后也就是这么一回事。而接下来这个是让我着实惊讶了许久。<br>先看一段代码</p>
+<h2 id="骚气满满的EventBus"><a href="#骚气满满的EventBus" class="headerlink" title="骚气满满的EventBus"></a>骚气满满的EventBus</h2><p>上一个还是很容易理解的，毕竟只是使用了<code>##var</code>这么个特性罢了。不知道的时候觉得很神奇，知道了之后也就是这么一回事。而接下来这个是让我着实惊讶了许久。<br>先看一段代码</p>
 <pre><code class="C++">/*
  * Class:     com_sun_glass_ui_win_WinWindow
  * Method:    _setView
