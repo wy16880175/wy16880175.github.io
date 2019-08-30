@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wooyme.github.io/"/>
-  <updated>2019-08-18T16:59:45.632Z</updated>
+  <updated>2019-08-30T18:00:05.394Z</updated>
   <id>http://wooyme.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何强上你的邻居</title>
+    <link href="http://wooyme.github.io/2019/06/04/%E5%A6%82%E4%BD%95%E5%BC%BA%E4%B8%8A%E4%BD%A0%E7%9A%84%E9%82%BB%E5%B1%85/"/>
+    <id>http://wooyme.github.io/2019/06/04/如何强上你的邻居/</id>
+    <published>2019-06-04T13:11:08.000Z</published>
+    <updated>2019-08-30T18:00:05.394Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Wsocks实现了一个很有意思的功能。所以写篇文章分享一下这个功能的一些细节。至于是什么样的功能，<strong>听说过伪造IP吗，朋友</strong>。</p><h1 id="我们的环境"><a href="#我们的环境" class="headerlink" title="我们的环境"></a>我们的环境</h1><p>我做这个测试的服务器地址是：<em>85.143.202.5</em>，一台来自毛子的VPS。</p><blockquote><p>既然用他们的机器搞事情了，那就推广一下作为赔偿吧。<br><a href="https://hexcore.ru" target="_blank" rel="noopener">https://hexcore.ru</a> 最便宜的是225卢布一个月，速度一般，但也还对的起这个价格。而且俄罗斯嘛，能干点别的地方不能干的事情。另外毛子比较耿直，所以年费没有优惠</p></blockquote><p>我的网关是<em>85.143.202.1</em>。我有一个邻居，<em>85.143.202.6</em>，当然我不止这一个邻居。在这里邻居的定义是跟我连在同一个交换机或是hub上的其他“机器”。由于现在都是虚拟服务器，所以这个“机器”的定义就比较模糊了，总之可以理解成其他的vps。</p><p>这个是ARP表</p><blockquote><p>85.143.202.6     f6:96:1e:7f:ce:e1<br>85.143.202.1     a8:d0:e5:54:35:20<br>85.143.202.4     f6:96:cd:84:83:c4         </p></blockquote><h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>正常来说，我们用85.143.202.5这个IP收发消息，而我们的邻居用它们自己的IP收发消息，一切都很和谐。但是如果有一天，我们要干票大的或是干些什么见不得人的勾当，所以想<strong>借</strong>隔壁兄弟的身份证一用，那要怎么操作呢。<br>这个么，很明显有两种方案。一是闯进邻居的家里，拿走它的身份证，光明正大的去嫖娼，用完之后再还回去。这个方案非常OK，而且已经被沿用了很多年，但是问题就是，总有一天邻居会发现自己的家被人闯了，于是他决定换掉门锁，加固门窗，这样我们就很难再下手了。<br>另一种方式是我们伪造一张邻居的身份证出去招摇撞骗。对于这种方式呢，邻居除了报警之外，他自己是没有任何办法的。而且有可能报警也解决不了问题。</p><h1 id="伪造IP"><a href="#伪造IP" class="headerlink" title="伪造IP"></a>伪造IP</h1><p>在互联网上伪造身份证自然就是<strong>伪造IP</strong>了。玩过黑客的朋友多半听过一个名字——凯文·米特尼克。这位世界第一黑客，曾经就使用过伪造IP来完成攻击。不过虽然都是伪造IP，但是呢，一是凯文当时的年代网络环境简单，二是我们的目标并不是想要攻击谁，所以我们的和凯文之间的操作还是有很大区别的。</p><p>对于我们来说，最终的目标是要能用邻居的IP<strong>收发</strong>消息。为什么要强调<strong>收发</strong>呢，因为<strong>发</strong>其实是一件相对简单的事情，<strong>收</strong>才是整个过程的关键所在。</p><h2 id="用邻居的IP发"><a href="#用邻居的IP发" class="headerlink" title="用邻居的IP发"></a>用邻居的IP发</h2><p>在无论是windows还是linux提供的socket中都有一样叫做<strong>raw socket</strong>的东西。这个东西允许我们自己构造IP头，再构造TCP或是UDP的包，然后内核会不管三七二十一把这个我们自己构造的东西给发出去(<em>Windows似乎在某个版本禁止了使用rawsocket来修改IP，所以要完成这样的操作，还是用Linux吧</em>)。<br>在大多数情况下这个操作是可行的，但是只要稍微分析一下这样的包就会发现这种数据是有漏洞的。<br>我们都知道有个东西叫做<strong>ARP表</strong>，这张表我们有，我们连接着的路由(网关)也有。而这里有个最大的问题就是，所有的数据最后都会通过网关。而聪明一点的网关就会发现，你这个包里的MAC地址和IP咋就对不上呢。于是它有可能会丢掉这个包，或是把这个事件记录到日志里等管理员来看。总之不管是哪种最终都会导致我们的计划受阻。<br>那么最好的方案是什么呢。这里要提一个库<strong>libpcap</strong>，对应的Windows版本是<strong>WinPcap</strong>。pcap这个库可以让我们直接操作网卡发送以太网帧，这样我们可以编辑的就不只是IP了，连source mac都可以一起操作。<strong>需要注意的是，如果要发数据到其他子网，dest mac应该设置成网关的mac地址。</strong><br>放一段使用<code>Pcap4J</code>的代码演示一下这个过程</p><pre><code class="Kotlin">val nif = Pcaps.findAllDevs()[0]val sendHandle = nif.openLive(65536, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10)//用85.143.202.6的IP和MAC发一个UDP包给val udpBuilder = UdpPacket.Builder()    udpBuilder.srcAddr(Inet4Address.getByName(&quot;85.143.202.6&quot;))      .dstAddr(Inet4Address.getByName(&quot;8.8.8.8&quot;))      .srcPort(UdpPort((7777).toShort(), &quot;me&quot;))      .dstPort(UdpPort.DOMAIN) //表示53端口      .correctLengthAtBuild(true)      .correctChecksumAtBuild(true)    val ipV4Builder = IpV4Packet.Builder()      .version(IpVersion.IPV4)      .tos(IpV4Rfc791Tos.newInstance(0.toByte()))      .ttl(100.toByte())      .protocol(IpNumber.UDP)      .srcAddr(Inet4Address.getByName(&quot;85.143.202.6&quot;) as Inet4Address)      .dstAddr(Inet4Address.getByName(&quot;8.8.8.8&quot;) as Inet4Address)      .payloadBuilder(udpBuilder)      .correctChecksumAtBuild(true)      .correctLengthAtBuild(true)    val etherBuilder = EthernetPacket.Builder()    etherBuilder      .dstAddr(MacAddress.getByName(&quot;a8:d0:e5:54:35:20&quot;))      .srcAddr(MacAddress.getByName(&quot;f6:96:1e:7f:ce:e1&quot;))      .type(EtherType.IPV4)      .paddingAtBuild(true)    val ipV4Packet = IpV4Helper.fragment(ipV4Builder.build(), 1200)[0]    etherBuilder.payloadBuilder(      object : AbstractPacket.AbstractBuilder() {        override fun build(): Packet {          return ipV4Packet        }      }).build()      sendHandle.sendPacket(etherBuilder.build())</code></pre><p>OK，这样我们的数据就和正常的流量没有任何区别了。</p><blockquote><p>事实上，如果只是想实现用别人的IP发送数据的话，限制可以小很多。我们一般可以使用整个C类段，甚至是好几个C类段里的IP。这个主要是跟网关的逻辑和虚拟化使用的技术有关。</p></blockquote><h1 id="用邻居的IP收"><a href="#用邻居的IP收" class="headerlink" title="用邻居的IP收"></a>用邻居的IP收</h1><p>发送是一件很简单的事情，但是收就难了。这就好比你寄快递，即使填了个假的发件地址，收件人也还是可以收到邮件的。但是你如果填一个假的收件地址还想让快递小哥把快递送到你家，就很有难度了。</p><h2 id="骗谁"><a href="#骗谁" class="headerlink" title="骗谁"></a>骗谁</h2><p>要想实现这样一个收的操作，就必须要欺骗一些设备了。让我们看看有哪些设备是跟我们有关系的。</p><h3 id="ARP？"><a href="#ARP？" class="headerlink" title="ARP？"></a>ARP？</h3><p>首先是<strong>网关</strong>，发到我们所在的子网的所有数据都会先发到网关那，所以要是能骗网关直接把数据发给我们，那不就万事大吉了。那么这个能做到吗？答案是肯定的。曾有一招从天而降的掌法，如来..呃不，是<em>ARP攻击</em>。就如前面说的，网关它也维护着一张ARP表，里面记录着子网里所有IP和它MAC地址的对应关系。 </p><p>然而ARP这个东西是有漏洞的，我们只要一直给网关发假的ARP响应它就会信以为真把我们的MAC地址和我们邻居的IP地址对应到一块儿去。ARP的技术细节在这里就不多说了，Google一下已经有很多写的很详细的了。  </p><p>那么我们可以用ARP攻击吗？ 很显然不行。首先ARP攻击作为一个古老的攻击方式已经被很多路由器防范了。其次ARP攻击特征明显，很容易被运营商发现，然后把我们给ban了。</p><h3 id="换个傻子"><a href="#换个傻子" class="headerlink" title="换个傻子"></a>换个傻子</h3><p>那么网关不行，网关和我们中间的还有什么呢。这里存在两种情况。  </p><ol><li>我们和我们的邻居连在同一个hub上</li><li>我们和我们的邻居连在同一个交换机上</li></ol><p>如果是hub，那事情就很简单了。众所周知，hub就是个哈皮。它根本不知道连在它身上的都是些什么东西，它只知道自己的哪几个口有东西连上来了。所以一旦有数据发送到了hub这里，它会把这个数据给每个打开的端口(<em>这个端口不是UDP或TCP的端口，而是类似网线接口的那种端口</em>)都发一份。这就等于说邻居收到的数据本来就会给我们发一份，只是平时网卡无视了它。那么我们只要用pcap抓一下包就解决了。  </p><p>而到了交换机上，事情就变得复杂了一点。交换机没这么愚蠢，它内部维护着一张端口和MAC地址的表。一旦有数据到了它这里，它会查看一下数据的目标MAC，然后在自己的对应表里查找对应的端口，并且把数据转发到这个端口。<br>那么这里就有一个问题，交换机是怎么维护这张表的？ 首先交换机只能理解L2的东西，也就是说，不管什么协议的数据经过了交换机，它只在乎源MAC和目标MAC。交换机维护对应表的策略非常简单。查看所有数据的源MAC地址，然后把这个源MAC地址和数据来自的端口对应起来。至于出现了目标MAC地址不在表里的情况，交换机就会像Hub一样广播这个数据。  </p><p>既然交换机是这么维护对应表的，那一切就很明了了。</p><h2 id="欺骗一台交换机"><a href="#欺骗一台交换机" class="headerlink" title="欺骗一台交换机"></a>欺骗一台交换机</h2><p>要骗一台交换机很简单，一个正经的流量就可以欺骗它。我们只需要像前面一样，伪造邻居的IP和MAC随便发点数据就行了。唯一的附加条件是，我们发送的频率要足够高，这样才能够一直抢占邻居的位置。当然了，一旦我们抢占了邻居的位置，那我们的邻居就再也收不到任何数据了。<br>这种方式相对于ARP攻击要更加隐蔽，对于一些老交换机来说甚至是无法被发现的。</p><h1 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h1><p>现在我们有了邻居的公网IP了。<br>对于Wsocks来说，如此折腾了一圈，最终的目的是个自己加点应对GFW的筹码，而且总的看来只是个花里胡哨的把式而已。但是其实这种hack完全可以带来更多的东西，比如类似旁站攻击的操作，或是嫁祸于人的障眼法。要怎么用，还是看最终想要做什么。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Wsocks实现了一个很有意思的功能。所以写篇文章分享一下这个功能的一些细节。至于是什么样的功能，&lt;strong&gt;听说过伪造IP吗，朋友&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="网络" scheme="http://wooyme.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="hack" scheme="http://wooyme.github.io/tags/hack/"/>
+    
+  </entry>
   
   <entry>
     <title>C++ Macro,  FUCK YOU!</title>
@@ -57,31 +82,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu求生指南(2)</title>
-    <link href="http://wooyme.github.io/2019/05/25/Ubuntu%E6%B1%82%E7%94%9F%E6%8C%87%E5%8D%97-2/"/>
-    <id>http://wooyme.github.io/2019/05/25/Ubuntu求生指南-2/</id>
-    <published>2019-05-25T15:01:59.000Z</published>
-    <updated>2019-05-25T15:17:55.264Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上周把Windows搞没了，不小心用EasyBCD把BCD给删了。然后隔了一周，终于想着要把Windows修一下。结果Windows修好了，Ubuntu <strong>GG</strong> 了。于是花了一个多小时挽救回了Ubuntu，顺便写一篇博客纪念一下。</p><h1 id="先有Ubuntu再有Windows"><a href="#先有Ubuntu再有Windows" class="headerlink" title="先有Ubuntu再有Windows"></a>先有Ubuntu再有Windows</h1><p>一般的双系统顺序总是先有Windows再有Linux，但是总也有意外，比如Windows蹦了，需要重装系统之类的。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;上周把Windows搞没了，不小心用EasyBCD把BCD给删了。然后隔了一周，终于想着要把Windows修一下。结果Windows修好了，
-      
-    
-    </summary>
-    
-    
-      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
-    
-      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
@@ -161,9 +161,9 @@
     </summary>
     
     
-      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
-    
       <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
     
   </entry>
   
@@ -395,9 +395,9 @@
     </summary>
     
     
-      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
-    
       <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
     
   </entry>
   
