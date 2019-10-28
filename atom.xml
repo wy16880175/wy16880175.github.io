@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wooyme.github.io/"/>
-  <updated>2019-08-31T08:27:35.987Z</updated>
+  <updated>2019-10-28T11:00:11.167Z</updated>
   <id>http://wooyme.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ngx-smart-table备忘录</title>
+    <link href="http://wooyme.github.io/2019/10/28/ngx-smart-table%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    <id>http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/</id>
+    <published>2019-10-28T10:25:45.000Z</published>
+    <updated>2019-10-28T11:00:11.167Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>官网</p><blockquote><p><a href="https://akveo.github.io/ng2-smart-table/" target="_blank" rel="noopener">https://akveo.github.io/ng2-smart-table/</a></p></blockquote><p>github</p><blockquote><p><a href="https://github.com/akveo/ng2-smart-table" target="_blank" rel="noopener">https://github.com/akveo/ng2-smart-table</a></p></blockquote><p>examples</p><blockquote><p><a href="https://github.com/akveo/ng2-smart-table/tree/master/projects/demo/src/app/pages" target="_blank" rel="noopener">https://github.com/akveo/ng2-smart-table/tree/master/projects/demo/src/app/pages</a></p></blockquote><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code class="typescript">@Component({  selector: &#39;ngx-data&#39;,  template: `&lt;ng2-smart-table [settings]=&quot;settings&quot; [source]=&quot;source&quot;&gt;`,})export class DataComponent {  option:any;  settings = {    pager: {      display: true,      perPage: 50    },    actions: {  //修改ng2-smart-table自带的action列      add: false,        edit: false,      delete: false,    },    hideSubHeader: true, //隐藏顶栏    columns: {      col1: {        title: &#39;值&#39;,        type: &#39;string&#39;,      },      col2: {        title: &#39;更新时间&#39;,        type: &#39;string&#39;,      },    },  };  source: LocalDataSource;  }</code></pre><h1 id="分页器"><a href="#分页器" class="headerlink" title="分页器"></a>分页器</h1><pre><code class="javascript">pager:{    display: true , //是否显示分页器     perPage: 50 //每页显示数量}</code></pre><h2 id="后端分页"><a href="#后端分页" class="headerlink" title="后端分页"></a>后端分页</h2><p>后端分页可以继承<code>LocalDataSource</code>,写一个新的<code>DataSource</code>，重写<code>getElements()</code>和<code>count()</code>函数</p><pre><code class="typescript">export class MyDataSource extends LocalDataSource {  all: number;  devName: string;  namFilter:string;  constructor(private api: MyService) {    super()  }  count(): number {    return this.all;  }  getElements(): Promise&lt;any&gt; {    return this.api.getData(nameFilter).pipe(map(result=&gt;{  //假设返回为{&#39;count&#39;:100,data:[.......]}        this.all = result.count;        return result.data;    })).toPromise();  }}</code></pre><p>使用方式</p><pre><code class="typescript">source:MyDataSource = new DeviceDataSource(this.api);search(name:string){    this.source.nameFilter = name;    this.source.setPage(1);    this.source.refresh();}</code></pre><h1 id="自定义渲染"><a href="#自定义渲染" class="headerlink" title="自定义渲染"></a>自定义渲染</h1><h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><pre><code class="javascript">columns: {      col1: {        title: &#39;链接&#39;,        type: &#39;html&#39;,      },}</code></pre><p>直接修改值为html代码</p><h2 id="方案2-自定义渲染器"><a href="#方案2-自定义渲染器" class="headerlink" title="方案2 自定义渲染器"></a>方案2 自定义渲染器</h2><pre><code class="typescript">import {Component, Input, OnInit} from &quot;@angular/core&quot;;import {ViewCell} from &quot;ng2-smart-table&quot;;@Component({  template: `    &lt;button (click)=&quot;onClick()&quot;&gt;{{renderValue}}&lt;/button&gt;  `,})export class CustomRender implements ViewCell, OnInit {  renderValue: string;  @Input() value: string | number; //对应列的值  @Input() rowData: any; //本行所有值:{&#39;col1&#39;:&#39;value1&#39;,&#39;col2&#39;,&#39;value2&#39;}  ngOnInit() {    this.renderValue = value;  }  onClick(){      console.log(rowData);  }}</code></pre><pre><code class="typescript">columns: {      col1: {        title: &#39;链接&#39;,        type: &#39;custom&#39;,        renderComponent: CustomRender      },}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;基本信息&quot;&gt;&lt;a href=&quot;#基本信息&quot; class=&quot;headerlink&quot; title=&quot;基本信息&quot;&gt;&lt;/a&gt;基本信息&lt;/h1&gt;&lt;p&gt;官网&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://akveo.github.io/ng2-sm
+      
+    
+    </summary>
+    
+    
+      <category term="Angular" scheme="http://wooyme.github.io/tags/Angular/"/>
+    
+      <category term="备忘录" scheme="http://wooyme.github.io/tags/%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    
+  </entry>
   
   <entry>
     <title>如何强上你的邻居</title>

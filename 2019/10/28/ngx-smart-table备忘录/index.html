@@ -48,7 +48,7 @@
     
     <title>
         
-            归档: 2018 | 
+            ngx-smart-table备忘录 | 
         
         Wooyme&#39;s Blog
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",Angular,备忘录">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -86,6 +86,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/archives/2018/page/2/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -237,13 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/archives/2018/page/2/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2018 | Wooyme&#39;s Blog">
+    <meta property="og:title" content="ngx-smart-table备忘录 | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    
+    <meta property="og:article:tag" content="Angular"> <meta property="og:article:tag" content="备忘录"> 
 
+    
+        <meta property="article:published_time" content="Mon Oct 28 2019 18:25:45 GMT+0800">
+        <meta property="article:modified_time" content="Mon Oct 28 2019 19:00:11 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -251,13 +257,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/archives/2018/page/2/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html",
+    "headline": "ngx-smart-table备忘录",
+    "datePublished": "Mon Oct 28 2019 18:25:45 GMT+0800",
+    "dateModified": "Mon Oct 28 2019 19:00:11 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "我怎么会是正经人呢"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Angular,备忘录",
+    "description": "我怎么会是正经人呢",
+}
+</script>
 
 
     
@@ -291,154 +327,364 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本信息"><span class="post-toc-number">1.</span> <span class="post-toc-text">基本信息</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本用法"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本用法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#分页器"><span class="post-toc-number">2.</span> <span class="post-toc-text">分页器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#后端分页"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">后端分页</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#自定义渲染"><span class="post-toc-number">3.</span> <span class="post-toc-text">自定义渲染</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方案1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">方案1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方案2-自定义渲染器"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">方案2 自定义渲染器</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/02/Vert-x后端漫游指南-2/">Vert.x后端漫游指南(2)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/07/02/Vert-x后端漫游指南-2/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>7月 02, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/01/Vert-x搭建服务端应用入门/">Vert.x后端漫游指南（1）</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/07/01/Vert-x搭建服务端应用入门/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>7月 01, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-    <!-- Index nav -->
-        <nav class="material-nav mdl-cell mdl-cell--12-col">
-            <a class="extend prev" rel="prev" href="/archives/2018/"><button aria-label="Last page" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
-        </nav>
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                ngx-smart-table备忘录
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>10月 28, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Angular/">Angular</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/备忘录/">备忘录</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=ngx-smart-table备忘录&url=http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=ngx-smart-table备忘录&url=http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h1><p>官网</p>
+<blockquote>
+<p><a href="https://akveo.github.io/ng2-smart-table/" target="_blank" rel="noopener">https://akveo.github.io/ng2-smart-table/</a></p>
+</blockquote>
+<p>github</p>
+<blockquote>
+<p><a href="https://github.com/akveo/ng2-smart-table" target="_blank" rel="noopener">https://github.com/akveo/ng2-smart-table</a></p>
+</blockquote>
+<p>examples</p>
+<blockquote>
+<p><a href="https://github.com/akveo/ng2-smart-table/tree/master/projects/demo/src/app/pages" target="_blank" rel="noopener">https://github.com/akveo/ng2-smart-table/tree/master/projects/demo/src/app/pages</a></p>
+</blockquote>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code class="typescript">@Component({
+  selector: &#39;ngx-data&#39;,
+  template: `&lt;ng2-smart-table [settings]=&quot;settings&quot; [source]=&quot;source&quot;&gt;`,
+})
+export class DataComponent {
+  option:any;
+  settings = {
+    pager: {
+      display: true,
+      perPage: 50
+    },
+    actions: {  //修改ng2-smart-table自带的action列
+      add: false,  
+      edit: false,
+      delete: false,
+    },
+    hideSubHeader: true, //隐藏顶栏
+    columns: {
+      col1: {
+        title: &#39;值&#39;,
+        type: &#39;string&#39;,
+      },
+      col2: {
+        title: &#39;更新时间&#39;,
+        type: &#39;string&#39;,
+      },
+    },
+  };
+  source: LocalDataSource;  
+}
+</code></pre>
+<h1 id="分页器"><a href="#分页器" class="headerlink" title="分页器"></a>分页器</h1><pre><code class="javascript">pager:{
+    display: true , //是否显示分页器 
+    perPage: 50 //每页显示数量
+}
+</code></pre>
+<h2 id="后端分页"><a href="#后端分页" class="headerlink" title="后端分页"></a>后端分页</h2><p>后端分页可以继承<code>LocalDataSource</code>,写一个新的<code>DataSource</code>，重写<code>getElements()</code>和<code>count()</code>函数</p>
+<pre><code class="typescript">export class MyDataSource extends LocalDataSource {
+  all: number;
+  devName: string;
+  namFilter:string;
+  constructor(private api: MyService) {
+    super()
+  }
+
+  count(): number {
+    return this.all;
+  }
+
+  getElements(): Promise&lt;any&gt; {
+    return this.api.getData(nameFilter).pipe(map(result=&gt;{  //假设返回为{&#39;count&#39;:100,data:[.......]}
+        this.all = result.count;
+        return result.data;
+    })).toPromise();
+  }
+}
+</code></pre>
+<p>使用方式</p>
+<pre><code class="typescript">source:MyDataSource = new DeviceDataSource(this.api);
+
+search(name:string){
+    this.source.nameFilter = name;
+    this.source.setPage(1);
+    this.source.refresh();
+}
+</code></pre>
+<h1 id="自定义渲染"><a href="#自定义渲染" class="headerlink" title="自定义渲染"></a>自定义渲染</h1><h2 id="方案1"><a href="#方案1" class="headerlink" title="方案1"></a>方案1</h2><pre><code class="javascript">columns: {
+      col1: {
+        title: &#39;链接&#39;,
+        type: &#39;html&#39;,
+      },
+}
+</code></pre>
+<p>直接修改值为html代码</p>
+<h2 id="方案2-自定义渲染器"><a href="#方案2-自定义渲染器" class="headerlink" title="方案2 自定义渲染器"></a>方案2 自定义渲染器</h2><pre><code class="typescript">import {Component, Input, OnInit} from &quot;@angular/core&quot;;
+import {ViewCell} from &quot;ng2-smart-table&quot;;
+
+@Component({
+  template: `
+    &lt;button (click)=&quot;onClick()&quot;&gt;{{renderValue}}&lt;/button&gt;
+  `,
+})
+export class CustomRender implements ViewCell, OnInit {
+  renderValue: string;
+
+  @Input() value: string | number; //对应列的值
+  @Input() rowData: any; //本行所有值:{&#39;col1&#39;:&#39;value1&#39;,&#39;col2&#39;,&#39;value2&#39;}
+
+  ngOnInit() {
+    this.renderValue = value;
+  }
+
+  onClick(){
+      console.log(rowData);
+  }
+}
+</code></pre>
+<pre><code class="typescript">columns: {
+      col1: {
+        title: &#39;链接&#39;,
+        type: &#39;custom&#39;,
+        renderComponent: CustomRender
+      },
+}
+</code></pre>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://wooyme.github.io/2019/10/28/ngx-smart-table备忘录/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//wooymes-blog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/08/31/如何强上你的邻居/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -756,6 +1002,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -768,6 +1018,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
