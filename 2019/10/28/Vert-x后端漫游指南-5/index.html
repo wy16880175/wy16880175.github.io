@@ -48,7 +48,7 @@
     
     <title>
         
-            标签: Vert.x | 
+            Vert.x后端漫游指南(5) | 
         
         Wooyme&#39;s Blog
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",Vert.x,OpenAPI">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -86,6 +86,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/tags/Vert-x/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -237,13 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/tags/Vert-x/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="标签: Vert.x | Wooyme&#39;s Blog">
+    <meta property="og:title" content="Vert.x后端漫游指南(5) | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    
+    <meta property="og:article:tag" content="Vert.x"> <meta property="og:article:tag" content="OpenAPI"> 
 
+    
+        <meta property="article:published_time" content="Mon Oct 28 2019 19:10:14 GMT+0800">
+        <meta property="article:modified_time" content="Mon Oct 28 2019 19:53:12 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -251,13 +257,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/tags/Vert-x/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html",
+    "headline": "Vert.x后端漫游指南(5)",
+    "datePublished": "Mon Oct 28 2019 19:10:14 GMT+0800",
+    "dateModified": "Mon Oct 28 2019 19:53:12 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "我怎么会是正经人呢"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",Vert.x,OpenAPI",
+    "description": "我怎么会是正经人呢",
+}
+</script>
 
 
     
@@ -291,429 +327,289 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#OpenAPI-Generator"><span class="post-toc-number">2.</span> <span class="post-toc-text">OpenAPI Generator</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#usage"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">usage</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#继承Api"><span class="post-toc-number">3.</span> <span class="post-toc-text">继承Api</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/10/28/Vert-x后端漫游指南-5/">Vert.x后端漫游指南(5)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言半年更的
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/10/28/Vert-x后端漫游指南-5/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>10月 28, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/04/24/WSocks疯牛病版技术内幕/">WSocks疯牛病版技术内幕</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            项目地址
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/04/24/WSocks疯牛病版技术内幕/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>4月 24, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/01/17/Vert-x后端漫游指南-4/">Vert.x后端漫游指南(4)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言非常非常久没有...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/01/17/Vert-x后端漫游指南-4/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>1月 17, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/12/16/自己动手写Ss/">自己动手写Ss</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            项目地址
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/12/16/自己动手写Ss/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>12月 16, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/03/Vert-x后端漫游指南-3/">Vert.x后端漫游指南(3)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/07/03/Vert-x后端漫游指南-3/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>7月 03, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/02/Vert-x后端漫游指南-2/">Vert.x后端漫游指南(2)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/07/02/Vert-x后端漫游指南-2/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>7月 02, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2018/07/01/Vert-x搭建服务端应用入门/">Vert.x后端漫游指南（1）</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2018/07/01/Vert-x搭建服务端应用入门/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>7月 01, 2018</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Vert.x后端漫游指南(5)
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>10月 28, 2019</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/OpenAPI/">OpenAPI</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/Vert-x/">Vert.x</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Vert.x后端漫游指南(5)&url=http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Vert.x后端漫游指南(5)&url=http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>半年更的<em>Vert.x后端漫游指南又来了</em> 。这次的tags除了熟悉的<code>Vert.x</code>以外，还多了一个 <code>OpenAPI</code>。要是看过上一篇的话，应该会记得在上一篇中，我们使用了<code>Swagger</code>和<code>Web API Contract</code>来进行API的开发。而本篇我们要用一种更加简单的方式来编写API</p>
+<h1 id="OpenAPI-Generator"><a href="#OpenAPI-Generator" class="headerlink" title="OpenAPI Generator"></a>OpenAPI Generator</h1><p>github</p>
+<blockquote>
+<p><a href="https://github.com/OpenAPITools/openapi-generator" target="_blank" rel="noopener">https://github.com/OpenAPITools/openapi-generator</a></p>
+</blockquote>
+<p>首先介绍一下<strong>openapi-generator</strong>，这是一个代码生成工具，可以看到在github上已经有超过3.5k的star。这个工具其实就是swagger的升级版，并且采用了社区化的开发方式，也就是说其他开发者也可以为开发团队提供代码，将自己想要的功能添加到openapi-generator中去。  </p>
+<p>在老版本的openapi-generator中，已经集成了<strong>java-vertx</strong>的生成器，而在最新的4.2.0版本(<a href="https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/4.2.0-SNAPSHOT/openapi-generator-cli-4.2.0-20191018.031007-71.jar)中加入了**kotlin-vertx(beta)**。于是*Vert.x后端漫游指南5*就有了着落。" target="_blank" rel="noopener">https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/4.2.0-SNAPSHOT/openapi-generator-cli-4.2.0-20191018.031007-71.jar)中加入了**kotlin-vertx(beta)**。于是*Vert.x后端漫游指南5*就有了着落。</a></p>
+<p>顺带一提，<strong>kotlin-vertx</strong>的贡献者是我。再顺带一提，<strong>有bug</strong>。</p>
+<h2 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h2><p>下载openapi-generator之后，从终端启动</p>
+<pre><code>java -jar openapi-generator-cli-4.2.0.jar generate -g kotlin-vertx -i example.yaml -o server
+</code></pre><p>会生成出一个<code>server</code>文件夹，里面是一个完整的<em>maven</em>工程。在其中的verticle目录下，可以看到三种文件，分别是<code>XXApi</code><br>,<code>XXApiVerticle</code>和<code>XXApiVertxProxyHandler</code>，而我们要做的只有新建一个<code>XXApiImpl</code>，继承<code>XXApi</code>，实现里面的所有方法。</p>
+<h1 id="继承Api"><a href="#继承Api" class="headerlink" title="继承Api"></a>继承Api</h1><p>Api文件中大概是这个样子的</p>
+<pre><code class="kotlin">interface MyApi  {
+    suspend fun listData(deviceId:kotlin.String?,sensorId:kotlin.Int?,offset:kotlin.Int?,limit:kotlin.Int?,start:kotlin.Long?,end:kotlin.Long?,context:OperationRequest):Response&lt;kotlin.Array&lt;Data&gt;&gt;
+    companion object {
+        const val address = &quot;MyApi-service&quot;
+        suspend fun createRouterFactory(vertx: Vertx,path:String): io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory {
+            val routerFactory = OpenAPI3RouterFactory.createAwait(vertx,path)
+            routerFactory.addGlobalHandler(CookieHandler.create())
+            routerFactory.addGlobalHandler(SessionHandler.create(LocalSessionStore.create(vertx)))
+            routerFactory.setExtraOperationContextPayloadMapper{
+                JsonObject().put(&quot;files&quot;,JsonArray(it.fileUploads().map { it.uploadedFileName() }))
+            }
+            val opf = routerFactory::class.java.getDeclaredField(&quot;operations&quot;)
+            opf.isAccessible = true
+            val operations = opf.get(routerFactory) as Map&lt;String, Any&gt;
+            for (m in LinkApi::class.java.methods) {
+                val methodName = m.name
+                val op = operations[methodName]
+                if (op != null) {
+                    val method = op::class.java.getDeclaredMethod(&quot;mountRouteToService&quot;,String::class.java,String::class.java)
+                    method.isAccessible = true
+                    method.invoke(op,address,methodName)
+                }
+            }
+            routerFactory.mountServiceInterface(LinkApi::class.java, address)
+            return routerFactory
+        }
+    }
+}
+</code></pre>
+<p>其中，<code>companion object</code>是Api自己的东西，我们要自己重写<code>listData</code>方法。到这里就跟上一篇很像了，包括所使用的OperationRequest也是和上一篇中一模一样。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//wooymes-blog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/10/28/ngx-smart-table备忘录/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -871,6 +767,14 @@ It will not impact the appearance and can give developers a lot of support :)
                     
 
                     
+                        <!-- Footer Top Button -->
+                        <div id="back-to-top" class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
 
                     <!--Footer-->
 <footer class="mdl-mini-footer" id="bottom">
@@ -1023,6 +927,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -1035,6 +943,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     

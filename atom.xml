@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wooyme.github.io/"/>
-  <updated>2019-10-28T11:00:11.167Z</updated>
+  <updated>2019-10-28T11:53:12.720Z</updated>
   <id>http://wooyme.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vert.x后端漫游指南(5)</title>
+    <link href="http://wooyme.github.io/2019/10/28/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-5/"/>
+    <id>http://wooyme.github.io/2019/10/28/Vert-x后端漫游指南-5/</id>
+    <published>2019-10-28T11:10:14.000Z</published>
+    <updated>2019-10-28T11:53:12.720Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>半年更的<em>Vert.x后端漫游指南又来了</em> 。这次的tags除了熟悉的<code>Vert.x</code>以外，还多了一个 <code>OpenAPI</code>。要是看过上一篇的话，应该会记得在上一篇中，我们使用了<code>Swagger</code>和<code>Web API Contract</code>来进行API的开发。而本篇我们要用一种更加简单的方式来编写API</p><h1 id="OpenAPI-Generator"><a href="#OpenAPI-Generator" class="headerlink" title="OpenAPI Generator"></a>OpenAPI Generator</h1><p>github</p><blockquote><p><a href="https://github.com/OpenAPITools/openapi-generator" target="_blank" rel="noopener">https://github.com/OpenAPITools/openapi-generator</a></p></blockquote><p>首先介绍一下<strong>openapi-generator</strong>，这是一个代码生成工具，可以看到在github上已经有超过3.5k的star。这个工具其实就是swagger的升级版，并且采用了社区化的开发方式，也就是说其他开发者也可以为开发团队提供代码，将自己想要的功能添加到openapi-generator中去。  </p><p>在老版本的openapi-generator中，已经集成了<strong>java-vertx</strong>的生成器，而在最新的4.2.0版本(<a href="https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/4.2.0-SNAPSHOT/openapi-generator-cli-4.2.0-20191018.031007-71.jar)中加入了**kotlin-vertx(beta)**。于是*Vert.x后端漫游指南5*就有了着落。" target="_blank" rel="noopener">https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/4.2.0-SNAPSHOT/openapi-generator-cli-4.2.0-20191018.031007-71.jar)中加入了**kotlin-vertx(beta)**。于是*Vert.x后端漫游指南5*就有了着落。</a></p><p>顺带一提，<strong>kotlin-vertx</strong>的贡献者是我。再顺带一提，<strong>有bug</strong>。</p><h2 id="usage"><a href="#usage" class="headerlink" title="usage"></a>usage</h2><p>下载openapi-generator之后，从终端启动</p><pre><code>java -jar openapi-generator-cli-4.2.0.jar generate -g kotlin-vertx -i example.yaml -o server</code></pre><p>会生成出一个<code>server</code>文件夹，里面是一个完整的<em>maven</em>工程。在其中的verticle目录下，可以看到三种文件，分别是<code>XXApi</code><br>,<code>XXApiVerticle</code>和<code>XXApiVertxProxyHandler</code>，而我们要做的只有新建一个<code>XXApiImpl</code>，继承<code>XXApi</code>，实现里面的所有方法。</p><h1 id="继承Api"><a href="#继承Api" class="headerlink" title="继承Api"></a>继承Api</h1><p>Api文件中大概是这个样子的</p><pre><code class="kotlin">interface MyApi  {    suspend fun listData(deviceId:kotlin.String?,sensorId:kotlin.Int?,offset:kotlin.Int?,limit:kotlin.Int?,start:kotlin.Long?,end:kotlin.Long?,context:OperationRequest):Response&lt;kotlin.Array&lt;Data&gt;&gt;    companion object {        const val address = &quot;MyApi-service&quot;        suspend fun createRouterFactory(vertx: Vertx,path:String): io.vertx.ext.web.api.contract.openapi3.OpenAPI3RouterFactory {            val routerFactory = OpenAPI3RouterFactory.createAwait(vertx,path)            routerFactory.addGlobalHandler(CookieHandler.create())            routerFactory.addGlobalHandler(SessionHandler.create(LocalSessionStore.create(vertx)))            routerFactory.setExtraOperationContextPayloadMapper{                JsonObject().put(&quot;files&quot;,JsonArray(it.fileUploads().map { it.uploadedFileName() }))            }            val opf = routerFactory::class.java.getDeclaredField(&quot;operations&quot;)            opf.isAccessible = true            val operations = opf.get(routerFactory) as Map&lt;String, Any&gt;            for (m in LinkApi::class.java.methods) {                val methodName = m.name                val op = operations[methodName]                if (op != null) {                    val method = op::class.java.getDeclaredMethod(&quot;mountRouteToService&quot;,String::class.java,String::class.java)                    method.isAccessible = true                    method.invoke(op,address,methodName)                }            }            routerFactory.mountServiceInterface(LinkApi::class.java, address)            return routerFactory        }    }}</code></pre><p>其中，<code>companion object</code>是Api自己的东西，我们要自己重写<code>listData</code>方法。到这里就跟上一篇很像了，包括所使用的OperationRequest也是和上一篇中一模一样。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;半年更的&lt;em&gt;Vert.x后端漫游指南又来了&lt;/em&gt; 。这次的tags除了熟悉的&lt;code&gt;Vert.x&lt;/code&gt;以外，还多了一个 
+      
+    
+    </summary>
+    
+    
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
+    
+      <category term="OpenAPI" scheme="http://wooyme.github.io/tags/OpenAPI/"/>
+    
+  </entry>
   
   <entry>
     <title>ngx-smart-table备忘录</title>
@@ -132,9 +157,9 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
-    
       <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
+    
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
       <category term="C/C++" scheme="http://wooyme.github.io/tags/C-C/"/>
     
@@ -188,9 +213,9 @@
     </summary>
     
     
-      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
       <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
+    
+      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
@@ -199,7 +224,7 @@
     <link href="http://wooyme.github.io/2019/01/17/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-4/"/>
     <id>http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/</id>
     <published>2019-01-17T10:09:03.000Z</published>
-    <updated>2019-01-17T12:57:28.000Z</updated>
+    <updated>2019-10-28T11:09:43.563Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>非常非常久没有更新 <em>Vert.x后端漫游指南</em> 了。主要是因为之前觉得Vert.x的Web后端实在是没有什么好写的，都是一些常规操作。再者，也有很长一段时间没有碰Vert.x的后端开发了。但是呢，因为打算做一个Vert.x全栈的服务端应用，所以又把Web后端的部分拿出来了。</p><h1 id="API？"><a href="#API？" class="headerlink" title="API？"></a>API？</h1><p>虽然Vertx-Web也支持模板引擎这类的东西，但是无论是从潮流还是从Vertx支持程度的角度来看，前后端分离的开发方式更加适合现在的Web开发。那么既然前后端分离，提供一套完整、合理的API就非常重要了。<br>回顾一下之前的 <em>Vert.x后端漫游指南</em> ,我们使用了<code>Router.route(&quot;/api/path&quot;)</code>的方式来设置API。这种方式非常的简单粗暴，没有注解，没有配置文件，完完全全的硬编码。对于单人开发的简单服务来说，这样当然是没有问题的。但是当有了开发团队，需要前后端沟通的时候，这种硬编码的方式就变得很麻烦了。<br>一方面这意味着还得再单独写一份API文档给前端，</p><blockquote><p>程序员最讨厌两种事情，一是没有文档，二是写文档。</p></blockquote><p>另一方面是一旦要做什么修改，就必须要重新编译程序。  </p><h1 id="Swagger-amp-OpenAPI"><a href="#Swagger-amp-OpenAPI" class="headerlink" title="Swagger &amp; OpenAPI"></a>Swagger &amp; OpenAPI</h1><blockquote><p>Swagger <a href="https://swagger.io/" target="_blank" rel="noopener">https://swagger.io/</a></p></blockquote><blockquote><p>OpenApi <a href="https://www.openapis.org/" target="_blank" rel="noopener">https://www.openapis.org/</a></p></blockquote><p>OpenAPI和Swagger给API开发带来了不一样的体验。Swagger是一套非常完善的API开发工具，最新的版本已经提供了对OpenAPI 3.0 的支持。</p><h2 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h2><p>Swagger使用yaml作为配置文件，</p><pre><code class="yaml">openapi: 3.0.0info:    title: Sample API    description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.    version: 0.1.9servers:  - url: /v1    description: Optional server description, e.g. Main (production) server  - url: http://staging-api.example.com    description: Optional server description, e.g. Internal staging server for testing    paths:    /api/transactions/{id}:        get:            operationId: getTransactionsList            parameters:                -   name: id                    in: path                    required: true                    schema:                        type: string                     -   name: from                    in: query                    required: false                    schema:                        type: string                -   name: to                    in: query                    required: false                    schema:                        type: string            responses:                 200:                    content:                        application/json:                            schema:                                type: object        put:            operationId: putTransaction            parameters:                -   name: id                    in: path                    required: true                    schema:                        type: string            requestBody:                required: true                content:                    application/json:                        schema:                            type: object                            properties:                                from:                                    type: string                                    format: email                                to:                                    type: string                                    format: email                                value:                                    type: number                                    format: double                            additionalProperties: false                            required:                                - from                                - to                                - value            responses: ...</code></pre><p>大致上就是这个样子,详细的关于swagger中yaml配置的编写可以看官方文档</p><blockquote><p><a href="https://swagger.io/docs/specification/basic-structure/" target="_blank" rel="noopener">https://swagger.io/docs/specification/basic-structure/</a></p></blockquote><p>总体来说就是把原来的硬编码改成了文件配置的模式。通过<code>paths</code>和<code>get</code>,<code>put</code>,<code>post</code>,<code>delete</code>一起组成各种API，同时也通过<code>parameters</code>和<code>requestBody</code>规定了各个API所需的参数，以及最后的<code>responses</code>用于规定服务端返回的数据结构。  </p><h2 id="Swagger-Codegen"><a href="#Swagger-Codegen" class="headerlink" title="Swagger-Codegen"></a>Swagger-Codegen</h2><p>有了配置文件之后当然还是要能够生成对应的代码才行。Swagger提供了Swagger-Codegen来生成各种语言、框架的服务端和客户端代码。</p><blockquote><p><a href="https://github.com/swagger-api/swagger-codegen" target="_blank" rel="noopener">https://github.com/swagger-api/swagger-codegen</a></p></blockquote><p>如果要使用<strong>OpenAPI 3.0</strong>的话就必须要安装3.0.0版本以上的Swagger-Codegen。目前由于这个工具还在频繁的更新中，所以bug也是挺多的，特别是在客户端代码的部分，前几天就遇到生成的<code>typescript-angular</code>的代码里没有把body放到<code>post</code>和<code>put</code>的参数里的问题。<br>如果开发的时候遇到了不可理喻的问题，就去issues里看看吧。</p><h1 id="Vert-x的Web-API-Contract"><a href="#Vert-x的Web-API-Contract" class="headerlink" title="Vert.x的Web API Contract"></a>Vert.x的Web API Contract</h1><p>在写完Swagger之后呢，就要来看看Vert.x的Web API Contract了。为什么明明有Swagger了，Vert.x的团队还要搞个Contract呢，因为<strong>Swagger不支持Vert.x</strong>( 笑 。Swagger虽然已经支持很多主流框架了，但是很明显Vert.x还不是那么的”主流”。</p><blockquote><p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-contract/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-contract/java/</a></p></blockquote><h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>Maven</p><pre><code class="xml">&lt;dependency&gt; &lt;groupId&gt;io.vertx&lt;/groupId&gt; &lt;artifactId&gt;vertx-web-api-contract&lt;/artifactId&gt; &lt;version&gt;3.6.2&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>Gradle</p><pre><code class="Groovy">dependencies { compile &#39;io.vertx:vertx-web-api-contract:3.6.2&#39;}</code></pre><h2 id="创建一个工厂"><a href="#创建一个工厂" class="headerlink" title="创建一个工厂"></a>创建一个工厂</h2><pre><code class="Java">OpenAPI3RouterFactory.create(vertx, &quot;yaml的路径,支持本地文件或是http、https的地址&quot;, ar -&gt; {  if (ar.succeeded()) {    //得到了一个路由工厂    OpenAPI3RouterFactory routerFactory = ar.result();  } else {    Throwable exception = ar.cause();  }});</code></pre><p>得到这样一个工厂之后，就可以添加各种处理器</p><pre><code class="Java">routerFactory.addHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {  RequestParameters params = routingContext.get(&quot;parsedParameters&quot;);  RequestParameter body = params.body();  JsonObject jsonBody = body.getJsonObject();  // Do something with body});routerFactory.addFailureHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {  // Handle failure});</code></pre><p>这里的<code>OperationId</code>就对应了yaml文件中的<code>OperationId</code>，对于需要做权限控制的路由，还可以添加<code>Security Handler</code></p><pre><code class="Java">routerFactory.addSecurityHandler(&quot;security_scheme_name&quot;, securityHandler);</code></pre><p>对于之前我们用到的SessionHandler、CookieHandler，可以通过调用<code>addGlobalHandler</code>的方式来添加。需要注意的是BodyHandler不能用<code>addGlobalHandler</code>，<code>OpenAPI3RouterFactory</code>为它提供了专门的方法。</p><p>在添加完处理器之后，就可以生产路由了</p><pre><code class="Java">Router router = routerFactory.getRouter();HttpServer server = vertx.createHttpServer(new HttpServerOptions().setPort(8080).setHost(&quot;localhost&quot;));server.requestHandler(router).listen();</code></pre><p>这部分跟之前相差无几，唯一要注意的是<code>router::accept</code>已经被弃用了，现在直接向<code>requestHandler</code>传递<code>router</code>就可以了。</p><h1 id="Vert-x的Web-API-Service"><a href="#Vert-x的Web-API-Service" class="headerlink" title="Vert.x的Web API Service"></a>Vert.x的Web API Service</h1><blockquote><p>Contract之后再来个Service是要干什么。</p></blockquote><p>各位肯定也都发现了，Web API Contract用起来是一点都不方便，先不说每个处理器都要通过<code>operationId</code>单独绑定，就说处理器得到的参数吧，一点都不智能，完全没有用到Yaml中配置的<code>parameters</code>，参数还是要像以前一样从<code>RoutingContext</code>里获取。<br>为了获得更好的开发体验，就必须要引入Web API Service了。</p><blockquote><p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-service/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-service/java/</a></p></blockquote><h2 id="构建-1"><a href="#构建-1" class="headerlink" title="构建"></a>构建</h2><p>Maven</p><pre><code class="xml">&lt;dependency&gt; &lt;groupId&gt;io.vertx&lt;/groupId&gt; &lt;artifactId&gt;vertx-codegen&lt;/artifactId&gt; &lt;version&gt;3.6.2&lt;/version&gt; &lt;classifier&gt;processor&lt;/classifier&gt;&lt;/dependency&gt;&lt;dependency&gt; &lt;groupId&gt;io.vertx&lt;/groupId&gt; &lt;artifactId&gt;vertx-web-api-service&lt;/artifactId&gt; &lt;version&gt;3.6.2&lt;/version&gt;&lt;/dependency&gt;</code></pre><p>Gradle</p><pre><code class="Groovy">dependencies { compile &#39;io.vertx:vertx-codegen:3.6.2:processor&#39; compile &#39;io.vertx:vertx-web-api-service:3.6.2&#39;}</code></pre><p>可以看到，除了<code>vertx-web-api-service</code>以外，还引入了<code>vertx-codegen</code>。在codegen面前，没有什么问题是解决不了的。</p><h2 id="使用Interface"><a href="#使用Interface" class="headerlink" title="使用Interface"></a>使用Interface</h2><pre><code class="Java">@WebApiServiceGeninterface TransactionService { void getTransactionsList(String from, String to, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler); void putTransaction(JsonObject body, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler);}</code></pre><p>Web API Service提供了另一种绑定handler的方式。接口中的方法名称需要和<code>operationId</code>相同，其中的参数也需要和<code>parameters</code>相同，需要注意的是如果使用<code>requestBody</code>，则对应<code>JsonObject body</code>。最后的<code>OperationRequest context</code>和<code>Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler</code>是必须写的部分。分别代表了请求的额外信息和响应的对象。</p><ul><li>OperationRequest<ul><li>getHeaders 请求头信息</li><li>getParams 请求参数</li><li>getUser 如果使用Auth，User就在这里</li><li>getExtra 可以通过向RouterFactory添加<code>setExtraOperationContextPayloadMapper</code>来<strong>额外设置extra</strong>，这个很重要,通过这种方式可以把session带到handler里来。</li></ul></li><li>OperationResponses<ul><li>响应头</li><li>响应状态</li><li>响应主体</li></ul></li></ul><h2 id="添加Service到RouterFactory"><a href="#添加Service到RouterFactory" class="headerlink" title="添加Service到RouterFactory"></a>添加Service到RouterFactory</h2><pre><code class="Kotlin">OpenAPI3RouterFactory.create(vertx,&quot;yaml文件路径&quot;){    val serviceImpl = ServiceImpl()    ServiceBinder(vertx)        .setAddress(&quot;my-service&quot;)        .register(Service::class.java,ServiceImpl)    it.result().mountServiceInterface(Service::class.java,&quot;my-service&quot;)    //因为Web API Contract并不会处理yaml中的servers，所以需要自己设置sub-router    val router = Router.router(vertx).mountSubRouter(&quot;/api&quot;,it.result().router)    vertx.createHttpServer().requestHandler(router).listen(80){        logger.info(&quot;Listen at 80&quot;)    }    }</code></pre><p>这样就可以非常方便的使用Vert.x的Web API Service了。</p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>在使用了OpenAPI之后，Vert.x的后端开发就算是比较完整了。这种开发方式也能给前端开发提供很多便利，比硬编码的模式要更加适合现在的开发形式。</p>]]></content>
     
@@ -212,6 +237,8 @@
     
     </summary>
     
+    
+      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
     
   </entry>
   
@@ -321,9 +348,9 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
-    
       <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
+    
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
       <category term="VPN" scheme="http://wooyme.github.io/tags/VPN/"/>
     
@@ -422,9 +449,9 @@
     </summary>
     
     
-      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
-    
       <category term="Ubuntu" scheme="http://wooyme.github.io/tags/Ubuntu/"/>
+    
+      <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
     
   </entry>
   
@@ -447,9 +474,9 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
-    
       <category term="杂谈" scheme="http://wooyme.github.io/tags/%E6%9D%82%E8%B0%88/"/>
+    
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
   </entry>
   
@@ -490,29 +517,6 @@
       
       
         &lt;h2 id=&quot;1-前情提要&quot;&gt;&lt;a href=&quot;#1-前情提要&quot; class=&quot;headerlink&quot; title=&quot;1.前情提要&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.前情提要&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;上一篇我们已经学会了怎么实现一个最简单的Http服务端。这一篇我们会介绍怎
-      
-    
-    </summary>
-    
-    
-      <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vert.x后端漫游指南（1）</title>
-    <link href="http://wooyme.github.io/2018/07/01/Vert-x%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BA%94%E7%94%A8%E5%85%A5%E9%97%A8/"/>
-    <id>http://wooyme.github.io/2018/07/01/Vert-x搭建服务端应用入门/</id>
-    <published>2018-07-01T14:40:34.000Z</published>
-    <updated>2018-07-04T17:48:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="1-为什么是Vert-x"><a href="#1-为什么是Vert-x" class="headerlink" title="1.为什么是Vert.x"></a><strong>1.为什么是Vert.x</strong></h2><p>如果你从来没有听说过Vert.x，不要觉得是自己孤陋寡闻或是被时代抛弃了。Vert.x是一个非常小众的服务端框架，我也举不出某个大厂商将Vert.x作为它们后端技术栈的例子，但是这并不能说明Vert.x不够优秀，Vert.x不火很大程度上是因为它没有那些惊世骇俗的噱头，同时它实在是太年轻了。<br>学习这样一个小众的框架往往是要付出许多代价的，无论是大段的报错信息还是连报错信息都没有的错误，小众的东西总是让我们费劲心思。好在Vert.x并不属于这一类的小众，Vert.x的文档非常详细(包括中文文档)，并且它的源码注释也非常符合规范，配合文档以及注释，想要学习这个框架还是非常容易的。<br>那么问题来了，在现在这个框架爆炸的时代，我们为什么还要学习Vert.x呢？是啊，现在的框架是真的多，好像不管是什么样的语言都可以来写后端服务了，js有express，python有django，go、java、ruby就更不用说了。那Vert.x到底有什么优势呢？  </p><h4 id="优势"><a href="#优势" class="headerlink" title="优势:"></a>优势:</h4><ul><li><em>运行在JVM上</em><br>也许你不认为运行在JVM上会是一个框架的优势，毕竟JVM上已经有许多非常成熟的解决方案了，大名鼎鼎的Spring，J2EE，这样一个不出名的框架要怎么与这些老牌强者抗衡，但是Vert.x就是可以，因为它与众不同。运行在JVM上让它可以很轻松的利用Java庞大的生态，各种工具，各种成熟的技术还有现在让许多框架头疼的多线程问题。</li><li><em>事件循环以及异步</em><br>如果你了解Netty的话，你对事件循环和异步一定不会陌生，并且我可以告诉你Vert.x的底层实现就是Netty。如果你从来没有听说过Netty那也没关系，我想你多半听说过nodejs，通俗的来说Vert.x就是运行在JVM上的Nodejs。他们都有一个Eventloop，他们的所有API都是异步的，他们都遵守”Don’t call us,we’ll call you”的原则。只不过Vert.x更加自由，更加安全。异步很大的一个好处是将逻辑与I/O分离，逻辑的部分干逻辑的事，I/O的部分干I/O的事，因为I/O往往是耗时严重的，所以等到I/O完成了自己的工作后再来召唤逻辑，而在I/O工作的时候逻辑就去做其他的事情，这样两方都不会有干等着的时候。</li><li><em>多语言支持</em><br>JVM的优势在这种时候体现的淋漓尽致，除了JVM以外，还有哪个平台能够做到同时运行多种语言呢？.Net吗。Vert.x支持7种语言，Java(个人认为，Java是最不适合的。至少目前是这样，Java10应该会有所改观), JavaScript, Groovy, Ruby, Ceylon, Scala and Kotlin，并且这种支持不是简单的因为大家都能运行在JVM上。Vert.x为这些语言提供了属于他们自己的API。</li><li><em>不仅仅是Web,不仅仅是服务</em><br>没错，不仅仅是Web，Vert.x提供的不仅仅是对Web的支持。Vert.x是个插件化的框架，它的核心部分实际上非常的简练。这个核心提供了TCP，UDP甚至是DNS的服务端，也提供了简单的HTTP服务端。在这个核心的基础上，我们可以添加其他的插件，使这个框架能够胜任Web服务端的工作。如果我们碰巧需要一个客户端的话 —— 想象我们现在要开发一个代理工作，我们就同时需要一个服务端和一个客户端 —— 那Vert.x简直就是不二之选，DNSClient,HttpClient,NetClient,DatagramSocketClient，我们想要的它都能提供。</li></ul><p>那么同样的，任何事物都有好的与坏的，如果有某样东西完美了，那它为什么还会有竞争对手</p><h4 id="劣势"><a href="#劣势" class="headerlink" title="劣势:"></a>劣势:</h4><ul><li><em>上手困难</em><br>不是所有人都能轻松的理解异步的，特别是在java里有很多同步代码的情况下，比如JDBC，习惯了同步的人很容易一不小心就忘了自己在一个异步的世界里，然后阻塞了Eventloop,接着有幸看到Vert.x抛出的超时异常。没错，Vert.x是会检测运行时间的，如果某段代码超时了，你会看到一个非常醒目的异常。</li><li>没了  </li></ul><h2 id="2-跨出的一小步"><a href="#2-跨出的一小步" class="headerlink" title="2.跨出的一小步"></a><strong>2.跨出的一小步</strong></h2><p>说了这么多，不如来看一看怎么写一个简单的http服务端吧。这个入门应该会出一个系列，从第一个服务端程序到一个比较完整的后端。可能会涉及到一点后端渲染，但是其实我不太喜欢后端渲染的东西。前端渲染有很多好处，无论是CDN还是利用浏览器的缓存，前端渲染都能减轻服务器负担。<br>首先，我们需要Vert.x。这个可以在Vert.x的官方网站上获取到</p><blockquote><p><a href="https://vertx.io/download/" target="_blank" rel="noopener">https://vertx.io/download/</a></p></blockquote><p>官网甚至提供了一个构建Vert.x工程的工具</p><blockquote><p><a href="http://start.vertx.io/" target="_blank" rel="noopener">http://start.vertx.io/</a></p></blockquote><p>如果你不知道怎么配置的话，可以直接在这里开始。<br>在这个系列里，我可能不常使用Java，而更加倾向于使用Kotlin。因为Kotlin和Vert.x的契合度非常高，Kotlin提供的协程可以很好的解决一些因为异步导致的问题，并且Kotlin完全兼容Java的特点也让Kotlin在许多其他语言中脱颖而出。<br>那让我们来看一个最简单的Http服务端是怎么实现的。</p><pre><code class="Kotlin">import io.vertx.core.Vertxfun main(args:Array&lt;String&gt;){  val vertx = Vertx.vertx()  vertx.createHttpServer().requestHandler{    it.response().end(&quot;Welcome to our first Http Server!&quot;)  }.listen(80){    if(it.failed())      it.cause.printStackTrace()    else      println(&quot;Listening on 80&quot;)  }}</code></pre><p>这是用Kotlin实现一个简单HttpServer的版本。如果你从来没有接触过Kotlin的话，你只要记住一点func{}等于func({}),函数的最后一个lambda参数是可以放到小括号外面去的。然后对于只有一个参数的lambda，这个参数默认的名称叫做it。<br>我们可以看看这段代码到底做了什么。首先，我们得到了一个vertx对象，这个vertx是一切的起源。接着我们调用了createHttpServer方法，创建了一个Server。在创建完Server之后我们为它添加了一个handler，可以看到，Vert.x的API大多是流式的，写起来非常漂亮，fp的美感。在Kotlin里，这个handler表现为一个lambda，实际上这个requestHandler所需要的参数是一个Handler<httpserverrequest>接口，所以在Java里，写法就变成了</httpserverrequest></p><pre><code class="Java">vertx.createHttpServer().requestHandler(new Handler&lt;HttpServerRequest&gt;(){  @Override  void handle(HttpServerRequest req){    req.response().end(&quot;Welcome to our first Http Server!&quot;);  }});</code></pre><p>当然这种写法比较过时，java8已经加入了lambda，但是为了更加清晰一点，这里我把这种原始的版本表示出来。<br>这个handler是在服务端启动后，每当有用户访问我们的服务端，服务端就会返回一个欢迎词，就像nginx的默认页面一样。同样的，listen也是差不多的过程，第一个参数是监听的端口，第二个参数则是用来处理监听结果的handler，这个handler在端口成功打开或是打开失败的时候被调用，所以我们可以知道我们的服务端有没有成功运行。<br>其实这里异步的特点就已经有所体现了，我们没有等待用户访问，也没有等待端口打开，所有的一切都是异步的。当有结果的时候，Vert.x就会来调用我们设定的handler，而当没有结果的时候，Evnetloop就会在那里自己循环，只要我们不写阻塞代码，Eventloop就永远不会停止循环。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a><em>小结</em></h2><p>第一篇就大概介绍一下Vert.x的理念，实际上Vert.x的许多特性比介绍的要复杂的多，有兴趣的人可以去看中问文档，里面有讲关于Verticle的，关于分布式的，以及一些类似于热部署的。这里写的一个例子也非常的简单，但是如果你从来没有接触过异步，这对你来说可能是个挑战。你得明白，为什么这段代码不是按照顺序执行的，以及什么是lambda(这个不是非常重要，lambda只是一种表现形式而已，我们实例化一个接口也完全可以实现同样的功能)。<br>下一篇应该是会讲请求的处理，get的和post的，以及Router这个扩展。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;1-为什么是Vert-x&quot;&gt;&lt;a href=&quot;#1-为什么是Vert-x&quot; class=&quot;headerlink&quot; title=&quot;1.为什么是Vert.x&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.为什么是Vert.x&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;如果你从来没有听说过Ver
       
     
     </summary>
