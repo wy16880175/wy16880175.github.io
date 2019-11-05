@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>Cmake备忘录</title>
+      <link href="/2019/11/04/Cmake%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+      <url>/2019/11/04/Cmake%E5%A4%87%E5%BF%98%E5%BD%95/</url>
+      <content type="html"><![CDATA[<h1 id="JNI"><a href="#JNI" class="headerlink" title="JNI"></a>JNI</h1><pre><code>include_directories(        /PATH/TO/JDK/include)</code></pre><p>其他头文件同理<br>例：</p><pre><code>cmake_minimum_required(VERSION 3.14)project(JNI)set(CMAKE_CXX_STANDARD 14)include_directories(        /usr/local/graalvm/19.1.1/include)add_library(JNI SHARED library.cpp JNI.h)</code></pre><h1 id="linker-flags"><a href="#linker-flags" class="headerlink" title="linker flags"></a>linker flags</h1><pre><code>set (CMAKE_SHARED_LINKER_FLAGS &quot;-lpthread&quot;)</code></pre>]]></content>
+      
+      
+        <tags>
+            
+            <tag> C/C++ </tag>
+            
+            <tag> Cmake </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Vert.x后端漫游指南(5)</title>
       <link href="/2019/10/28/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-5/"/>
       <url>/2019/10/28/Vert-x%E5%90%8E%E7%AB%AF%E6%BC%AB%E6%B8%B8%E6%8C%87%E5%8D%97-5/</url>
@@ -86,11 +103,11 @@
       
         <tags>
             
-            <tag> Vert.x </tag>
+            <tag> C/C++ </tag>
             
             <tag> Kotlin </tag>
             
-            <tag> C/C++ </tag>
+            <tag> Vert.x </tag>
             
             <tag> 网络协议 </tag>
             
@@ -217,9 +234,9 @@
       
         <tags>
             
-            <tag> Vert.x </tag>
-            
             <tag> Kotlin </tag>
+            
+            <tag> Vert.x </tag>
             
             <tag> VPN </tag>
             
