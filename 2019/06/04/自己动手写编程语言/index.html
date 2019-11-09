@@ -48,7 +48,7 @@
     
     <title>
         
-            Nginx配置fastcgi-perl | 
+            自己动手写编程语言（1） | 
         
         Wooyme&#39;s Blog
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content=",Nginx,perl,运维">
+    <meta name="keywords" content="">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -225,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/06/04/自己动手写编程语言/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -240,16 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/06/04/自己动手写编程语言/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Nginx配置fastcgi-perl | Wooyme&#39;s Blog">
+    <meta property="og:title" content="自己动手写编程语言（1） | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    <meta property="og:article:tag" content="Nginx"> <meta property="og:article:tag" content="perl"> <meta property="og:article:tag" content="运维"> 
+    
 
     
-        <meta property="article:published_time" content="Sat Sep 08 2018 14:56:59 GMT+0800">
-        <meta property="article:modified_time" content="Sat Sep 08 2018 15:17:06 GMT+0800">
+        <meta property="article:published_time" content="Tue Jun 04 2019 23:09:50 GMT+0800">
+        <meta property="article:modified_time" content="Sat Nov 09 2019 21:13:52 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -269,10 +269,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html",
-    "headline": "Nginx配置fastcgi-perl",
-    "datePublished": "Sat Sep 08 2018 14:56:59 GMT+0800",
-    "dateModified": "Sat Sep 08 2018 15:17:06 GMT+0800",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html",
+    "headline": "自己动手写编程语言（1）",
+    "datePublished": "Tue Jun 04 2019 23:09:50 GMT+0800",
+    "dateModified": "Sat Nov 09 2019 21:13:52 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Wooyme",
@@ -290,7 +290,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",Nginx,perl,运维",
+    "keywords": "",
     "description": "我怎么会是正经人呢",
 }
 </script>
@@ -356,7 +356,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正文"><span class="post-toc-number">2.</span> <span class="post-toc-text">正文</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坑"><span class="post-toc-number">3.</span> <span class="post-toc-text">坑</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">前期准备</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#去他妈的整数"><span class="post-toc-number">3.</span> <span class="post-toc-text">去他妈的整数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浮点数的语法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">浮点数的语法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#重新生成文件"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">重新生成文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#浮点数的实现"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">浮点数的实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重新编译"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">重新编译</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#字符串"><span class="post-toc-number">4.</span> <span class="post-toc-text">字符串</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#转换"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">转换</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Boolean"><span class="post-toc-number">5.</span> <span class="post-toc-text">Boolean</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#增加规则"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">增加规则</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LogicalLiteral"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">LogicalLiteral</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Not"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Not</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">6.</span> <span class="post-toc-text">小结</span></a></li></ol>
     </ul>
     
 
@@ -388,7 +388,7 @@
         
     
             <p class="article-headline-p">
-                Nginx配置fastcgi-perl
+                自己动手写编程语言（1）
             </p>
         </div>
 
@@ -407,7 +407,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Wooyme</strong>
-        <span>9月 08, 2018</span>
+        <span>6月 04, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -425,15 +425,6 @@
 
     <!-- Tags (bookmark) -->
     
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Nginx/">Nginx</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/perl/">perl</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/运维/">运维</a>
-    </ul>
-    
 
     <!-- Share -->
     
@@ -448,7 +439,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Nginx配置fastcgi-perl&url=http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=自己动手写编程语言（1）&url=http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -457,7 +448,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Nginx配置fastcgi-perl&url=http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html&via=Wooyme" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=自己动手写编程语言（1）&url=http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html&via=Wooyme" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -466,7 +457,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -475,7 +466,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/06/04/自己动手写编程语言/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -500,48 +491,206 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h2><p>廉价VPS的小内存实在是供不起JVM，所以只好找别的出路了。php呢不是很喜欢，python又不是很想用，于是选了个硬核一点的Perl作为后端语言。反正前后分离，没了渲染压力后端想怎么玩怎么玩。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a><strong>正文</strong></h2><pre><code class="Shell">apt-get install nginx libfcgi-perl wget
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>偶然看到了graal的<em>SimpleLanguage</em>的demo</p>
+<blockquote>
+<p><a href="https://github.com/graalvm/simplelanguage" target="_blank" rel="noopener">https://github.com/graalvm/simplelanguage</a></p>
+</blockquote>
+<p>然后突发奇想，干脆自己写个语言吧。<br>于是就有了这篇博客。</p>
+<p><em>到现在我的这个玩具语言甚至加入了lambda支持，而从我下载这个demo到现在大概过了3天左右。</em></p>
+<h1 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h1><p>准备工作可以看官网上的文档，写的非常详细</p>
+<blockquote>
+<p><a href="https://www.graalvm.org/docs/graalvm-as-a-platform/implement-language/" target="_blank" rel="noopener">https://www.graalvm.org/docs/graalvm-as-a-platform/implement-language/</a></p>
+</blockquote>
+<h1 id="去他妈的整数"><a href="#去他妈的整数" class="headerlink" title="去他妈的整数"></a>去他妈的整数</h1><p>好的，拿到这个demo之后发现的第一个事情就是这货的数字类型只支持整数不支持浮点数。所以就从让它支持浮点数开始吧</p>
+<h2 id="浮点数的语法"><a href="#浮点数的语法" class="headerlink" title="浮点数的语法"></a>浮点数的语法</h2><p>浮点数得有点，那么这里就需要改动关于语法解析的文件了。可以在</p>
+<blockquote>
+<p>language/src/main/java/com/oracle/truffle/sl/parser</p>
+</blockquote>
+<p>里找到<strong>SimpleLanguage.g4</strong>文件，在最下方可以看到关于<em>NUMERIC_LITERAL</em>的定义。</p>
+<pre><code class="antlr4">NUMERIC_LITERAL : &#39;0&#39; | NON_ZERO_DIGIT DIGIT*
 </code></pre>
-<p>改nginx配置</p>
-<pre><code>server {
-  listen   80;
-  root   /var/www/example.com;
+<p>可以看到跟正则的语法非常像，“|”代表“或”、“*”代表“匹配0次到无数次”。那么根据这个匹配规则就可以发现，在语法解析的过程中就没有提供对小数点的支持。所以我们第一步要做的就是在语法解析中加入小数点。</p>
+<p>这个修改非常简单</p>
+<pre><code class="antlr4">NUMERIC_LITERAL : &#39;0&#39; | NON_ZERO_DIGIT DIGIT* | &#39;0&#39; &#39;.&#39; DIGIT* | NON_ZERO_DIGIT DIGIT* &#39;.&#39; DIGIT*;
+</code></pre>
+<p>这就是我改动后的结果。加入了两个新的规则。分别表示”0.xxxxx”和’xxx.xxxxx’这样两种情况。总的来说唯一要注意的就是在表示数字的语法中，要阻止”0xxx”这种写法的存在。</p>
+<h3 id="重新生成文件"><a href="#重新生成文件" class="headerlink" title="重新生成文件"></a>重新生成文件</h3><p>g4文件需要被antlr转换为java文件之后才能参与编译。由于我用的ide是Intellij IDEA所以就装了antlr4的插件。安装完之后就可以在底部工具栏中看到<em>antlr preview</em>和<em>antlr output</em>两栏。其中<em>preview</em>可以用于查看语法解析树,，<em>output</em>可以查看生成java文件时的错误等。</p>
+<p>在工程中右键<em>SimpleLanguage.g4</em> -&gt; 单击<em>generate ANTLR recognizer</em>生成java文件-&gt; 复制生成的文件到<em>SimpleLanguage.g4</em>所在目录就可以生效了。</p>
+<h2 id="浮点数的实现"><a href="#浮点数的实现" class="headerlink" title="浮点数的实现"></a>浮点数的实现</h2><p>修改了浮点数的解析之后，需要在后端完成浮点数的实现。对于数字类型，SimpleLanguage使用了<em>BigInteger</em>，而我们需要把它改成<em>BigDecimal</em>才能支持浮点数。</p>
+<p>在<code>runtime</code>包下可以找到<code>SLBigNumber</code>这个类。类里面有一个<code>BigInteger</code>的属性。我们只要把这个属性的类型改成<code>BigDecimal</code>再把其他跟这个属性相关的部分修改一下，能编译通过就OK了。</p>
+<h2 id="重新编译"><a href="#重新编译" class="headerlink" title="重新编译"></a>重新编译</h2><p>重新编译只要在<code>simplelanguage</code>目录下<code>mvn clean package -DskipTests</code>即可，不想要编译native的话，可以在<code>native\make_native.sh</code>里加入</p>
+<pre><code>SL_BUILD_NATIVE=&quot;false&quot;
+</code></pre><p>顺便一提，maven3好像有点bug。因为代码里存在大量的代码生成，这些生成的文件在<code>target\generated-sources\annotations</code>里。一般情况下maven是能找到这个目录的，但有时候在<code>clean</code>之后maven就找不到了。</p>
+<p>我的解决方案是如果出现了找不到的情况就在<code>simplelanguage</code>module的<code>pom.xml</code>里加上</p>
+<pre><code class="xml">      &lt;plugin&gt;
+        &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+        &lt;artifactId&gt;build-helper-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.0.0&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;id&gt;add-source&lt;/id&gt;
+            &lt;phase&gt;generate-sources&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;add-source&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+              &lt;sources&gt;
+                &lt;source&gt;target/generated-sources/annotations&lt;/source&gt;
+              &lt;/sources&gt;
+            &lt;/configuration&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+</code></pre>
+<p>然后再clean，package。成功打包之后注释掉这段，就可以重归正常了。</p>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p>SimpleLanguage的字符串不支持<code>\r\n\t\&quot;</code>。这肯定不行，所以我们得自己加一个。<br>与修改数字一样，我们要先修改语法解析的东西。</p>
+<p>原本的格式</p>
+<pre><code>fragment STRING_CHAR : ~( &#39;\\&#39; | &#39;&quot;&#39; | &#39;\r&#39; | &#39;\n&#39;);
+STRING_LITERAL : &#39;&quot;&#39; STRING_CHAR* &#39;&quot;&#39;;
+</code></pre><p>修改后的格式</p>
+<pre><code>fragment STRING_CHAR :  &#39;\\\\&#39; | &#39;\\&quot;&#39;| &#39;\\n&#39; | &#39;\\t&#39; | &#39;\\r&#39; | ~( &#39;\\&#39; | &#39;&quot;&#39; | &#39;\r&#39; | &#39;\n&#39;);
+STRING_LITERAL : &#39;&quot;&#39; STRING_CHAR* &#39;&quot;&#39;;
+</code></pre><p>原本的字符串里是不能出现<code>\</code>的，现在虽然保留了最初的部分，但是我们添加了几种其他选项<code>&#39;\\\\&#39;  |  &#39;\\&quot;&#39;| &#39;\\n&#39; | &#39;\\t&#39; | &#39;\\r&#39;</code>。于是解析的时候就会优先匹配前几种。</p>
+<h2 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h2><p>前端匹配了并没有什么卵用，如果不修改其他部分，最终得到的也只是把这些东西原封不动的输出而已。所以我们还要修改<code>nodes/expression/SLStringLiteralNode.java</code>。我的方案是在编译期就替换掉这些字符串。</p>
+<pre><code class="java">@NodeInfo(shortName = &quot;const&quot;)
+public final class SLStringLiteralNode extends SLExpressionNode {
+    private static HashMap&lt;Character,Character&gt; specialCharMap = new HashMap&lt;&gt;();
+    // 创建特殊字符替换表
+    static {
+        specialCharMap.put(&#39;n&#39;,&#39;\n&#39;);
+        specialCharMap.put(&#39;r&#39;,&#39;\r&#39;);
+        specialCharMap.put(&#39;t&#39;,&#39;\t&#39;);
+        specialCharMap.put(&#39;&quot;&#39;,&#39;&quot;&#39;);
+    } 
+    private final String value;
 
-  location / {
-      index  index.html index.htm index.pl;
-  }  
+    public SLStringLiteralNode(String value) {
+        char[] chars = value.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        int status = 0;
+        for (char aChar : chars) {
+            if (aChar == &#39;\\&#39;) {
+                if (status == 0)
+                    status = 1;
+                else {
+                    status = 0;
+                    sb.append(&#39;\\&#39;); //针对\\的情况
+                }
+            } else {
+                if (status == 1) {
+                    if (specialCharMap.containsKey(aChar)) {
+                        sb.append(specialCharMap.get(aChar)); //替换字符
+                        status = 0;
+                    } else {
+                        throw new RuntimeException(&quot;Failed to parse string&quot;); //随便弹个异常
+                    }
+                } else {
+                    sb.append(aChar); //普通字符
+                }
+            }
+        }
+        this.value = sb.toString();
+    }
 
-  location ~ \.pl|cgi$ {
-      try_files $uri =404;
-      gzip off;
-      fastcgi_pass  127.0.0.1:8999;
-      fastcgi_index index.pl;
-      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-      include fastcgi_params;
-      }
+    @Override
+    public String executeGeneric(VirtualFrame frame) {
+        return value;
+    }
 }
-</code></pre><p>创建目录,给权限</p>
-<pre><code class="Shell">mkdir /var/www/example.com
-chown -R www-data:www-data /var/www/example.com
 </code></pre>
-<p>下载配置FastCGI</p>
-<pre><code class="Shell">wget http://nginxlibrary.com/downloads/perl-fcgi/fastcgi-wrapper -O /usr/bin/fastcgi-wrapper.pl
-wget http://nginxlibrary.com/downloads/perl-fcgi/perl-fcgi -O /etc/init.d/perl-fcgi
-chmod +x /usr/bin/fastcgi-wrapper.pl
-chmod +x /etc/init.d/perl-fcgi
-update-rc.d perl-fcgi defaults
-/usr/lib/insserv/insserv perl-fcgi
+<p>这样在运行的时候，得到的就是已经替换特殊字符的字符串。</p>
+<h1 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h1><p>语言到了这里，还有一个很重要的问题——没有Boolean值。最初我想的是，没有布朗值那就没有呗，就用0和非0来表示。但是观察了一下SimpleLanguage写好的几个内置函数(内置函数下一篇再说)是有返回bool的，而且<code>==</code>这样的关键字也是有对bool的比较。所以还是加一个吧</p>
+<h2 id="增加规则"><a href="#增加规则" class="headerlink" title="增加规则"></a>增加规则</h2><p>和数字、字符串一样，我们希望可以直接使用<code>true</code>和<code>false</code></p>
+<pre><code>a = &quot;Hello&quot;;
+b = 123.1;
+c = false;
+</code></pre><p>所以在g4文件里要加入对<code>true</code>和<code>false</code>的支持</p>
+<pre><code>LOGICAL_LITERAL : &#39;true&#39; | &#39;false&#39;;   //添加用于匹配true和false的规则
+IDENTIFIER : LETTER (LETTER | DIGIT)*;
+STRING_LITERAL : &#39;&quot;&#39; STRING_CHAR* &#39;&quot;&#39;;
+NUMERIC_LITERAL : &#39;0&#39; | NON_ZERO_DIGIT DIGIT* | &#39;0&#39; &#39;.&#39; DIGIT* | NON_ZERO_DIGIT DIGIT* &#39;.&#39; DIGIT*;
+</code></pre><pre><code class="antlr4">factor returns [SLExpressionNode result]
+:
+(
+    LOGICAL_LITERAL                             { $result = factory.createLogicalLiteral($LOGICAL_LITERAL); } //添加匹配LOGICAL_LITERAL，一定要放在前面，不然就优先匹配IDENTIFIER了。
+|
+    IDENTIFIER                                  { SLExpressionNode assignmentName = factory.createStringLiteral($IDENTIFIER, false); }
+    (
+        member_expression[null, null, assignmentName] { $result = $member_expression.result; }
+    |
+                                                { $result = factory.createRead(assignmentName); }
+    )
+|
+    STRING_LITERAL                              { $result = factory.createStringLiteral($STRING_LITERAL, true); }
+|
+    NUMERIC_LITERAL                             { $result = factory.createNumericLiteral($NUMERIC_LITERAL); }
+|
+
+    lmbd=lambda                                 { $result = $lmbd.result; }
+|
+    s=&#39;(&#39;
+    expr=expression
+    e=&#39;)&#39;                                       { $result = factory.createParenExpression($expr.result, $s.getStartIndex(), $e.getStopIndex() - $s.getStartIndex() + 1); }
+)
+;
 </code></pre>
-<p>启动!</p>
-<pre><code class="Shell">service nginx start
-service perl-fcgi start
+<p>可以看到我加了个<code>createLogicalLiteral</code>方法给factory。这是第一次提到factory。看一下g4文件members的部分就可以发现这个<code>factory</code>就是<code>SLNodeFactory</code>。里面提供了许多封装好的创建节点的方法。</p>
+<h2 id="LogicalLiteral"><a href="#LogicalLiteral" class="headerlink" title="LogicalLiteral"></a>LogicalLiteral</h2><p>前面我们已经看到了<code>StringLiteral</code>,其实还有<code>BigIntegerLiteral</code>(当然这个BigInteger现在已经是BigDecimal了)。这里<code>Literal</code>是字面的意思，这里我也不太想得到一个合适的翻译，大家自己领会了。</p>
+<p>我们要能在代码里表示一个布朗值就需要定义一个布朗的字面量，所以我写了一个<code>SLLogicalLiteralNode</code></p>
+<pre><code class="java">@NodeInfo(shortName = &quot;const&quot;)
+public final class SLLogicalLiteralNode extends SLExpressionNode {
+    private final Boolean value;
+    public SLLogicalLiteralNode(boolean value){
+        this.value = value;
+    }
+
+    @Override
+    public Boolean executeGeneric(VirtualFrame frame) {
+        return value;
+    }
+}
+
 </code></pre>
-<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a><strong>坑</strong></h2><p>顺利的话，就启动了。不顺利的话，启动perl-fastcgi的时候会失败，报错说<code>this account is currently not available</code>。Google了一圈好像没人在配置cgi的时候遇到这样的问题，比较多的是有些脑洞大开的人想从ssh登录到www-data这个用户上。<br>顺便说一下www-data这个用户，如果看Nginx的进程的话</p>
-<pre><code class="Shell">ps -ef | grep nginx
+<p>非常简单，在编译期把<code>value</code>放进去，然后在运行期取出来用。<br>然后在<code>SLNodeFactory</code>里添加<code>createLogicalLiteral</code>方法</p>
+<pre><code class="java">    public SLExpressionNode createLogicalLiteral(Token literalToken){
+        SLExpressionNode result;
+        result = new SLLogicalLiteralNode(Boolean.parseBoolean(literalToken.getText()));
+        srcFromToken(result, literalToken);
+        result.addExpressionTag();
+        return result;
+    }
 </code></pre>
-<p>会看到nginx的几个worker-process所属的用户都是www-data，这个就是专门给web应用提供的用户。<br>看了一下这些登录不了的解决方案，发现cgi的问题应该也可以用同样的方法解决。</p>
-<p>在<code>/etc/passwd</code>里，我们可以找到www-data的那行，然后就会发现它的结尾是<code>/usr/sbin/nologin</code>，我们要改成<code>/bin/bash</code>。这样这个用户就有运行perl脚本的能力了。重新启动一下服务，就OK了。</p>
+<p>这样我们就可以直接写<code>true</code>和<code>false</code>了</p>
+<h2 id="Not"><a href="#Not" class="headerlink" title="Not"></a>Not</h2><p>然后就发现问题了，SimpleLanguage连<code>!</code>操作符都没有。但是在<code>nodes</code>里我们可以找到<code>SLLogicalNotNode</code>,所以加一个<code>!</code>就只需要在语法解析上做点修改。</p>
+<pre><code>term returns [SLExpressionNode result]
+:
+single_factor                                         { $result = $single_factor.result; }
+(
+    op=(&#39;*&#39; | &#39;/&#39;)
+    single_factor                                     { $result = factory.createBinary($op, $result, $single_factor.result); }
+)*
+;
+
+single_factor returns [SLExpressionNode result]
+:
+(
+    (
+        &#39;!&#39;
+        factor  { $result = factory.createNot($factor.result); }
+    )
+|
+    factor  {$result = $factor.result; }
+)
+;
+</code></pre><p>我的方案是加了一个<code>single_factor</code>并把<code>term</code>内原本的<code>factor</code>改成<code>single_factor</code>。等于在原本的解析中插入一个对<code>!factor</code>的匹配。</p>
+<p>这个匹配的写法应该是有很多的，我选了一个我第一反应想到的。</p>
+<p>一通操作之后就可以实现这样一个基本的不能再基本的功能……..</p>
+<pre><code>fn main(){
+    if(!false){
+        .........
+    }
+}
+</code></pre><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>原理什么的其实我也还没完全理清楚，Truffle用了大量的注解和代码生成，导致写起来非常混乱。很多时候我也只能通过自己对于编译和虚拟机的理解去想代码运行的逻辑。下一篇是打算写一点我的理解和如何实现一个lambda。</p>
 
         
     
@@ -560,8 +709,8 @@ service perl-fcgi start
     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://wooyme.github.io/2018/09/08/Nginx配置fastcgi-perl/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://wooyme.github.io/2019/06/04/自己动手写编程语言/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://wooyme.github.io/2019/06/04/自己动手写编程语言/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 <script type="text/ls-javascript" id="disqus-thread-script">
@@ -591,7 +740,7 @@ service perl-fcgi start
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2018/12/16/自己动手写Ss/" id="post_nav-newer" class="prev-content">
+        <a href="/2019/08/31/如何强上你的邻居/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -605,7 +754,7 @@ service perl-fcgi start
 
     <!-- Next Nav -->
     
-        <a href="/2018/08/11/See-what-s-comming-in-Kotlin-1-3-M1/" id="post_nav-older" class="next-content">
+        <a href="/2019/06/04/C-Macro-FUCK-YOU/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
