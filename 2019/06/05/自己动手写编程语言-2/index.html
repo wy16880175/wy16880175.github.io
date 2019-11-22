@@ -48,7 +48,7 @@
     
     <title>
         
-            Vert.x后端漫游指南(4) | 
+            自己动手写编程语言(2) | 
         
         Wooyme&#39;s Blog
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content=",Vert.x">
+    <meta name="keywords" content=",NMSL,编译">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -225,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -240,16 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/">
+    <meta property="og:url" content="http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Vert.x后端漫游指南(4) | Wooyme&#39;s Blog">
+    <meta property="og:title" content="自己动手写编程语言(2) | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    <meta property="og:article:tag" content="Vert.x"> 
+    <meta property="og:article:tag" content="NMSL"> <meta property="og:article:tag" content="编译"> 
 
     
-        <meta property="article:published_time" content="Thu Jan 17 2019 18:09:03 GMT+0800">
-        <meta property="article:modified_time" content="Mon Oct 28 2019 19:09:43 GMT+0800">
+        <meta property="article:published_time" content="Wed Jun 05 2019 01:08:27 GMT+0800">
+        <meta property="article:modified_time" content="Fri Nov 22 2019 14:20:46 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -257,7 +257,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -269,10 +269,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html",
-    "headline": "Vert.x后端漫游指南(4)",
-    "datePublished": "Thu Jan 17 2019 18:09:03 GMT+0800",
-    "dateModified": "Mon Oct 28 2019 19:09:43 GMT+0800",
+    "mainEntityOfPage": "http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html",
+    "headline": "自己动手写编程语言(2)",
+    "datePublished": "Wed Jun 05 2019 01:08:27 GMT+0800",
+    "dateModified": "Fri Nov 22 2019 14:20:46 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Wooyme",
@@ -290,7 +290,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": ",Vert.x",
+    "keywords": ",NMSL,编译",
     "description": "我怎么会是正经人呢",
 }
 </script>
@@ -356,7 +356,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#API？"><span class="post-toc-number">2.</span> <span class="post-toc-text">API？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Swagger-amp-OpenAPI"><span class="post-toc-number">3.</span> <span class="post-toc-text">Swagger &amp; OpenAPI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#yaml"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">yaml</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swagger-Codegen"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Swagger-Codegen</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vert-x的Web-API-Contract"><span class="post-toc-number">4.</span> <span class="post-toc-text">Vert.x的Web API Contract</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">构建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建一个工厂"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">创建一个工厂</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vert-x的Web-API-Service"><span class="post-toc-number">5.</span> <span class="post-toc-text">Vert.x的Web API Service</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构建-1"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">构建</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用Interface"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">使用Interface</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加Service到RouterFactory"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">添加Service到RouterFactory</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">6.</span> <span class="post-toc-text">小结</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#编译期与运行期"><span class="post-toc-number">2.</span> <span class="post-toc-text">编译期与运行期</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Node"><span class="post-toc-number">3.</span> <span class="post-toc-text">Node</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Expression"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Expression</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更复杂的Expression"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">更复杂的Expression</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Node总结"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Node总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#运行期"><span class="post-toc-number">4.</span> <span class="post-toc-text">运行期</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DynamicObject"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">DynamicObject</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">5.</span> <span class="post-toc-text">小结</span></a></li></ol>
     </ul>
     
 
@@ -388,7 +388,7 @@
         
     
             <p class="article-headline-p">
-                Vert.x后端漫游指南(4)
+                自己动手写编程语言(2)
             </p>
         </div>
 
@@ -407,7 +407,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Wooyme</strong>
-        <span>1月 17, 2019</span>
+        <span>6月 05, 2019</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -431,7 +431,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Vert-x/">Vert.x</a>
+        <a class="post_tag-link" href="/tags/NMSL/">NMSL</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/编译/">编译</a>
     </ul>
     
 
@@ -448,7 +448,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Vert.x后端漫游指南(4)&url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=自己动手写编程语言(2)&url=http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -457,7 +457,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Vert.x后端漫游指南(4)&url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html&via=Wooyme" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=自己动手写编程语言(2)&url=http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html&via=Wooyme" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -466,7 +466,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -475,7 +475,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -500,208 +500,142 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>非常非常久没有更新 <em>Vert.x后端漫游指南</em> 了。主要是因为之前觉得Vert.x的Web后端实在是没有什么好写的，都是一些常规操作。再者，也有很长一段时间没有碰Vert.x的后端开发了。但是呢，因为打算做一个Vert.x全栈的服务端应用，所以又把Web后端的部分拿出来了。</p>
-<h1 id="API？"><a href="#API？" class="headerlink" title="API？"></a>API？</h1><p>虽然Vertx-Web也支持模板引擎这类的东西，但是无论是从潮流还是从Vertx支持程度的角度来看，前后端分离的开发方式更加适合现在的Web开发。那么既然前后端分离，提供一套完整、合理的API就非常重要了。<br>回顾一下之前的 <em>Vert.x后端漫游指南</em> ,我们使用了<code>Router.route(&quot;/api/path&quot;)</code>的方式来设置API。这种方式非常的简单粗暴，没有注解，没有配置文件，完完全全的硬编码。对于单人开发的简单服务来说，这样当然是没有问题的。但是当有了开发团队，需要前后端沟通的时候，这种硬编码的方式就变得很麻烦了。<br>一方面这意味着还得再单独写一份API文档给前端，</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>把修改后的上传到了我的仓库</p>
 <blockquote>
-<p>程序员最讨厌两种事情，一是没有文档，二是写文档。</p>
+<p><a href="https://github.com/Wooyme/NMSL" target="_blank" rel="noopener">https://github.com/Wooyme/NMSL</a></p>
 </blockquote>
-<p>另一方面是一旦要做什么修改，就必须要重新编译程序。  </p>
-<h1 id="Swagger-amp-OpenAPI"><a href="#Swagger-amp-OpenAPI" class="headerlink" title="Swagger &amp; OpenAPI"></a>Swagger &amp; OpenAPI</h1><blockquote>
-<p>Swagger <a href="https://swagger.io/" target="_blank" rel="noopener">https://swagger.io/</a></p>
-</blockquote>
+<p>顺便取了个意义不明的名字<code>Naive Mind Specialize Language</code>，简称nmsl。</p>
+<p>这篇先写一点原理相关的东西，然后就是lambda。</p>
+<h1 id="编译期与运行期"><a href="#编译期与运行期" class="headerlink" title="编译期与运行期"></a>编译期与运行期</h1><p>开发语言和开发应用最大的区别就是语言开发中我们要预想的情况并不是程序的运行情况而是语言编译的情况。把运行和编译的逻辑理清楚后就能理解很多东西了。</p>
+<p>英语比较好的话可以看一下</p>
 <blockquote>
-<p>OpenApi <a href="https://www.openapis.org/" target="_blank" rel="noopener">https://www.openapis.org/</a></p>
+<p> <a href="https://www.youtube.com/watch?v=FJY96_6Y3a4" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FJY96_6Y3a4</a></p>
+<p>《 One VM to Rule Them All, One VM to Bind Them》</p>
 </blockquote>
-<p>OpenAPI和Swagger给API开发带来了不一样的体验。Swagger是一套非常完善的API开发工具，最新的版本已经提供了对OpenAPI 3.0 的支持。</p>
-<h2 id="yaml"><a href="#yaml" class="headerlink" title="yaml"></a>yaml</h2><p>Swagger使用yaml作为配置文件，</p>
-<pre><code class="yaml">openapi: 3.0.0
-info:
-    title: Sample API
-    description: Optional multiline or single-line description in [CommonMark](http://commonmark.org/help/) or HTML.
-    version: 0.1.9
-servers:
-  - url: /v1
-    description: Optional server description, e.g. Main (production) server
-  - url: http://staging-api.example.com
-    description: Optional server description, e.g. Internal staging server for testing    
-paths:
-    /api/transactions/{id}:
-        get:
-            operationId: getTransactionsList
-            parameters:
-                -   name: id
-                    in: path
-                    required: true
-                    schema:
-                        type: string     
-                -   name: from
-                    in: query
-                    required: false
-                    schema:
-                        type: string
-                -   name: to
-                    in: query
-                    required: false
-                    schema:
-                        type: string
-            responses: 
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-        put:
-            operationId: putTransaction
-            parameters:
-                -   name: id
-                    in: path
-                    required: true
-                    schema:
-                        type: string
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                from:
-                                    type: string
-                                    format: email
-                                to:
-                                    type: string
-                                    format: email
-                                value:
-                                    type: number
-                                    format: double
-                            additionalProperties: false
-                            required:
-                                - from
-                                - to
-                                - value
-            responses: ...
-</code></pre>
-<p>大致上就是这个样子,详细的关于swagger中yaml配置的编写可以看官方文档</p>
-<blockquote>
-<p><a href="https://swagger.io/docs/specification/basic-structure/" target="_blank" rel="noopener">https://swagger.io/docs/specification/basic-structure/</a></p>
-</blockquote>
-<p>总体来说就是把原来的硬编码改成了文件配置的模式。通过<code>paths</code>和<code>get</code>,<code>put</code>,<code>post</code>,<code>delete</code>一起组成各种API，同时也通过<code>parameters</code>和<code>requestBody</code>规定了各个API所需的参数，以及最后的<code>responses</code>用于规定服务端返回的数据结构。  </p>
-<h2 id="Swagger-Codegen"><a href="#Swagger-Codegen" class="headerlink" title="Swagger-Codegen"></a>Swagger-Codegen</h2><p>有了配置文件之后当然还是要能够生成对应的代码才行。Swagger提供了Swagger-Codegen来生成各种语言、框架的服务端和客户端代码。</p>
-<blockquote>
-<p><a href="https://github.com/swagger-api/swagger-codegen" target="_blank" rel="noopener">https://github.com/swagger-api/swagger-codegen</a></p>
-</blockquote>
-<p>如果要使用<strong>OpenAPI 3.0</strong>的话就必须要安装3.0.0版本以上的Swagger-Codegen。目前由于这个工具还在频繁的更新中，所以bug也是挺多的，特别是在客户端代码的部分，前几天就遇到生成的<code>typescript-angular</code>的代码里没有把body放到<code>post</code>和<code>put</code>的参数里的问题。<br>如果开发的时候遇到了不可理喻的问题，就去issues里看看吧。</p>
-<h1 id="Vert-x的Web-API-Contract"><a href="#Vert-x的Web-API-Contract" class="headerlink" title="Vert.x的Web API Contract"></a>Vert.x的Web API Contract</h1><p>在写完Swagger之后呢，就要来看看Vert.x的Web API Contract了。为什么明明有Swagger了，Vert.x的团队还要搞个Contract呢，因为<strong>Swagger不支持Vert.x</strong>( 笑 。Swagger虽然已经支持很多主流框架了，但是很明显Vert.x还不是那么的”主流”。</p>
-<blockquote>
-<p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-contract/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-contract/java/</a></p>
-</blockquote>
-<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>Maven</p>
-<pre><code class="xml">&lt;dependency&gt;
- &lt;groupId&gt;io.vertx&lt;/groupId&gt;
- &lt;artifactId&gt;vertx-web-api-contract&lt;/artifactId&gt;
- &lt;version&gt;3.6.2&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-<p>Gradle</p>
-<pre><code class="Groovy">dependencies {
- compile &#39;io.vertx:vertx-web-api-contract:3.6.2&#39;
-}
-</code></pre>
-<h2 id="创建一个工厂"><a href="#创建一个工厂" class="headerlink" title="创建一个工厂"></a>创建一个工厂</h2><pre><code class="Java">OpenAPI3RouterFactory.create(vertx, &quot;yaml的路径,支持本地文件或是http、https的地址&quot;, ar -&gt; {
-  if (ar.succeeded()) {
-    //得到了一个路由工厂
-    OpenAPI3RouterFactory routerFactory = ar.result();
-  } else {
-    Throwable exception = ar.cause();
-  }
-});
-</code></pre>
-<p>得到这样一个工厂之后，就可以添加各种处理器</p>
-<pre><code class="Java">routerFactory.addHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {
-  RequestParameters params = routingContext.get(&quot;parsedParameters&quot;);
-  RequestParameter body = params.body();
-  JsonObject jsonBody = body.getJsonObject();
-  // Do something with body
-});
-routerFactory.addFailureHandlerByOperationId(&quot;awesomeOperation&quot;, routingContext -&gt; {
-  // Handle failure
-});
-</code></pre>
-<p>这里的<code>OperationId</code>就对应了yaml文件中的<code>OperationId</code>，对于需要做权限控制的路由，还可以添加<code>Security Handler</code></p>
-<pre><code class="Java">routerFactory.addSecurityHandler(&quot;security_scheme_name&quot;, securityHandler);
-</code></pre>
-<p>对于之前我们用到的SessionHandler、CookieHandler，可以通过调用<code>addGlobalHandler</code>的方式来添加。需要注意的是BodyHandler不能用<code>addGlobalHandler</code>，<code>OpenAPI3RouterFactory</code>为它提供了专门的方法。</p>
-<p>在添加完处理器之后，就可以生产路由了</p>
-<pre><code class="Java">Router router = routerFactory.getRouter();
+<p>是Oracle Labs的人做的演讲。比较尴尬的是没有英文字幕，只能完全靠听力了。</p>
+<h1 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h1><p>首先我们看到<code>parser</code>包下的<code>SLNodeFactory</code>里有大量的<code>createXXX</code>的方法，而在<code>nodes</code>目录下都是继承了<code>Node</code>的类。了解过编译原理的朋友肯定知道编译器首先要解析语法然后生成相应的语法树，那么既然有树就肯定会有节点，而<code>Node</code>类代表的就是这些节点。  </p>
+<p><code>SimpleLanguage</code>中有<code>builtin</code>，<code>expression</code>，<code>controlflow</code>，<code>local</code>这4个包，分别包含了内置函数，表达式，控制流和局部读写的节点。</p>
+<h2 id="Expression"><a href="#Expression" class="headerlink" title="Expression"></a>Expression</h2><p><code>Expression</code>是比较简单的一种节点，功能上和<code>builtin</code>类似，但是与语法解析过程的联系更加紧密一些。</p>
+<p>首先以<code>SLBigIntegerLiteralNode.java</code>为例。</p>
+<pre><code class="java">@NodeInfo(shortName = &quot;const&quot;)
+public final class SLBigIntegerLiteralNode extends SLExpressionNode {
 
-HttpServer server = vertx.createHttpServer(new HttpServerOptions().setPort(8080).setHost(&quot;localhost&quot;));
-server.requestHandler(router).listen();
-</code></pre>
-<p>这部分跟之前相差无几，唯一要注意的是<code>router::accept</code>已经被弃用了，现在直接向<code>requestHandler</code>传递<code>router</code>就可以了。</p>
-<h1 id="Vert-x的Web-API-Service"><a href="#Vert-x的Web-API-Service" class="headerlink" title="Vert.x的Web API Service"></a>Vert.x的Web API Service</h1><blockquote>
-<p>Contract之后再来个Service是要干什么。</p>
-</blockquote>
-<p>各位肯定也都发现了，Web API Contract用起来是一点都不方便，先不说每个处理器都要通过<code>operationId</code>单独绑定，就说处理器得到的参数吧，一点都不智能，完全没有用到Yaml中配置的<code>parameters</code>，参数还是要像以前一样从<code>RoutingContext</code>里获取。<br>为了获得更好的开发体验，就必须要引入Web API Service了。</p>
-<blockquote>
-<p>官方文档 <a href="https://vertx.io/docs/vertx-web-api-service/java/" target="_blank" rel="noopener">https://vertx.io/docs/vertx-web-api-service/java/</a></p>
-</blockquote>
-<h2 id="构建-1"><a href="#构建-1" class="headerlink" title="构建"></a>构建</h2><p>Maven</p>
-<pre><code class="xml">&lt;dependency&gt;
- &lt;groupId&gt;io.vertx&lt;/groupId&gt;
- &lt;artifactId&gt;vertx-codegen&lt;/artifactId&gt;
- &lt;version&gt;3.6.2&lt;/version&gt;
- &lt;classifier&gt;processor&lt;/classifier&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
- &lt;groupId&gt;io.vertx&lt;/groupId&gt;
- &lt;artifactId&gt;vertx-web-api-service&lt;/artifactId&gt;
- &lt;version&gt;3.6.2&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-<p>Gradle</p>
-<pre><code class="Groovy">dependencies {
- compile &#39;io.vertx:vertx-codegen:3.6.2:processor&#39;
- compile &#39;io.vertx:vertx-web-api-service:3.6.2&#39;
+    private final SLBigNumber value;
+
+    public SLBigIntegerLiteralNode(BigDecimal value) {
+        this.value = new SLBigNumber(value);
+    }
+
+    @Override
+    public SLBigNumber executeGeneric(VirtualFrame frame) {
+        return value;
+    }
 }
 </code></pre>
-<p>可以看到，除了<code>vertx-web-api-service</code>以外，还引入了<code>vertx-codegen</code>。在codegen面前，没有什么问题是解决不了的。</p>
-<h2 id="使用Interface"><a href="#使用Interface" class="headerlink" title="使用Interface"></a>使用Interface</h2><pre><code class="Java">@WebApiServiceGen
-interface TransactionService {
- void getTransactionsList(String from, String to, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler);
- void putTransaction(JsonObject body, OperationRequest context, Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler);
+<p>这个是涉及code generate最少的一个类了，所以就以它为例。<code>SLBigIntegerLiteralNode</code>总共就一个构造函数和一个<code>executeGeneric</code>方法。这里就出现了一个生命周期的问题。<strong>SLBigIntegerLiteralNode在生成语法树的过程中被实例化</strong>而<strong>executeGeneric是在代码运行的时候被调用</strong></p>
+<p>所以就有了<code>SLBigIntegerLiteralNode</code>中的操作，在生成语法树的过程中把常量<code>value</code>保存在类里，然后在<code>executeGeneric</code>中直接返回这个保存的值。</p>
+<h2 id="更复杂的Expression"><a href="#更复杂的Expression" class="headerlink" title="更复杂的Expression"></a>更复杂的Expression</h2><p>以<code>SLWritePropertyNode</code>为例</p>
+<pre><code class="java">@NodeInfo(shortName = &quot;.=&quot;)
+@NodeChild(&quot;receiverNode&quot;)
+@NodeChild(&quot;nameNode&quot;)
+@NodeChild(&quot;valueNode&quot;)
+public abstract class SLWritePropertyNode extends SLExpressionNode {
+
+    static final int LIBRARY_LIMIT = 3;
+
+    @Specialization(guards = &quot;arrays.hasArrayElements(receiver)&quot;, limit = &quot;LIBRARY_LIMIT&quot;)
+    protected Object write(Object receiver, Object index, Object value,
+                    @CachedLibrary(&quot;receiver&quot;) InteropLibrary arrays,
+                    @CachedLibrary(&quot;index&quot;) InteropLibrary numbers) {
+        try {
+            arrays.writeArrayElement(receiver, numbers.asLong(index), value);
+        } catch (UnsupportedMessageException | UnsupportedTypeException | InvalidArrayIndexException e) {
+            throw SLUndefinedNameException.undefinedProperty(this, index);
+        }
+        return value;
+    }
+
+    @Specialization(limit = &quot;LIBRARY_LIMIT&quot;)
+    protected Object write(Object receiver, Object name, Object value,
+                    @CachedLibrary(&quot;receiver&quot;) InteropLibrary objectLibrary,
+                    @Cached SLToMemberNode asMember) {
+        try {
+            objectLibrary.writeMember(receiver, asMember.execute(name), value);
+        } catch (UnsupportedMessageException | UnknownIdentifierException | UnsupportedTypeException e) {
+            // write was not successful. In SL we only have basic support for errors.
+            throw SLUndefinedNameException.undefinedProperty(this, name);
+        }
+        return value;
+    }
 }
 </code></pre>
-<p>Web API Service提供了另一种绑定handler的方式。接口中的方法名称需要和<code>operationId</code>相同，其中的参数也需要和<code>parameters</code>相同，需要注意的是如果使用<code>requestBody</code>，则对应<code>JsonObject body</code>。最后的<code>OperationRequest context</code>和<code>Handler&lt;AsyncResult&lt;OperationResponse&gt;&gt; resultHandler</code>是必须写的部分。分别代表了请求的额外信息和响应的对象。</p>
-<ul>
-<li>OperationRequest<ul>
-<li>getHeaders 请求头信息</li>
-<li>getParams 请求参数</li>
-<li>getUser 如果使用Auth，User就在这里</li>
-<li>getExtra 可以通过向RouterFactory添加<code>setExtraOperationContextPayloadMapper</code>来<strong>额外设置extra</strong>，这个很重要,通过这种方式可以把session带到handler里来。</li>
-</ul>
-</li>
-<li>OperationResponses<ul>
-<li>响应头</li>
-<li>响应状态</li>
-<li>响应主体</li>
-</ul>
-</li>
-</ul>
-<h2 id="添加Service到RouterFactory"><a href="#添加Service到RouterFactory" class="headerlink" title="添加Service到RouterFactory"></a>添加Service到RouterFactory</h2><pre><code class="Kotlin">OpenAPI3RouterFactory.create(vertx,&quot;yaml文件路径&quot;){
-    val serviceImpl = ServiceImpl()
-    ServiceBinder(vertx)
-        .setAddress(&quot;my-service&quot;)
-        .register(Service::class.java,ServiceImpl)
-    it.result().mountServiceInterface(Service::class.java,&quot;my-service&quot;)
-    //因为Web API Contract并不会处理yaml中的servers，所以需要自己设置sub-router
-    val router = Router.router(vertx).mountSubRouter(&quot;/api&quot;,it.result().router)
-    vertx.createHttpServer().requestHandler(router).listen(80){
-        logger.info(&quot;Listen at 80&quot;)
-    }    
-}
+<p>首先看到的是多了几个<code>NodeChild</code>的类注解以及<code>Specialization</code>的方法注解。刚刚也提到了code generate，所以这两个注解很明显就是和代码生成相关的。比较一下和上面的区别。发现<code>SLWritePropertyNode</code>是abstract的也没有实现<code>executeGeneric</code>方法，这就说明生成的代码为我们做了不少事情。</p>
+<p>代码生成器生成的代码就不贴了，转述一下《 One VM to Rule Them All, One VM to Bind Them》里的话：</p>
+<p><code>@NodeChild(&quot;receiverNode&quot;)</code>会生成<code>private final Node receiverNode;</code>同时会生成<code>create(Node receiverNode)</code>方法，而三个<code>NodeChild</code>自然就会生成三个这样的属性和三个create的参数。</p>
+<p>与这些node相对的是带有<code>Specialization</code>注解的方法的参数，<strong>这个对应关系只与顺序相关，与名称是无关的</strong>。在运行过程中，生成的代码会调用三个子Node的<code>executeGeneric</code>方法得到值，然后传入到带有<code>Specialization</code>注解的方法中。</p>
+<h2 id="Node总结"><a href="#Node总结" class="headerlink" title="Node总结"></a>Node总结</h2><p>与<code>ExpressionNode</code>相同，其他几类Node的生命周期也是这样。不过有些细节上的区别。比如<code>Builtins</code>会在<code>SLContext</code>里被提前install。</p>
+<pre><code class="java">    //SLContext中安装内置函数
+    private void installBuiltins() {
+        installBuiltin(SLReadlnBuiltinFactory.getInstance());
+        installBuiltin(SLPrintBuiltinFactory.getInstance());
+        installBuiltin(SLNanoTimeBuiltinFactory.getInstance());
+        installBuiltin(SLDefineFunctionBuiltinFactory.getInstance());
+        installBuiltin(SLStackTraceBuiltinFactory.getInstance());
+        installBuiltin(SLNewObjectBuiltinFactory.getInstance());
+        installBuiltin(SLEvalBuiltinFactory.getInstance());
+        installBuiltin(SLGetSizeBuiltinFactory.getInstance());
+        installBuiltin(SLHasSizeBuiltinFactory.getInstance());
+        installBuiltin(SLIsExecutableBuiltinFactory.getInstance());
+        installBuiltin(SLIsNullBuiltinFactory.getInstance());
+        installBuiltin(SLWrapPrimitiveBuiltinFactory.getInstance());
+        installBuiltin(SLMembersBuiltinFactory.getInstance());
+        installBuiltin(SLOpenBuiltinFactory.getInstance());
+        installBuiltin(SLWriteBuiltinFactory.getInstance());
+        installBuiltin(SLCloseBuiltinFactory.getInstance());
+        installBuiltin(SLReadBuiltinFactory.getInstance());
+        installBuiltin(SLSleepBuiltinFactory.getInstance());
+        installBuiltin(SLInterfaceBuiltinFactory.getInstance());
+        installBuiltin(SLToIntNodeFactory.getInstance());
+        installBuiltin(SLFromProxyBuiltinFactory.getInstance());
+        installBuiltin(SLUnInterfaceBuiltinFactory.getInstance());
+    }
 </code></pre>
-<p>这样就可以非常方便的使用Vert.x的Web API Service了。</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>在使用了OpenAPI之后，Vert.x的后端开发就算是比较完整了。这种开发方式也能给前端开发提供很多便利，比硬编码的模式要更加适合现在的开发形式。</p>
+<h1 id="运行期"><a href="#运行期" class="headerlink" title="运行期"></a>运行期</h1><p>可以看到在<code>SLWritePropertyNode</code>中有这样一个方法。</p>
+<pre><code class="java">    @Specialization(guards = &quot;arrays.hasArrayElements(receiver)&quot;, limit = &quot;LIBRARY_LIMIT&quot;)
+    protected Object write(Object receiver, Object index, Object value,
+                    @CachedLibrary(&quot;receiver&quot;) InteropLibrary arrays,
+                    @CachedLibrary(&quot;index&quot;) InteropLibrary numbers) {
+        try {
+            arrays.writeArrayElement(receiver, numbers.asLong(index), value);
+        } catch (UnsupportedMessageException | UnsupportedTypeException | InvalidArrayIndexException e) {
+            throw SLUndefinedNameException.undefinedProperty(this, index);
+        }
+        return value;
+    }
+</code></pre>
+<p>这里出现了<code>InteropLibrary</code>这个类型，根据注解可以看出来，<code>InteropLibrary</code>和前面的<code>Object</code>是有关的。这里具体是什么关系很难直接说明，但是可以看到在<code>SLObjectType</code>与<code>SLBigNumber</code>这两个类的注解中均出现了<code>InteropLibrary.class</code>。这就是Truffle API让人用着很不爽的地方，它大量的使用了注解和代码生成，让代码结构非常混乱，而且还找不到文档。如果不看完那3个小时的视频很多地方就很难理解。</p>
+<p>现在已知的是，可以从<code>receiver</code>和<code>index</code>中产生它们对应的<code>InteropLibrary</code>，也就是这里的<code>arrays</code>和<code>numbers</code>。</p>
+<p>然后在<code>@Specialization</code>的注解中可以看到<code>guards</code>属性，从字面意思上就可以看出这个属性会生成用于保证方法正确运行的代码。因为这个<code>write</code>方法是要向array写入，所以这里的<code>receiver</code>就必须是array，于是就有了guards里的代码，保证receiver是有数组元素的。</p>
+<p>但是！事实上，我们想要的往往是<code>List</code>，而不是一个<code>Array</code>，所以为了实现往<code>List</code>里写入元素只要加入这样一个方法。</p>
+<pre><code class="java">    @Specialization(limit = &quot;LIBRARY_LIMIT&quot;)
+    protected Object write(List receiver, Object index, Object value,
+                           @CachedLibrary(&quot;index&quot;) InteropLibrary numbers){
+        try {
+            receiver.set(numbers.asInt(index),value); 
+        } catch (UnsupportedMessageException | IndexOutOfBoundsException e) {
+            throw SLUndefinedNameException.undefinedProperty(this, index); // 如果超出list长度，则报错
+        }
+        return value;
+    }
+</code></pre>
+<p>这里问题就来了，<code>List</code>是一个已知的类型，而前面的<code>Object</code>传进来的很明显也应该是一个已知的类型。那么这个<code>Object</code>会是什么呢？</p>
+<h2 id="DynamicObject"><a href="#DynamicObject" class="headerlink" title="DynamicObject"></a>DynamicObject</h2><p>事实上，这个Object对应的是<code>DynamicObject</code>，而<code>DynamicObject</code>的最终实现则是<code>runtime</code>包下的<code>SLObjectType</code>。能看出<code>SLObjectType</code>即是<code>DynamicObject</code>的最直接证据就是<code>SLObjectType</code>的类注解</p>
+<pre><code class="java">@ExportLibrary(value = InteropLibrary.class, receiverType = DynamicObject.class)
+</code></pre>
+<p>这个连接过程有大量的代码生成来实现。</p>
+<p>可以看到<code>SLObjectType</code>实现了<code>hasArrayElements</code>，<code>hasMembers</code>等方法，还有<code>GetMembers</code>,<code>ReadMember</code>,<code>WriteMember</code>这些子类。从字面意思上都可以看出这些东西的功能，但是在代码上完全看不出它们与<code>DynamicObject</code>或是<code>InteropLibrary</code>的关系。</p>
+<p>如果想要知道<code>SLObjectType</code>中这些方法与<code>InteropLibrary</code>的关系，可以看<code>com.oracle.truffle.api.interop.InteropLibaray</code>的源码。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>花了很大的篇幅写ExpressionNode，所以Lambda放到下一篇。</p>
 
         
     
@@ -720,8 +654,8 @@ interface TransactionService {
     <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://wooyme.github.io/2019/01/17/Vert-x后端漫游指南-4/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://wooyme.github.io/2019/06/05/自己动手写编程语言-2/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 <script type="text/ls-javascript" id="disqus-thread-script">
@@ -751,7 +685,7 @@ interface TransactionService {
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2019/02/12/川叔的Ubuntu私房菜（2333/" id="post_nav-newer" class="prev-content">
+        <a href="/2019/08/31/如何强上你的邻居/" id="post_nav-newer" class="prev-content">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
             </button>
@@ -765,7 +699,7 @@ interface TransactionService {
 
     <!-- Next Nav -->
     
-        <a href="/2018/12/22/Kotlin-Native求生指南-3/" id="post_nav-older" class="next-content">
+        <a href="/2019/06/04/C-Macro-FUCK-YOU/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
