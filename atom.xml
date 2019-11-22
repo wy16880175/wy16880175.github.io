@@ -241,9 +241,9 @@
     
       <category term="C/C++" scheme="http://wooyme.github.io/tags/C-C/"/>
     
-      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
-    
       <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
+    
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
       <category term="网络协议" scheme="http://wooyme.github.io/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE/"/>
     
@@ -430,9 +430,9 @@
     </summary>
     
     
-      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
-    
       <category term="Vert.x" scheme="http://wooyme.github.io/tags/Vert-x/"/>
+    
+      <category term="Kotlin" scheme="http://wooyme.github.io/tags/Kotlin/"/>
     
       <category term="VPN" scheme="http://wooyme.github.io/tags/VPN/"/>
     
