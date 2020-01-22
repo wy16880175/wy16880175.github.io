@@ -48,7 +48,7 @@
     
     <title>
         
-            归档: 2019/11 | 
+            JVM那些我们不知道的参数 | 
         
         Wooyme&#39;s Blog
     </title>
@@ -59,7 +59,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="我怎么会是正经人呢">
-    <meta name="keywords" content="">
+    <meta name="keywords" content=",JVM">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -86,6 +86,9 @@
         <style id="style_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("style_css","/css/style.min.css?NKhlKQkXw/c66TR5p4wO+w==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
 
         
+            
+                <style id="prettify_css"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_css","/css/prettify.min.css?zp8STOU9v89XWFEnN+6YmQ==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
+                <style id="prettify_theme"></style><script>if(typeof window.lsLoadCSSMaxNums === "undefined")window.lsLoadCSSMaxNums = 0;window.lsLoadCSSMaxNums++;lsloader.load("prettify_theme","/css/prettify/github-v2.min.css?AfzKxt++K+/lhZBlSjnxwg==",function(){if(typeof window.lsLoadCSSNums === "undefined")window.lsLoadCSSNums = 0;window.lsLoadCSSNums++;if(window.lsLoadCSSNums == window.lsLoadCSSMaxNums)document.documentElement.style.display="";}, false)</script>
             
         
 
@@ -222,7 +225,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Wooyme&#39;s Blog">
-    <meta name="msapplication-starturl" content="http://wooyme.github.io/archives/2019/11/">
+    <meta name="msapplication-starturl" content="http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Wooyme&#39;s Blog">
@@ -237,13 +240,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://wooyme.github.io/archives/2019/11/">
+    <meta property="og:url" content="http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2019/11 | Wooyme&#39;s Blog">
+    <meta property="og:title" content="JVM那些我们不知道的参数 | Wooyme&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="我怎么会是正经人呢">
-    
+    <meta property="og:article:tag" content="JVM"> 
 
+    
+        <meta property="article:published_time" content="Mon Jan 20 2020 21:37:42 GMT+0800">
+        <meta property="article:modified_time" content="Wed Jan 22 2020 20:35:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -251,13 +257,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://wooyme.github.io/archives/2019/11/index.html" />
+        <link rel="canonical" href="http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html",
+    "headline": "JVM那些我们不知道的参数",
+    "datePublished": "Mon Jan 20 2020 21:37:42 GMT+0800",
+    "dateModified": "Wed Jan 22 2020 20:35:55 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Wooyme",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "我怎么会是正经人呢"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wooyme&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": ",JVM",
+    "description": "我怎么会是正经人呢",
+}
+</script>
 
 
     
@@ -291,205 +327,259 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#客户端之痛"><span class="post-toc-number">2.</span> <span class="post-toc-text">客户端之痛</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#JVM内存参数"><span class="post-toc-number">3.</span> <span class="post-toc-text">JVM内存参数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最大堆内存"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">最大堆内存</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#冗余度控制"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">冗余度控制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最大直接内存"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">最大直接内存</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#nio缓存"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">nio缓存</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#小结"><span class="post-toc-number">4.</span> <span class="post-toc-text">小结</span></a></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/11/22/自己动手写编程语言-2/">自己动手写编程语言(2)</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言把修改后的上传...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/11/22/自己动手写编程语言-2/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>11月 22, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/11/09/自己动手写编程语言/">自己动手写编程语言（1）</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            前言偶然看到了gr...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/11/09/自己动手写编程语言/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>11月 09, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2019/11/04/Cmake备忘录/">Cmake备忘录</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            JNI
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2019/11/04/Cmake备忘录/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Wooyme's avatar">
-            </div>
-            <div>
-                <strong>Wooyme</strong>
-                <span>11月 04, 2019</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                JVM那些我们不知道的参数
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Wooyme</strong>
+        <span>1月 20, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JVM/">JVM</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=JVM那些我们不知道的参数&url=http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html&pic=http://wooyme.github.io/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JVM那些我们不知道的参数&url=http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html&via=Wooyme" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>还是我的Wsocks(不过现在改名SuperEngine了)，在兜兜转转了许久之后还是回到了最初的起点。要什么Kotlin Native，要什么Go，要什么GraalVm，都是垃圾，原始的才是最好的。</p>
+<h1 id="客户端之痛"><a href="#客户端之痛" class="headerlink" title="客户端之痛"></a>客户端之痛</h1><p>JVM的客户端为什么那么少？ 我们往往能看到 .net系列，C++甚至是go的客户端但是为什么没有java的客户。个人觉得原因主要在启动速度慢和内存占用高这两个地方。对于服务端来说JVM的启动时间可以忽略不计，而默认的内存策略也不会有太多问题，但是客户端上大家都想要小巧玲珑的类型，JVM就有些不合适了。</p>
+<h1 id="JVM内存参数"><a href="#JVM内存参数" class="headerlink" title="JVM内存参数"></a>JVM内存参数</h1><p>启动速度是没办法变快了，但是内存还是有很多可以调整的地方。</p>
+<h2 id="最大堆内存"><a href="#最大堆内存" class="headerlink" title="最大堆内存"></a>最大堆内存</h2><pre><code>-Xmx=Your_size -Xms=Your_size
+</code></pre><p>这是第一个可以加的内存参数，也是最没用的一个。他能限制堆的大小，让gc触发的更加频繁一点，但是往往我们的启动内存就已经超过100M了，这里的设置根本没有效果。</p>
+<h2 id="冗余度控制"><a href="#冗余度控制" class="headerlink" title="冗余度控制"></a>冗余度控制</h2><pre><code>-XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=10
+</code></pre><p>这行的效果非常好，默认的两个值似乎是50和70，这样内存的浪费就太多了。把两个值调到10之后整体的内存占用一下就少了很多。</p>
+<h2 id="最大直接内存"><a href="#最大直接内存" class="headerlink" title="最大直接内存"></a>最大直接内存</h2><pre><code>-XX:MaxDirectMemorySize=12m
+</code></pre><p>如果有用像netty这样的框架，那这个设置就比较有用了。</p>
+<h2 id="nio缓存"><a href="#nio缓存" class="headerlink" title="nio缓存"></a>nio缓存</h2><pre><code>-Djdk.nio.maxCachedBufferSize=262144
+</code></pre><p>跟上面一样，如果使用了nio或者netty的东西，加上这个参数之后可以限制缓存的大小。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>JVM的许多默认设置都是以空间换时间的策略，在服务端上这样的策略当然有利于节约CPU资源，但是对于客户端程序来说，本身所需要的CPU就不高，这样的策略在用户看来就是程序占用了大量的内存。</p>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 DISQUS -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://wooyme.github.io/2020/01/20/JVM那些我们不知道的参数/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+<script type="text/ls-javascript" id="disqus-thread-script">
+    queue.offer(function() {
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//wooymes-blog.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        });
+</script>
+
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2019/11/22/自己动手写编程语言-2/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
@@ -807,6 +897,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
     
+        
+            <script>lsloader.load("prettify_js","/js/prettify.min.js?WN07fivHQSMKWy7BmHBB6w==", true)</script>
+        
+    
 
 
 
@@ -819,6 +913,11 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+        
+            $(function() {
+                $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+                prettyPrint();
+                })
         
     
     
